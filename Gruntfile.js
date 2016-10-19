@@ -13,7 +13,6 @@ module.exports = function (grunt) {
             }
         },
 
-
         // Grunt Tasks
         less: {
             dist: {
@@ -30,6 +29,42 @@ module.exports = function (grunt) {
                 cwd: 'bower_components/angular',
                 expand: true,
                 dest: 'dist/assets/'
+            },
+            vendor_metisMenu: {
+                src: 'metisMenu/*',
+                cwd: 'vendor',
+                expand: true,
+                dest: 'dist/vendor/'
+            },
+            vendor_morrisjs: {
+                src: 'morrisjs/*',
+                cwd: 'vendor',
+                expand: true,
+                dest: 'dist/vendor/'
+            },
+            vendor_fontawesome: {
+                src: 'font-awesome/**/*',
+                cwd: 'vendor',
+                expand: true,
+                dest: 'dist/vendor/'
+            },
+            vendor_raphael: {
+                src: 'raphael/*',
+                cwd: 'vendor',
+                expand: true,
+                dest: 'dist/vendor/'
+            },
+            vendor_data: {
+                src: 'data/*',
+                cwd: 'vendor',
+                expand: true,
+                dest: 'dist/vendor'
+            },
+            vendor_sbadmin: {
+                src: 'sb-admin/**/*',
+                cwd: 'vendor',
+                expand: true,
+                dest: 'dist/vendor/'
             },
             jquery: {
                 src: ['jquery.js', 'jquery.min.js'],
