@@ -66,6 +66,12 @@ module.exports = function (grunt) {
                 expand: true,
                 dest: 'dist/vendor/'
             },
+            vendor_datatables: {
+                src: ['datatables/**/*','datatables-plugins/*','datatables-responsive/*'],
+                cwd: 'vendor',
+                expand: true,
+                dest: 'dist/vendor/'
+            },
             jquery: {
                 src: ['jquery.js', 'jquery.min.js'],
                 cwd: 'bower_components/jquery/dist',
