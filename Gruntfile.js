@@ -25,8 +25,14 @@ module.exports = function (grunt) {
         },
         copy: {
             angular: {
-                src: ['angular.js', 'angular.min.js'],
+                src: ['angular.js', 'angular.min.js', 'angular-route.js'],
                 cwd: 'bower_components/angular',
+                expand: true,
+                dest: 'dist/assets/'
+            },
+            angular_route: {
+                src: 'angular-route.js',
+                cwd: 'bower_components/angular-route',
                 expand: true,
                 dest: 'dist/assets/'
             },
@@ -130,7 +136,7 @@ module.exports = function (grunt) {
                 },
                 files: {
                     'dist/js/app.min.js': 'dist/js/app.js',
-                    'dist/js/script.min.js': 'dist/js/script.js',
+                    'dist/js/script.min.js': 'dist/js/script.js'
                 }
             }
         },
