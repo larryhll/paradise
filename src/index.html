@@ -142,6 +142,7 @@
         <div id="page-wrapper">
             <div ng-view></div>
         </div>
+
     </div>
 
     <script src="assets/jquery.min.js"></script>
@@ -166,27 +167,27 @@
     <script src="js/navigation_ctrl.js"></script>
 
     <!-- Page-Level Demo Scripts - Tables - Use for reference -->
-    <!--    <script>
+    <script>
        $(document).ready(function() {
             $('#dataTables-example').DataTable({
                 responsive: true
             });
         });
     </script>
-
-    <script>
-        app = angular.module("app", []);
-        app.controller("pageCtrl", function($scope) {
-            $scope.navigationUrl = "app/views/common/navigation.html";
-            $scope.templateUrl = "app/views/product/primary_product.html";
-            $scope.primaryProduct = function(){
+    <!--
+        <script>
+            app = angular.module("app", []);
+            app.controller("pageCtrl", function($scope) {
+                $scope.navigationUrl = "app/views/common/navigation.html";
                 $scope.templateUrl = "app/views/product/primary_product.html";
-            };
-            $scope.productList = function(){
-                $scope.templateUrl = "app/views/product/product_list.html";
-            }
-        });
-    </script>-->
+                $scope.primaryProduct = function(){
+                    $scope.templateUrl = "app/views/product/primary_product.html";
+                };
+                $scope.productList = function(){
+                    $scope.templateUrl = "app/views/product/product_list.html";
+                }
+            });
+        </script>-->
 
 </body>
 </html>
