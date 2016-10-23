@@ -40,43 +40,43 @@ module.exports = function (grunt) {
                 src: 'metisMenu/*',
                 cwd: 'vendor',
                 expand: true,
-                dest: 'dist/vendor/'
+                dest: 'dist/assets/vendor/'
             },
             vendor_morrisjs: {
                 src: 'morrisjs/*',
                 cwd: 'vendor',
                 expand: true,
-                dest: 'dist/vendor/'
+                dest: 'dist/assets/vendor/'
             },
             vendor_fontawesome: {
                 src: 'font-awesome/**/*',
                 cwd: 'vendor',
                 expand: true,
-                dest: 'dist/vendor/'
+                dest: 'dist/assets/vendor/'
             },
             vendor_raphael: {
                 src: 'raphael/*',
                 cwd: 'vendor',
                 expand: true,
-                dest: 'dist/vendor/'
+                dest: 'dist/assets/vendor/'
             },
             vendor_data: {
                 src: 'data/*',
                 cwd: 'vendor',
                 expand: true,
-                dest: 'dist/vendor'
+                dest: 'dist/assets/vendor'
             },
             vendor_sbadmin: {
                 src: 'sb-admin/**/*',
                 cwd: 'vendor',
                 expand: true,
-                dest: 'dist/vendor/'
+                dest: 'dist/assets/vendor/'
             },
             vendor_datatables: {
                 src: ['datatables/**/*','datatables-plugins/*','datatables-responsive/*'],
                 cwd: 'vendor',
                 expand: true,
-                dest: 'dist/vendor/'
+                dest: 'dist/assets/vendor/'
             },
             jquery: {
                 src: ['jquery.js', 'jquery.min.js'],
@@ -113,12 +113,6 @@ module.exports = function (grunt) {
                 cwd: 'src',
                 expand: true,
                 dest: 'dist/'
-            },
-            help: {
-                src: '**/*',
-                cwd: 'help',
-                expand: true,
-                dest: 'dist/help'
             }
         },
         concat: {
@@ -202,7 +196,7 @@ module.exports = function (grunt) {
         "string-replace": {
             dist: {
                 files: {
-                    'src/': 'src/app/common/common.js',
+                    'src/': 'src/app/common/common.js'
                 },
                 options: {
                     replacements: [

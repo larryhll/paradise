@@ -1,185 +1,66 @@
 <!DOCTYPE html>
 <html ng-app="app">
 <head>
-
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Fun Paradise</title>
+    <title>趣味乐园</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="assets/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <!-- MetisMenu CSS -->
-    <link href="vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
-    <!-- Custom CSS -->
-    <link href="vendor/sb-admin/css/sb-admin-2.css" rel="stylesheet">
-    <!-- Morris Charts CSS -->
-    <link href="vendor/morrisjs/morris.css" rel="stylesheet">
-    <!-- Custom Fonts -->
-    <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
+    <!-- MetisMenu CSS -->
+    <link href="assets/vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="assets/vendor/sb-admin/css/sb-admin-2.css" rel="stylesheet">
+    <!-- Morris Charts CSS -->
+    <link href="assets/vendor/morrisjs/morris.css" rel="stylesheet">
+    <!-- Custom Fonts -->
+    <link href="assets/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <!-- DataTables Responsive CSS -->
-    <link href="vendor/datatables-responsive/dataTables.responsive.css" rel="stylesheet">
+    <link href="assets/vendor/datatables-responsive/dataTables.responsive.css" rel="stylesheet">
 
 </head>
 <body>
-
     <div id="wrapper">
-
-        <!--<ng-include src="'app/views/common/navigation.html'"></ng-include>-->
-        <nav class="navbar navbar-default navbar-static-top">
-
-            <!-- /.navbar-header -->
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="index.html">趣学乐园</a>
-            </div>
-
-            <!-- /.navbar-top-links -->
-            <ul class="nav navbar-top-links navbar-right">
-                <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                        <i class="fa fa-envelope fa-fw"></i>
-                        <i class="fa fa-caret-down"></i>
-                    </a>
-                    <ul class="dropdown-menu dropdown-messages">
-                        <li>
-                            <a href="#">
-                                <div>
-                                    <strong>John Smith</strong>
-                                    <span class="pull-right text-muted"><em>Yesterday</em></span>
-                                </div>
-                                <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eleifend...</div>
-                            </a>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <a href="#">
-                                <div>
-                                    <strong>John Smith</strong>
-                                    <span class="pull-right text-muted"><em>Yesterday</em></span>
-                                </div>
-                                <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eleifend...</div>
-                            </a>
-                        </li>
-                    </ul>
-                    <!-- /.dropdown-messages -->
-                </li>
-                <!-- /.dropdown -->
-                <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                        <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
-                    </a>
-                    <ul class="dropdown-menu dropdown-user">
-                        <li><a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a>
-                        </li>
-                        <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
-                        </li>
-                        <li class="divider"></li>
-                        <li><a href="login.html"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
-                        </li>
-                    </ul>
-                    <!-- /.dropdown-user -->
-                </li>
-            </ul>
-
-            <!-- /.navbar-static-side -->
-            <div class="navbar-default sidebar navbar-collapse" role="navigation">
-                <!--      <div class="sidebar-nav">-->
-                <ul class="nav" id="side-menu">
-                    <li class="sidebar-search">
-                        <!-- /input-group -->
-                        <div class="input-group custom-search-form">
-                            <input type="text" class="form-control" placeholder="查找...">
-                                <span class="input-group-btn">
-                                    <button class="btn btn-default" type="button">
-                                        <i class="fa fa-search"></i>
-                                    </button>
-                                </span>
-                        </div>
-                    </li>
-                    <!-- My list -->
-                    <li>
-                        <a href="#"><i class="fa fa-home" aria-hidden="true"></i>&nbsp;首页产品管理<span class="fa arrow"></span></a>
-                        <ul class="nav nav-second-level">
-                            <li class="active"><a href="#primary_product">首页产品</a></li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="#"><i class="fa fa-suitcase" aria-hidden="true"></i>&nbsp;产品管理<span class="fa arrow"></span></a>
-                        <ul class="nav nav-second-level">
-                            <li><a href="#product_list">产品列表</a></li>
-                            <li><a href="#new_ar_product_detail">新增AR产品/产品详情</a></li>
-                            <li><a href="#new_video_product_detail">新增视频产品/产品详情</a></li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="#"><i class="fa fa-server" aria-hidden="true"></i>&nbsp;类别管理<span class="fa arrow"></span></a>
-                        <ul class="nav nav-second-level">
-                            <li><a href="#first_level_category">一级分类</a></li>
-                            <li><a href="#second_level_category">二级分类</a></li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="#"><i class="fa fa-users" aria-hidden="true"></i>&nbsp;会员管理<span class="fa arrow"></span></a>
-                        <ul class="nav nav-second-level">
-                            <li><a href="#user_admin">会员列表</a></li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="#"><i class="fa fa-list-alt" aria-hidden="true"></i>&nbsp;日志管理<span class="fa arrow"></span></a>
-                        <ul class="nav nav-second-level">
-                            <li><a href="#log_download">下载日志</a></li>
-                        </ul>
-                    </li>
-                </ul>
-            </div>
-        </nav>
-
+        <ng-include src="'app/views/common/navigation.html'"></ng-include>
         <div id="page-wrapper">
             <div ng-view></div>
         </div>
     </div>
 
-    <!-- jQuery -->
     <script src="assets/jquery.min.js"></script>
-    <!-- Bootstrap Core JavaScript -->
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>
-    <!-- Metis Menu Plugin JavaScript -->
-    <script src="vendor/metisMenu/metisMenu.min.js"></script>
-
     <script src="assets/angular.js"></script>
     <script src="assets/angular-route.js"></script>
 
-
+    <!-- Metis Menu Plugin JavaScript -->
+    <script src="assets/vendor/metisMenu/metisMenu.min.js"></script>
     <!-- Morris Charts JavaScript -->
-    <script src="vendor/raphael/raphael.min.js"></script>
-    <script src="vendor/morrisjs/morris.min.js"></script>
-    <script src="vendor/data/morris-data.js"></script>
+    <script src="assets/vendor/raphael/raphael.min.js"></script>
+    <script src="assets/vendor/morrisjs/morris.min.js"></script>
+    <script src="assets/vendor/data/morris-data.js"></script>
     <!-- Custom Theme JavaScript -->
-    <script src="vendor/sb-admin/js/sb-admin-2.js"></script>
-
+    <script src="assets/vendor/sb-admin/js/sb-admin-2.js"></script>
     <!-- DataTables JavaScript -->
-    <script src="vendor/datatables/js/jquery.dataTables.min.js"></script>
-    <script src="vendor/datatables-plugins/dataTables.bootstrap.min.js"></script>
-    <script src="vendor/datatables-responsive/dataTables.responsive.js"></script>
+    <script src="assets/vendor/datatables/js/jquery.dataTables.min.js"></script>
+    <script src="assets/vendor/datatables-plugins/dataTables.bootstrap.min.js"></script>
+    <script src="assets/vendor/datatables-responsive/dataTables.responsive.js"></script>
+
+    <!--Navigation page control javascript-->
+    <script src="js/navigation_ctrl.js"></script>
 
     <!-- Page-Level Demo Scripts - Tables - Use for reference -->
-<!--    <script>
+    <!--    <script>
        $(document).ready(function() {
             $('#dataTables-example').DataTable({
                 responsive: true
             });
         });
-    </script>-->
+    </script>
 
-    <!--<script>
+    <script>
         app = angular.module("app", []);
         app.controller("pageCtrl", function($scope) {
             $scope.navigationUrl = "app/views/common/navigation.html";
@@ -191,42 +72,7 @@
                 $scope.templateUrl = "app/views/product/product_list.html";
             }
         });
-
     </script>-->
-
-    <script>
-        var app = angular.module("app", ["ngRoute"]);
-        app.config(function($routeProvider) {
-            $routeProvider
-                    .when("/primary_product", {
-                        templateUrl : "app/views/product/primary_product.html"
-                    })
-                    .when("/product_list", {
-                        templateUrl : "app/views/product/product_list.html"
-                    })
-                    .when("/new_ar_product_detail", {
-                        templateUrl : "app/views/product/new_ar_product_detail.html"
-                    })
-                    .when("/new_video_product_detail", {
-                        templateUrl : "app/views/product/new_video_product_detail.html"
-                    })
-                    .when("/first_level_category", {
-                        templateUrl : "app/views/category/first_level_category.html"
-                    })
-                    .when("/second_level_category", {
-                        templateUrl : "app/views/category/second_level_category.html"
-                    })
-                    .when("/user_admin", {
-                        templateUrl : "app/views/user/user_admin.html"
-                    })
-                    .when("/log_download", {
-                        templateUrl : "app/views/log/log_download.html"
-                    })
-                    .otherwise({
-                        templateUrl : "app/views/product/primary_product.html"
-                    });
-        });
-    </script>
 
 </body>
 </html>
