@@ -1,7 +1,7 @@
-<nav class="navbar navbar-default navbar-static-top">
+<nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
 
     <!-- /.navbar-header -->
-    <div class="navbar-header">
+    <div class="navbar-header" id="nav-header">
         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
             <span class="sr-only">Toggle navigation</span>
             <span class="icon-bar"></span>
@@ -12,7 +12,7 @@
     </div>
 
     <!-- /.navbar-top-links -->
-    <ul class="nav navbar-top-links navbar-right">
+    <ul class="nav navbar-top-links navbar-right" id="nav-right">
         <li class="dropdown">
             <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                 <i class="fa fa-envelope fa-fw"></i>
@@ -60,54 +60,55 @@
     </ul>
 
     <!-- /.navbar-static-side -->
-    <div class="navbar-default sidebar navbar-collapse" role="navigation">
-        <!--      <div class="sidebar-nav">-->
-        <ul class="nav" id="side-menu">
-            <li class="sidebar-search">
-                <!-- /input-group -->
-                <div class="input-group custom-search-form">
-                    <input type="text" class="form-control" placeholder="查找...">
-                                <span class="input-group-btn">
-                                    <button class="btn btn-default" type="button">
-                                        <i class="fa fa-search"></i>
-                                    </button>
-                                </span>
-                </div>
-            </li>
-            <!-- My list -->
-            <li>
-                <a href="#"><i class="fa fa-home" aria-hidden="true"></i>&nbsp;首页产品管理<span class="fa arrow"></span></a>
-                <ul class="nav nav-second-level">
-                    <li class="active"><a href="#primary_product">首页产品</a></li>
-                </ul>
-            </li>
-            <li>
-                <a href="#"><i class="fa fa-suitcase" aria-hidden="true"></i>&nbsp;产品管理<span class="fa arrow"></span></a>
-                <ul class="nav nav-second-level">
-                    <li><a href="#product_list">产品列表</a></li>
-                    <li><a href="#new_ar_product_detail">新增AR产品/产品详情</a></li>
-                    <li><a href="#new_video_product_detail">新增视频产品/产品详情</a></li>
-                </ul>
-            </li>
-            <li>
-                <a href="#"><i class="fa fa-server" aria-hidden="true"></i>&nbsp;类别管理<span class="fa arrow"></span></a>
-                <ul class="nav nav-second-level">
-                    <li><a href="#first_level_category">一级分类</a></li>
-                    <li><a href="#second_level_category">二级分类</a></li>
-                </ul>
-            </li>
-            <li>
-                <a href="#"><i class="fa fa-users" aria-hidden="true"></i>&nbsp;会员管理<span class="fa arrow"></span></a>
-                <ul class="nav nav-second-level">
-                    <li><a href="#user_admin">会员列表</a></li>
-                </ul>
-            </li>
-            <li>
-                <a href="#"><i class="fa fa-list-alt" aria-hidden="true"></i>&nbsp;日志管理<span class="fa arrow"></span></a>
-                <ul class="nav nav-second-level">
-                    <li><a href="#log_download">下载日志</a></li>
-                </ul>
-            </li>
-        </ul>
+    <div class="navbar-default sidebar" role="navigation" id="nav-sidebar">
+        <div class="sidebar-nav navbar-collapse">
+            <ul class="nav" id="side-menu">
+                <li class="sidebar-search">
+                    <!-- /input-group -->
+                    <div class="input-group custom-search-form">
+                        <input type="text" class="form-control" placeholder="查找...">
+                            <span class="input-group-btn">
+                                <button class="btn btn-default" type="button">
+                                    <i class="fa fa-search"></i>
+                                </button>
+                            </span>
+                    </div>
+                </li>
+                <!-- My list -->
+                <li>
+                    <a href="#"><i class="fa fa-home fa-fw"></i>&nbsp;首页产品管理<span class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level">
+                        <li class="active"><a href="#primary_product">首页产品</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#"><i class="fa fa-suitcase fa-fw"></i>&nbsp;产品管理<span class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level">
+                        <li><a href="#product_list">产品列表</a></li>
+                        <li><a href="#new_ar_product_detail">新增AR产品/产品详情</a></li>
+                        <li><a href="#new_video_product_detail">新增视频产品/产品详情</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#"><i class="fa fa-server fa-fw"></i>&nbsp;类别管理<span class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level">
+                        <li><a href="#first_level_category">一级分类</a></li>
+                        <li><a href="#second_level_category">二级分类</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#"><i class="fa fa-users fa-fw"></i>&nbsp;会员管理<span class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level">
+                        <li><a href="#user_admin">会员列表</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#"><i class="fa fa-list-alt fa-fw"></i>&nbsp;日志管理<span class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level">
+                        <li><a href="#log_download">下载日志</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
     </div>
 </nav>
