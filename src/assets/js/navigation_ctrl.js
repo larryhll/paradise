@@ -1,11 +1,13 @@
 /**
  * Created by hualiang on 16-10-23.
  */
+$(function() {
     var app = angular.module("app", ["ngRoute"]);
     app.config(function($routeProvider) {
         $routeProvider
             .when("/primary_product", {
-                templateUrl : "app/views/product/primary_product.html"
+                templateUrl : "app/views/product/primary_product.html",
+                controller : "primaryProductCtrl"
             })
             .when("/product_list", {
                 templateUrl : "app/views/product/product_list.html"
@@ -32,15 +34,18 @@
             .when("/log_download", {
                 templateUrl : "app/views/log/log_download.html"
             })
-            .otherwise({
+            .otherwise("/primary_product",{
                 templateUrl : "app/views/product/primary_product.html",
                 controller : "otherUrlCtrl"
             });
     });
     app.controller("otherUrlCtrl", function () {
-        console.log("Current window.location.href: "+ window.location.href);
-        window.location.href = "/#primary_product";
+       console.log("Otherwise URL contoller...");
     });
     app.controller("updateARProductDetail", function ($routeParams) {
-        console.log("Product ID: "+ $routeParams.productID);
+       console.log("Product ID: "+ $routeParams.productID);
     });
+    app.controller("primaryProductCtrl", function () {
+       console.log("Arrived at primary product page already!!");
+    });
+}());

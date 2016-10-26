@@ -1,101 +1,97 @@
-<div class="container-fluid" style="padding-top: 30px">
+<div id="page-wrapper">
     <div class="row">
-        <div class="col-lg-4" style="padding-right: 50px">
-            <div class="row form-group">
-                <label for="product_category">产品分类:</label>
-                <select class="form-control" id="product_category">
-                    <option>全部</option>
-                    <option>语言</option>
-                </select>
-            </div>
-            <div class="row form-group">
-                <label for="release_state">发布状态:</label>
-                <select class="form-control" id="release_state">
-                    <option>上架</option>
-                    <option>下架</option>
-                </select>
-            </div>
-        </div>
-        <div class="col-lg-4" style="padding-right: 50px">
-            <div class="row form-group">
-                <label for="product_type">产品类型:</label>
-                <select class="form-control" id="product_type">
-                    <option>AR产品</option>
-                    <option>视频产品</option>
-                </select>
-            </div>
-            <div class="row form-group">
-                <label for="recommendation">是否推荐:</label>
-                <select class="form-control" id="recommendation">
-                    <option>是</option>
-                    <option>否</option>
-                </select>
-            </div>
-        </div>
-        <div class="col-lg-4">
-            <div class="row">
-                <div class="col-lg-4 col-lg-offset-4">
-                    <div class="form-group">
-                        <label>&nbsp;&nbsp;&nbsp;&nbsp;</label>
+        <div class="col-lg-12" style="padding-top: 30px">
+            <div class="panel panel-default">
+                <div class="panel-heading">产品列表</div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-lg-4">
+                            <form role="form">
+                                <div class="form-group">
+                                    <label for="product_category">产品分类:</label>
+                                    <select class="form-control" id="product_category">
+                                        <option>全部</option>
+                                        <option>语言</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="release_state">发布状态:</label>
+                                    <select class="form-control" id="release_state">
+                                        <option>上架</option>
+                                        <option>下架</option>
+                                    </select>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="col-lg-4">
+                            <form role="form">
+                                <div class="form-group">
+                                    <label for="product_type">产品类型:</label>
+                                    <select class="form-control" id="product_type">
+                                        <option>AR产品</option>
+                                        <option>视频产品</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="recommendation">是否推荐:</label>
+                                    <select class="form-control" id="recommendation">
+                                        <option>是</option>
+                                        <option>否</option>
+                                    </select>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="col-lg-4">
+                            <form role="form">
+                                <button type="button" class="btn btn-lg">&nbsp;&nbsp;搜&nbsp;&nbsp;索&nbsp;&nbsp;</button>
+                            </form>
+                        </div>
                     </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-lg-4 col-lg-offset-4">
-                    <div class="form-group">
-                        <label>&nbsp;&nbsp;&nbsp;&nbsp;</label>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-lg-4 col-lg-offset-4">
-                    <div class="form-group" style="margin-top: 22px">
-                        <button type="button" class="btn btn-default">&nbsp;&nbsp;搜&nbsp;&nbsp;索&nbsp;&nbsp;</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="row" style="padding-top: 50px">
-        <div class="col-lg-3">
-            <div class="row form-group">
-                <button type="button" class="btn btn-default">&nbsp;&nbsp;新增AR产品&nbsp;&nbsp;</button>
-            </div>
-        </div>
-        <div class="col-lg-3">
-            <div class="row form-group">
-                <button type="button" class="btn btn-default">&nbsp;&nbsp;新增视频产品&nbsp;&nbsp;</button>
-            </div>
-        </div>
-    </div>
-    <div class="row" style="padding-top: 20px">
-        <div class="col-lg-12" style="background-color: #d3d3d3">
-            <h3>Table Content</h3>
-            <h3>Table Content</h3>
-            <h3>Table Content</h3>
-            <h1><a href="#new_ar_product_detail/2222">2222 product</a></h1>
-        </div>
-    </div>
+                    <div class="row">
+                        <div class="col-lg-2">
+                            <form role="form">
+                                <button type="button" class="btn btn-default">&nbsp;&nbsp;新增AR产品&nbsp;&nbsp;</button>
+                            </form>
+                        </div>
+                        <div class="col-lg-2">
+                            <form role="form">
+                                <button type="button" class="btn btn-default">&nbsp;&nbsp;新增视频产品&nbsp;&nbsp;</button>
+                            </form>
+                        </div>
 
-    <div class="row" style="padding-top: 20px">
-        <div class="col-lg-2">
-            <div class="form-group">
-                <button type="button" class="btn btn-default">&nbsp;&nbsp;推&nbsp;&nbsp;&nbsp;&nbsp;荐&nbsp;&nbsp;</button>
-            </div>
-        </div>
-        <div class="col-lg-2">
-            <div class="form-group">
-                <button type="button" class="btn btn-default">&nbsp;&nbsp;取消推荐&nbsp;&nbsp;</button>
-            </div>
-        </div>
-        <div class="col-lg-2">
-            <div class="form-group">
-                <button type="button" class="btn btn-default">&nbsp;&nbsp;上&nbsp;&nbsp;&nbsp;&nbsp;架&nbsp;&nbsp;</button>
-            </div>
-        </div>
-        <div class="col-lg-2">
-            <div class="form-group">
-                <button type="button" class="btn btn-default">&nbsp;&nbsp;下&nbsp;&nbsp;&nbsp;&nbsp;架&nbsp;&nbsp;</button>
+                        <div class="col-lg-1 col-md-offset-4">
+                            <form role="form">
+                                <button type="button" class="btn btn-primary">&nbsp;&nbsp;推&nbsp;&nbsp;&nbsp;&nbsp;荐&nbsp;&nbsp;</button>
+                            </form>
+                        </div>
+                        <div class="col-lg-1">
+                            <form role="form">
+                                <button type="button" class="btn btn-primary">&nbsp;&nbsp;取消推荐&nbsp;&nbsp;</button>
+                            </form>
+                        </div>
+                        <div class="col-lg-1">
+                            <form role="form">
+                                <button type="button" class="btn btn-primary">&nbsp;&nbsp;上&nbsp;&nbsp;&nbsp;&nbsp;架&nbsp;&nbsp;</button>
+                            </form>
+                        </div>
+                        <div class="col-lg-1">
+                            <form role="form">
+                                <button type="button" class="btn btn-primary">&nbsp;&nbsp;下&nbsp;&nbsp;&nbsp;&nbsp;架&nbsp;&nbsp;</button>
+                            </form>
+                        </div>
+
+                    </div>
+                    <div class="row" style="padding-top: 20px">
+                        <div class="col-lg-12" style="background-color: #d3d3d3">
+                            <form role="form">
+                                <h4>Table Content</h4>
+                                <h4>Table Content</h4>
+                                <h4>Table Content</h4>
+                                <h4><a href="#new_ar_product_detail/2222">2222 product</a></h4>
+                            </form>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

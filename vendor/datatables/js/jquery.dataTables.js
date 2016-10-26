@@ -1733,14 +1733,14 @@
 		 * sZeroRecords - assuming that is given.
 		 */
 		if ( ! lang.sEmptyTable && zeroRecords &&
-			defaults.sEmptyTable === "表中无数据" )
+			defaults.sEmptyTable === "No data available in table" )
 		{
 			_fnMap( lang, lang, 'sZeroRecords', 'sEmptyTable' );
 		}
 	
 		/* Likewise with loading records */
 		if ( ! lang.sLoadingRecords && zeroRecords &&
-			defaults.sLoadingRecords === "载入中..." )
+			defaults.sLoadingRecords === "Loading..." )
 		{
 			_fnMap( lang, lang, 'sZeroRecords', 'sLoadingRecords' );
 		}
@@ -10095,7 +10095,7 @@
 		 *      } );
 		 *    } );
 		 */
-		"aLengthMenu": [ 5, 10, 20, 50 ],
+		"aLengthMenu": [ 10, 25, 50, 100 ],
 	
 	
 		/**
@@ -11272,7 +11272,7 @@
 				 *      } );
 				 *    } );
 				 */
-				"sFirst": "首页",
+				"sFirst": "First",
 	
 	
 				/**
@@ -11295,7 +11295,7 @@
 				 *      } );
 				 *    } );
 				 */
-				"sLast": "最后",
+				"sLast": "Last",
 	
 	
 				/**
@@ -11318,7 +11318,7 @@
 				 *      } );
 				 *    } );
 				 */
-				"sNext": "下一页",
+				"sNext": "Next",
 	
 	
 				/**
@@ -11341,7 +11341,7 @@
 				 *      } );
 				 *    } );
 				 */
-				"sPrevious": "前一页"
+				"sPrevious": "Previous"
 			},
 	
 			/**
@@ -11364,7 +11364,7 @@
 			 *      } );
 			 *    } );
 			 */
-			"sEmptyTable": "表中无数据",
+			"sEmptyTable": "No data available in table",
 	
 	
 			/**
@@ -11396,7 +11396,7 @@
 			 *      } );
 			 *    } );
 			 */
-			"sInfo": "显示 _START_ 到 _END_ 共 _TOTAL_",
+			"sInfo": "Showing _START_ to _END_ of _TOTAL_ entries",
 	
 	
 			/**
@@ -11417,7 +11417,7 @@
 			 *      } );
 			 *    } );
 			 */
-			"sInfoEmpty": "显示 0 到 0 共 0",
+			"sInfoEmpty": "Showing 0 to 0 of 0 entries",
 	
 	
 			/**
@@ -11557,7 +11557,7 @@
 			 *      } );
 			 *    } );
 			 */
-			"sLengthMenu": "显示 _MENU_ 记录",
+			"sLengthMenu": "Show _MENU_ entries",
 	
 	
 			/**
@@ -11581,7 +11581,7 @@
 			 *      } );
 			 *    } );
 			 */
-			"sLoadingRecords": "载入中...",
+			"sLoadingRecords": "Loading...",
 	
 	
 			/**
@@ -11602,7 +11602,7 @@
 			 *      } );
 			 *    } );
 			 */
-			"sProcessing": "处理中...",
+			"sProcessing": "Processing...",
 	
 	
 			/**
@@ -11637,7 +11637,7 @@
 			 *      } );
 			 *    } );
 			 */
-			"sSearch": "查询: ",
+			"sSearch": "Search:",
 	
 	
 			/**
@@ -11695,7 +11695,7 @@
 			 *      } );
 			 *    } );
 			 */
-			"sZeroRecords": "未查询到数据"
+			"sZeroRecords": "No matching records found"
 		},
 	
 	
