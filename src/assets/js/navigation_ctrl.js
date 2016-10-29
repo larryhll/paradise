@@ -24,7 +24,8 @@ $(function() {
                 templateUrl : "app/views/product/new_video_product_detail.html"
             })
             .when("/first_level_category", {
-                templateUrl : "app/views/category/first_level_category.html"
+                templateUrl : "app/views/category/first_level_category.html",
+                controller : "firstLevelCategoryCtrl"
             })
             .when("/second_level_category", {
                 templateUrl : "app/views/category/second_level_category.html"
@@ -72,7 +73,8 @@ $(function() {
             "releaseState": "上架",
             "modifyDate": new Date(),
             "recommend": "是",
-            "productType": "视频产品"
+            "productType": "视频产品",
+            "checked" : false
         };
         $scope.productItems[1] = {
             "id": "2",
@@ -81,7 +83,8 @@ $(function() {
             "releaseState": "下架",
             "modifyDate": new Date(),
             "recommend": "否",
-            "productType": "AR产品"
+            "productType": "AR产品",
+            "checked" : false
         };
         $scope.productItems[2] = {
             "id": "3",
@@ -90,40 +93,85 @@ $(function() {
             "releaseState": "上架",
             "modifyDate": new Date(),
             "recommend": "是",
-            "productType": "视频产品"
+            "productType": "视频产品",
+            "checked" : false
         };
         $scope.productItems[3] = {
-            "id": "1",
+            "id": "4",
             "cover": "xxx.jpg",
             "productName": "宝贝英语说",
             "releaseState": "上架",
             "modifyDate": new Date(),
             "recommend": "否",
-            "productType": "视频产品"
+            "productType": "视频产品",
+            "checked" : false
         };
         $scope.productItems[4] = {
-            "id": "2",
+            "id": "5",
             "cover": "xxx.jpg",
             "productName": "蛋生世界",
             "releaseState": "上架",
             "modifyDate": new Date(),
             "recommend": "否",
-            "productType": "AR产品"
+            "productType": "AR产品",
+            "checked" : false
         };
         $scope.productItems[5] = {
-            "id": "3",
+            "id": "6",
             "cover": "yyy.jpg",
             "productName": "宝贝英语说aaa",
             "releaseState": "上架",
             "modifyDate": new Date(),
             "recommend": "是",
-            "productType": "AR产品"
+            "productType": "AR产品",
+            "checked" : false
         };
+
+        //temp product item array for search feature
+        if(typeof productItems_temp == 'undefined')
+            productItems_temp = [];
+        if(productItems_temp.length == 0)
+            productItems_temp = $scope.productItems;
+
+        //temp selected product item array for actions
+        if(typeof productItems_selected == 'undefined')
+            productItems_selected = [];
+
+        //initialize selected product items
+        if(typeof productItems_selected == 'undefined')
+            productItems_selected = [];
 
         $scope.checkALLYesNo = function (){
             console.log("Check all flag: " + $scope.checkAll);
             var allCheck = $('input[name=mySelectedProduct]');
             allCheck.prop('checked', $scope.checkAll);
+            productItems_selected = [];
+            if($scope.checkAll){
+                for(item in productItems_temp){
+                    productItems_selected.push(productItems_temp[item]);
+                }
+            }
+            console.log("Current selected number: "+productItems_selected.length);
+        };
+
+        $scope.checkItem = function(userItem){
+            console.log("Check item flag: " + userItem.checked);
+            if (userItem.checked){
+                productItems_selected.push(userItem);
+            }else{
+                for(item in productItems_selected){
+                    if(productItems_selected[item].id == userItem.id){
+                        productItems_selected.splice(item, 1);
+                    }
+                }
+            }
+            console.log("Current selected number: "+productItems_selected.length);
+            var allCheck = $("#allCheckControl");
+            if(productItems_selected.length == 0){
+                allCheck.prop('checked', false);
+            }else if(productItems_selected.length == productItems_temp.length){
+                allCheck.prop('checked', true);
+            }
         };
 
         $scope.searchProductListByFilters = function (){
@@ -132,11 +180,6 @@ $(function() {
             console.log("Selected product type: " + $("#product_type").val());
             console.log("Selected release state: " + $("#release_state").val());
             console.log("Selected recommendation: " + $("#recommendation").val());
-
-            if(typeof productItems_temp == 'undefined')
-                productItems_temp = [];
-            if(productItems_temp.length == 0)
-                productItems_temp = $scope.productItems;
 
             $scope.productItems = [];
             for(item in productItems_temp){
@@ -152,7 +195,7 @@ $(function() {
             $scope.productItems = productItems_temp;
         };
     })
-    app.controller("userAdminCtrl", function ($scope, $timeout){
+    app.controller("userAdminCtrl", function ($scope){
         $scope.userItems = null;
         var loadScreenDiv = $("#loadingScreen");
         var loadingScreenLen = loadScreenDiv.width();
@@ -203,12 +246,10 @@ $(function() {
             "babyBirthday": new Date()
         };
 
-        $scope.searchUserListByPhone = function (){
-            console.log("Starting to search user admin items by phone...");
-            console.log("Selected phone number: " + $("#phone_number").val());
+        //temp user items array for search feature
+        userItems_temp = [];
 
-            if(typeof userItems_temp == 'undefined')
-                userItems_temp = [];
+        $scope.searchUserListByPhone = function (){
             if(userItems_temp.length == 0)
                 userItems_temp = $scope.userItems;
             $scope.userItems = [];
@@ -225,6 +266,67 @@ $(function() {
             $scope.selectedUserID = userItem.id;
             $scope.selectedUserItem = userItem;
             console.log("Selected user id: " + $scope.selectedUserID);
+        };
+    })
+    app.controller("firstLevelCategoryCtrl", function ($scope){
+        $scope.firstLevelCategoryItems = null;
+        var loadScreenDiv = $("#loadingScreen");
+        var loadingScreenLen = loadScreenDiv.width();
+        loadScreenDiv.css("margin-left",(loadingScreenLen>441) ? ((loadingScreenLen-441)/2) : 0 + "px");
+
+        $(window).resize(function() {
+            var loadScreenDiv_resize = $("#loadingScreen");
+            var loadingScreenLen_resize = loadScreenDiv_resize.width();
+            loadScreenDiv_resize.css("margin-left",(loadingScreenLen_resize>441) ? ((loadingScreenLen_resize-441)/2) : 0 + "px");
+        });
+
+        //Get first level category list data
+        $scope.firstLevelCategoryItems = [];
+        $scope.firstLevelCategoryItems[0] = {
+            "id": "1",
+            "firstCategoryName": "语言",
+            "modifyDate": new Date()
+        };
+        $scope.firstLevelCategoryItems[1] = {
+            "id": "2",
+            "firstCategoryName": "社会",
+            "modifyDate": new Date()
+        };
+        $scope.firstLevelCategoryItems[2] = {
+            "id": "3",
+            "firstCategoryName": "语言",
+            "modifyDate": new Date()
+        };
+        $scope.firstLevelCategoryItems[3] = {
+            "id": "4",
+            "firstCategoryName": "社会",
+            "modifyDate": new Date()
+        };
+        $scope.firstLevelCategoryItems[4] = {
+            "id": "5",
+            "firstCategoryName": "语言",
+            "modifyDate": new Date()
+        };
+
+        //temp first level category items array for search feature
+        firstLevelCategoryItems_temp = [];
+
+        $scope.searchByCategory = function (){
+            if(firstLevelCategoryItems_temp.length == 0)
+                firstLevelCategoryItems_temp = $scope.firstLevelCategoryItems;
+            $scope.firstLevelCategoryItems = [];
+            var pattern = new RegExp($scope.firstCategorySearch, "i");
+            for(item in firstLevelCategoryItems_temp){
+                if(pattern.test(firstLevelCategoryItems_temp[item].firstCategoryName)) {
+                    $scope.firstLevelCategoryItems.push(firstLevelCategoryItems_temp[item]);
+                }
+            }
+        };
+
+        $scope.deleteItem = function(selectedItem) {
+            $scope.selectedFirstLevelCategoryID = selectedItem.id;
+            $scope.selectedFirstLevelCategoryItem = selectedItem;
+            console.log("Selected id: " + $scope.selectedFirstLevelCategoryID);
         };
     })
 }());
