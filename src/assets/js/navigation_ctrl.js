@@ -28,7 +28,8 @@ $(function() {
                 controller : "firstLevelCategoryCtrl"
             })
             .when("/second_level_category", {
-                templateUrl : "app/views/category/second_level_category.html"
+                templateUrl : "app/views/category/second_level_category.html",
+                controller : "secondLevelCategoryCtrl"
             })
             .when("/user_admin", {
                 templateUrl : "app/views/user/user_admin.html",
@@ -53,6 +54,9 @@ $(function() {
     });
     app.controller("productListCtrl", function ($scope){
         $scope.productItems = null;
+        $scope.productItems_selected = [];
+        $scope.actionSelected = "";
+
         var loadScreenDiv = $("#loadingScreen");
         var loadingScreenLen = loadScreenDiv.width();
         loadScreenDiv.css("margin-left",(loadingScreenLen>441) ? ((loadingScreenLen-441)/2) : 0 + "px");
@@ -127,49 +131,45 @@ $(function() {
             "checked" : false
         };
 
-        //temp product item array for search feature
+        //Temp product item array for search feature
         if(typeof productItems_temp == 'undefined')
             productItems_temp = [];
         if(productItems_temp.length == 0)
             productItems_temp = $scope.productItems;
 
-        //temp selected product item array for actions
-        if(typeof productItems_selected == 'undefined')
-            productItems_selected = [];
-
-        //initialize selected product items
-        if(typeof productItems_selected == 'undefined')
-            productItems_selected = [];
+        //Initialize selected product item array for actions
+        if(typeof $scope.productItems_selected == 'undefined')
+            $scope.productItems_selected = [];
 
         $scope.checkALLYesNo = function (){
             console.log("Check all flag: " + $scope.checkAll);
             var allCheck = $('input[name=mySelectedProduct]');
             allCheck.prop('checked', $scope.checkAll);
-            productItems_selected = [];
+            $scope.productItems_selected = [];
             if($scope.checkAll){
                 for(item in productItems_temp){
-                    productItems_selected.push(productItems_temp[item]);
+                    $scope.productItems_selected.push(productItems_temp[item]);
                 }
             }
-            console.log("Current selected number: "+productItems_selected.length);
+            console.log("Current selected number: "+$scope.productItems_selected.length);
         };
 
         $scope.checkItem = function(userItem){
             console.log("Check item flag: " + userItem.checked);
             if (userItem.checked){
-                productItems_selected.push(userItem);
+                $scope.productItems_selected.push(userItem);
             }else{
-                for(item in productItems_selected){
-                    if(productItems_selected[item].id == userItem.id){
-                        productItems_selected.splice(item, 1);
+                for(item in $scope.productItems_selected){
+                    if($scope.productItems_selected[item].id == userItem.id){
+                        $scope.productItems_selected.splice(item, 1);
                     }
                 }
             }
-            console.log("Current selected number: "+productItems_selected.length);
+            console.log("Current selected number: "+$scope.productItems_selected.length);
             var allCheck = $("#allCheckControl");
-            if(productItems_selected.length == 0){
+            if($scope.productItems_selected.length == 0){
                 allCheck.prop('checked', false);
-            }else if(productItems_selected.length == productItems_temp.length){
+            }else if($scope.productItems_selected.length == productItems_temp.length){
                 allCheck.prop('checked', true);
             }
         };
@@ -193,6 +193,15 @@ $(function() {
 
         $scope.resetSearch = function (){
             $scope.productItems = productItems_temp;
+        };
+
+        $scope.actionClickModal = function (action){
+            console.log("Click buttion: "+action);
+            $scope.actionSelected = action;
+        };
+
+        $scope.actionConfirm = function (){
+            console.log("Confirm action: "+$scope.actionSelected);
         };
     })
     app.controller("userAdminCtrl", function ($scope){
@@ -327,6 +336,76 @@ $(function() {
             $scope.selectedFirstLevelCategoryID = selectedItem.id;
             $scope.selectedFirstLevelCategoryItem = selectedItem;
             console.log("Selected id: " + $scope.selectedFirstLevelCategoryID);
+        };
+    })
+    app.controller("secondLevelCategoryCtrl", function ($scope){
+        $scope.secondLevelCategoryItems = null;
+        var loadScreenDiv = $("#loadingScreen");
+        var loadingScreenLen = loadScreenDiv.width();
+        loadScreenDiv.css("margin-left",(loadingScreenLen>441) ? ((loadingScreenLen-441)/2) : 0 + "px");
+
+        $(window).resize(function() {
+            var loadScreenDiv_resize = $("#loadingScreen");
+            var loadingScreenLen_resize = loadScreenDiv_resize.width();
+            loadScreenDiv_resize.css("margin-left",(loadingScreenLen_resize>441) ? ((loadingScreenLen_resize-441)/2) : 0 + "px");
+        });
+
+        //Get first level category list data
+        $scope.secondLevelCategoryItems = [];
+        $scope.secondLevelCategoryItems[0] = {
+            "id": "1",
+            "firstCategoryName": "语言",
+            "secondCategoryName": "语言",
+            "modifyDate": new Date()
+        };
+        $scope.secondLevelCategoryItems[1] = {
+            "id": "2",
+            "firstCategoryName": "社会",
+            "secondCategoryName": "语言",
+            "modifyDate": new Date()
+        };
+        $scope.secondLevelCategoryItems[2] = {
+            "id": "3",
+            "firstCategoryName": "语言",
+            "secondCategoryName": "语言",
+            "modifyDate": new Date()
+        };
+        $scope.secondLevelCategoryItems[3] = {
+            "id": "4",
+            "firstCategoryName": "社会",
+            "secondCategoryName": "社会",
+            "modifyDate": new Date()
+        };
+        $scope.secondLevelCategoryItems[4] = {
+            "id": "5",
+            "firstCategoryName": "语言",
+            "secondCategoryName": "语言",
+            "modifyDate": new Date()
+        };
+
+        //temp second level category items array for search feature
+        secondLevelCategoryItems_temp = [];
+
+        $scope.searchByCategory = function (){
+            console.log("Select first level: "+$scope.firstCategorySelected+" second level: "+$scope.secondCategorySelected);
+
+            if(secondLevelCategoryItems_temp.length == 0)
+                secondLevelCategoryItems_temp = $scope.secondLevelCategoryItems;
+            $scope.secondLevelCategoryItems = [];
+            var patternFirstLevel = new RegExp($scope.firstCategorySelected, "i");
+            var patternSecondLevel = new RegExp($scope.secondCategorySelected, "i");
+            for(item in secondLevelCategoryItems_temp){
+                if(patternFirstLevel.test(secondLevelCategoryItems_temp[item].firstCategoryName)
+                    && patternSecondLevel.test(secondLevelCategoryItems_temp[item].secondCategoryName)) {
+                    $scope.secondLevelCategoryItems.push(secondLevelCategoryItems_temp[item]);
+                }
+            }
+        };
+
+        $scope.deleteItem = function(selectedItem) {
+            $scope.selectedSecondLevelCategoryID = selectedItem.id;
+            $scope.selectedSecondLevelCategoryItem = selectedItem;
+            console.log("Selected id: " + $scope.selectedSecondLevelCategoryID);
         };
     })
 }());
