@@ -18,10 +18,12 @@ $(function() {
                 controller : "updateARProductDetail"
             })
             .when("/new_ar_product_detail", {
-                templateUrl : "app/views/product/new_ar_product_detail.html"
+                templateUrl : "app/views/product/new_ar_product_detail.html",
+                controller : "newARDetailCtrl"
             })
             .when("/new_video_product_detail", {
-                templateUrl : "app/views/product/new_video_product_detail.html"
+                templateUrl : "app/views/product/new_video_product_detail.html",
+                controller : "newVideoDetailCtrl"
             })
             .when("/first_level_category", {
                 templateUrl : "app/views/category/first_level_category.html",
@@ -36,18 +38,13 @@ $(function() {
                 controller : "userAdminCtrl"
             })
             .when("/log_download", {
-                templateUrl : "app/views/log/log_download.html"
+                templateUrl : "app/views/log/log_download.html",
+                controller : "logDownloadCtrl"
             })
             .otherwise("/primary_product",{
                 templateUrl : "app/views/product/primary_product.html",
                 controller : "otherUrlCtrl"
             });
-    });
-    app.controller("otherUrlCtrl", function () {
-        console.log("Otherwise URL contoller...");
-    });
-    app.controller("updateARProductDetail", function ($routeParams) {
-        console.log("Product ID: "+ $routeParams.productID);
     });
     app.controller("primaryProductCtrl", function () {
         console.log("Arrived at primary product page already!!");
@@ -204,6 +201,149 @@ $(function() {
             console.log("Confirm action: "+$scope.actionSelected);
         };
     })
+    app.controller("updateARProductDetail", function ($routeParams) {
+        console.log("Product ID: "+ $routeParams.productID);
+    });
+    app.controller("newARDetailCtrl", function () {
+        console.log("Arrived at new AR product detail page already!!");
+    });
+    app.controller("newVideoDetailCtrl", function () {
+        console.log("Arrived at new video product detail page already!!");
+    });
+    app.controller("firstLevelCategoryCtrl", function ($scope){
+        $scope.firstLevelCategoryItems = null;
+        var loadScreenDiv = $("#loadingScreen");
+        var loadingScreenLen = loadScreenDiv.width();
+        loadScreenDiv.css("margin-left",(loadingScreenLen>441) ? ((loadingScreenLen-441)/2) : 0 + "px");
+
+        $(window).resize(function() {
+            var loadScreenDiv_resize = $("#loadingScreen");
+            var loadingScreenLen_resize = loadScreenDiv_resize.width();
+            loadScreenDiv_resize.css("margin-left",(loadingScreenLen_resize>441) ? ((loadingScreenLen_resize-441)/2) : 0 + "px");
+        });
+
+        //Get first level category list data
+        $scope.firstLevelCategoryItems = [];
+        $scope.firstLevelCategoryItems[0] = {
+            "id": "1",
+            "firstCategoryName": "语言",
+            "modifyDate": new Date()
+        };
+        $scope.firstLevelCategoryItems[1] = {
+            "id": "2",
+            "firstCategoryName": "社会",
+            "modifyDate": new Date()
+        };
+        $scope.firstLevelCategoryItems[2] = {
+            "id": "3",
+            "firstCategoryName": "语言",
+            "modifyDate": new Date()
+        };
+        $scope.firstLevelCategoryItems[3] = {
+            "id": "4",
+            "firstCategoryName": "社会",
+            "modifyDate": new Date()
+        };
+        $scope.firstLevelCategoryItems[4] = {
+            "id": "5",
+            "firstCategoryName": "语言",
+            "modifyDate": new Date()
+        };
+
+        //temp first level category items array for search feature
+        firstLevelCategoryItems_temp = [];
+
+        $scope.searchByCategory = function (){
+            if(firstLevelCategoryItems_temp.length == 0)
+                firstLevelCategoryItems_temp = $scope.firstLevelCategoryItems;
+            $scope.firstLevelCategoryItems = [];
+            var pattern = new RegExp($scope.firstCategorySearch, "i");
+            for(item in firstLevelCategoryItems_temp){
+                if(pattern.test(firstLevelCategoryItems_temp[item].firstCategoryName)) {
+                    $scope.firstLevelCategoryItems.push(firstLevelCategoryItems_temp[item]);
+                }
+            }
+        };
+
+        $scope.deleteItem = function(selectedItem) {
+            $scope.selectedFirstLevelCategoryID = selectedItem.id;
+            $scope.selectedFirstLevelCategoryItem = selectedItem;
+            console.log("Selected id: " + $scope.selectedFirstLevelCategoryID);
+        };
+    });
+    app.controller("secondLevelCategoryCtrl", function ($scope){
+        $scope.secondLevelCategoryItems = null;
+        var loadScreenDiv = $("#loadingScreen");
+        var loadingScreenLen = loadScreenDiv.width();
+        loadScreenDiv.css("margin-left",(loadingScreenLen>441) ? ((loadingScreenLen-441)/2) : 0 + "px");
+
+        $(window).resize(function() {
+            var loadScreenDiv_resize = $("#loadingScreen");
+            var loadingScreenLen_resize = loadScreenDiv_resize.width();
+            loadScreenDiv_resize.css("margin-left",(loadingScreenLen_resize>441) ? ((loadingScreenLen_resize-441)/2) : 0 + "px");
+        });
+
+        //Get first level category list data
+        $scope.secondLevelCategoryItems = [];
+        $scope.secondLevelCategoryItems[0] = {
+            "id": "1",
+            "firstCategoryName": "语言",
+            "secondCategoryName": "语言",
+            "modifyDate": new Date()
+        };
+        $scope.secondLevelCategoryItems[1] = {
+            "id": "2",
+            "firstCategoryName": "社会",
+            "secondCategoryName": "语言",
+            "modifyDate": new Date()
+        };
+        $scope.secondLevelCategoryItems[2] = {
+            "id": "3",
+            "firstCategoryName": "语言",
+            "secondCategoryName": "社会",
+            "modifyDate": new Date()
+        };
+        $scope.secondLevelCategoryItems[3] = {
+            "id": "4",
+            "firstCategoryName": "社会",
+            "secondCategoryName": "社会",
+            "modifyDate": new Date()
+        };
+        $scope.secondLevelCategoryItems[4] = {
+            "id": "5",
+            "firstCategoryName": "语言",
+            "secondCategoryName": "语言",
+            "modifyDate": new Date()
+        };
+
+        //temp second level category items array for search feature
+        secondLevelCategoryItems_temp = [];
+
+        $scope.searchByCategory = function (){
+            console.log("Select first level: "+$scope.firstCategorySelected+" second level: "+$scope.secondCategorySelected);
+
+            if(secondLevelCategoryItems_temp.length == 0)
+                secondLevelCategoryItems_temp = $scope.secondLevelCategoryItems;
+            $scope.secondLevelCategoryItems = [];
+
+            if (typeof $scope.secondCategorySelected == "undefined")
+                $scope.secondCategorySelected = "";
+            var patternFirstLevel = new RegExp($scope.firstCategorySelected, "i");
+            var patternSecondLevel = new RegExp($scope.secondCategorySelected, "i");
+            for(item in secondLevelCategoryItems_temp){
+                if(patternFirstLevel.test(secondLevelCategoryItems_temp[item].firstCategoryName)
+                    && patternSecondLevel.test(secondLevelCategoryItems_temp[item].secondCategoryName)) {
+                    $scope.secondLevelCategoryItems.push(secondLevelCategoryItems_temp[item]);
+                }
+            }
+        };
+
+        $scope.deleteItem = function(selectedItem) {
+            $scope.selectedSecondLevelCategoryID = selectedItem.id;
+            $scope.selectedSecondLevelCategoryItem = selectedItem;
+            console.log("Selected id: " + $scope.selectedSecondLevelCategoryID);
+        };
+    });
     app.controller("userAdminCtrl", function ($scope){
         $scope.userItems = null;
         var loadScreenDiv = $("#loadingScreen");
@@ -277,8 +417,8 @@ $(function() {
             console.log("Selected user id: " + $scope.selectedUserID);
         };
     })
-    app.controller("firstLevelCategoryCtrl", function ($scope){
-        $scope.firstLevelCategoryItems = null;
+    app.controller("logDownloadCtrl", function ($scope){
+        $scope.logItems = null;
         var loadScreenDiv = $("#loadingScreen");
         var loadingScreenLen = loadScreenDiv.width();
         loadScreenDiv.css("margin-left",(loadingScreenLen>441) ? ((loadingScreenLen-441)/2) : 0 + "px");
@@ -289,124 +429,43 @@ $(function() {
             loadScreenDiv_resize.css("margin-left",(loadingScreenLen_resize>441) ? ((loadingScreenLen_resize-441)/2) : 0 + "px");
         });
 
-        //Get first level category list data
-        $scope.firstLevelCategoryItems = [];
-        $scope.firstLevelCategoryItems[0] = {
+        //Get download log list data
+        console.log("Invoke log list controller, get download log list data here!");
+        $scope.logItems = [];
+        $scope.logItems[0] = {
             "id": "1",
-            "firstCategoryName": "语言",
-            "modifyDate": new Date()
+            "phoneNumber": "13xxxxxxxxx",
+            "downloadDate": new Date(),
+            "downloadProductName": "蛋生世界"
         };
-        $scope.firstLevelCategoryItems[1] = {
+        $scope.logItems[1] = {
             "id": "2",
-            "firstCategoryName": "社会",
-            "modifyDate": new Date()
+            "phoneNumber": "1323425xxxx",
+            "downloadDate": new Date(),
+            "downloadProductName": "蛋生世界"
         };
-        $scope.firstLevelCategoryItems[2] = {
+        $scope.logItems[2] = {
             "id": "3",
-            "firstCategoryName": "语言",
-            "modifyDate": new Date()
+            "phoneNumber": "1323666xxxx",
+            "downloadDate": new Date(),
+            "downloadProductName": "蛋生世界"
         };
-        $scope.firstLevelCategoryItems[3] = {
+        $scope.logItems[3] = {
             "id": "4",
-            "firstCategoryName": "社会",
-            "modifyDate": new Date()
+            "phoneNumber": "13234256666",
+            "downloadDate": new Date(),
+            "downloadProductName": "蛋生世界"
         };
-        $scope.firstLevelCategoryItems[4] = {
+        $scope.logItems[4] = {
             "id": "5",
-            "firstCategoryName": "语言",
-            "modifyDate": new Date()
+            "phoneNumber": "1377425xxxx",
+            "downloadDate": new Date(),
+            "downloadProductName": "蛋生世界"
         };
+    });
+    app.controller("otherUrlCtrl", function () {
+        console.log("Otherwise URL contoller...");
+    });
 
-        //temp first level category items array for search feature
-        firstLevelCategoryItems_temp = [];
-
-        $scope.searchByCategory = function (){
-            if(firstLevelCategoryItems_temp.length == 0)
-                firstLevelCategoryItems_temp = $scope.firstLevelCategoryItems;
-            $scope.firstLevelCategoryItems = [];
-            var pattern = new RegExp($scope.firstCategorySearch, "i");
-            for(item in firstLevelCategoryItems_temp){
-                if(pattern.test(firstLevelCategoryItems_temp[item].firstCategoryName)) {
-                    $scope.firstLevelCategoryItems.push(firstLevelCategoryItems_temp[item]);
-                }
-            }
-        };
-
-        $scope.deleteItem = function(selectedItem) {
-            $scope.selectedFirstLevelCategoryID = selectedItem.id;
-            $scope.selectedFirstLevelCategoryItem = selectedItem;
-            console.log("Selected id: " + $scope.selectedFirstLevelCategoryID);
-        };
-    })
-    app.controller("secondLevelCategoryCtrl", function ($scope){
-        $scope.secondLevelCategoryItems = null;
-        var loadScreenDiv = $("#loadingScreen");
-        var loadingScreenLen = loadScreenDiv.width();
-        loadScreenDiv.css("margin-left",(loadingScreenLen>441) ? ((loadingScreenLen-441)/2) : 0 + "px");
-
-        $(window).resize(function() {
-            var loadScreenDiv_resize = $("#loadingScreen");
-            var loadingScreenLen_resize = loadScreenDiv_resize.width();
-            loadScreenDiv_resize.css("margin-left",(loadingScreenLen_resize>441) ? ((loadingScreenLen_resize-441)/2) : 0 + "px");
-        });
-
-        //Get first level category list data
-        $scope.secondLevelCategoryItems = [];
-        $scope.secondLevelCategoryItems[0] = {
-            "id": "1",
-            "firstCategoryName": "语言",
-            "secondCategoryName": "语言",
-            "modifyDate": new Date()
-        };
-        $scope.secondLevelCategoryItems[1] = {
-            "id": "2",
-            "firstCategoryName": "社会",
-            "secondCategoryName": "语言",
-            "modifyDate": new Date()
-        };
-        $scope.secondLevelCategoryItems[2] = {
-            "id": "3",
-            "firstCategoryName": "语言",
-            "secondCategoryName": "语言",
-            "modifyDate": new Date()
-        };
-        $scope.secondLevelCategoryItems[3] = {
-            "id": "4",
-            "firstCategoryName": "社会",
-            "secondCategoryName": "社会",
-            "modifyDate": new Date()
-        };
-        $scope.secondLevelCategoryItems[4] = {
-            "id": "5",
-            "firstCategoryName": "语言",
-            "secondCategoryName": "语言",
-            "modifyDate": new Date()
-        };
-
-        //temp second level category items array for search feature
-        secondLevelCategoryItems_temp = [];
-
-        $scope.searchByCategory = function (){
-            console.log("Select first level: "+$scope.firstCategorySelected+" second level: "+$scope.secondCategorySelected);
-
-            if(secondLevelCategoryItems_temp.length == 0)
-                secondLevelCategoryItems_temp = $scope.secondLevelCategoryItems;
-            $scope.secondLevelCategoryItems = [];
-            var patternFirstLevel = new RegExp($scope.firstCategorySelected, "i");
-            var patternSecondLevel = new RegExp($scope.secondCategorySelected, "i");
-            for(item in secondLevelCategoryItems_temp){
-                if(patternFirstLevel.test(secondLevelCategoryItems_temp[item].firstCategoryName)
-                    && patternSecondLevel.test(secondLevelCategoryItems_temp[item].secondCategoryName)) {
-                    $scope.secondLevelCategoryItems.push(secondLevelCategoryItems_temp[item]);
-                }
-            }
-        };
-
-        $scope.deleteItem = function(selectedItem) {
-            $scope.selectedSecondLevelCategoryID = selectedItem.id;
-            $scope.selectedSecondLevelCategoryItem = selectedItem;
-            console.log("Selected id: " + $scope.selectedSecondLevelCategoryID);
-        };
-    })
 }());
 

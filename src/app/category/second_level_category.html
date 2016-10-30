@@ -8,8 +8,8 @@
                         <div class="col-lg-4">
                             <form role="form">
                                 <div class="form-group">
-                                    <label for="product_category">所属一级分类:</label>
-                                    <select class="form-control" id="product_category" ng-modal="firstCategorySelected" ng-change="searchByCategory()">
+                                    <label for="fistLevelCategory">所属一级分类:</label>
+                                    <select class="form-control" id="fistLevelCategory" ng-model="firstCategorySelected" ng-change="searchByCategory()">
                                         <option>全部</option>
                                         <option>语言</option>
                                     </select>
@@ -19,8 +19,8 @@
                         <div class="col-lg-4">
                             <form role="form">
                                 <div class="form-group">
-                                    <label>分类名：</label>
-                                    <input class="form-control" placeholder="输入分类名..." ng-modal="secondCategorySelected" ng-change="searchByCategory()">
+                                    <label for="secondLevelCategory">分类名：</label>
+                                    <input class="form-control" id="secondLevelCategory" placeholder="输入分类名..." ng-model="secondCategorySelected" ng-change="searchByCategory()">
                                 </div>
                             </form>
                         </div>
@@ -105,8 +105,8 @@
                                                     <div class="col-lg-12">
                                                         <form role="form">
                                                             <div class="form-group">
-                                                                <label for="product_category">一级分类名:</label>
-                                                                <select class="form-control">
+                                                                <label for="firstCategoryModal">一级分类名:</label>
+                                                                <select class="form-control" id="firstCategoryModal">
                                                                     <option>全部</option>
                                                                     <option>语言</option>
                                                                 </select>
@@ -118,8 +118,8 @@
                                                     <div class="col-lg-12">
                                                         <form role="form">
                                                             <div class="form-group">
-                                                                <label>二级分类名：</label>
-                                                                <input class="form-control" placeholder="输入分类名...">
+                                                                <label for="secondCategoryModal">二级分类名：</label>
+                                                                <input class="form-control" id="secondCategoryModal" placeholder="输入分类名...">
                                                             </div>
                                                         </form>
                                                     </div>
