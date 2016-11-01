@@ -1,0 +1,8 @@
+node_modules/
+bower_components/
+.grunt/
+_SpecRunner.html
+.idea/
+npm-debug.log*
+*.iml
+dist/
