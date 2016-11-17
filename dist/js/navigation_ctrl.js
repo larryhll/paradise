@@ -6,7 +6,7 @@
  * Created by hualiang on 16-10-23.
  */
 $(function() {
-    var apiPath = "http://localhost:8080/";
+    var apiPath = "http://118.178.124.197:8080/";
     var app = angular.module("app", ["ngRoute"]);
     app.config(function($routeProvider) {
         $routeProvider
