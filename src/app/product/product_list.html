@@ -164,12 +164,12 @@
                                         </tr>
                                         <tr ng-repeat="item in productItems" multiple-select-item="productItems">
                                             <td><input type="checkbox" ng-model="item.checked" name="mySelectedProduct" ng-click="checkItem(item)"></td>
-                                            <td ng-bind="item.cover"></td>
-                                            <td><a href="#new_ar_product_detail/{{item.id}}" ng-bind="item.productName"></a></td>
-                                            <td ng-bind="item.releaseState"></td>
-                                            <td ng-bind="item.modifyDate | date:'yyyy-MM-dd HH:mm:ss'"></td>
-                                            <td ng-bind="item.recommend"></td>
-                                            <td ng-bind="item.productType"></td>
+                                            <td ng-bind="item.productCover"></td>
+                                            <td><a href="#new_ar_product_detail/{{item.id}}" ng-bind="item.name"></a></td>
+                                            <td ng-bind="item.publishState"></td>
+                                            <td ng-bind="item.productUploadDate | date:'yyyy-MM-dd HH:mm:ss'"></td>
+                                            <td ng-bind="item.productRecommend"></td>
+                                            <td ng-bind="item.type"></td>
                                         </tr>
                                     </tbody>
                                 </table>

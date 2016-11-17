@@ -2,6 +2,7 @@
  * Created by hualiang on 16-10-23.
  */
 $(function() {
+    var apiPath = "http://localhost:8080/";
     var app = angular.module("app", ["ngRoute"]);
     app.config(function($routeProvider) {
         $routeProvider
@@ -49,90 +50,39 @@ $(function() {
     app.controller("primaryProductCtrl", function () {
         console.log("Arrived at primary product page already!!");
     });
-    app.controller("productListCtrl", function ($scope){
+    app.controller("productListCtrl", function ($scope, $http){
         $scope.productItems = null;
         $scope.productItems_selected = [];
         $scope.actionSelected = "";
 
-        var loadScreenDiv = $("#loadingScreen");
-        var loadingScreenLen = loadScreenDiv.width();
-        loadScreenDiv.css("margin-left",(loadingScreenLen>441) ? ((loadingScreenLen-441)/2) : 0 + "px");
-
-        $(window).resize(function() {
-            var loadScreenDiv_resize = $("#loadingScreen");
-            var loadingScreenLen_resize = loadScreenDiv_resize.width();
-            loadScreenDiv_resize.css("margin-left",(loadingScreenLen_resize>441) ? ((loadingScreenLen_resize-441)/2) : 0 + "px");
-        });
+        loading();
 
         //Get product list data
         console.log("Invoke product list controller, get product list data from remote here!");
-        $scope.productItems = [];
-        $scope.productItems[0] = {
-            "id": "1",
-            "cover": "xxx.jpg",
-            "productName": "宝贝英语说",
-            "releaseState": "上架",
-            "modifyDate": new Date(),
-            "recommend": "是",
-            "productType": "视频产品",
-            "checked" : false
-        };
-        $scope.productItems[1] = {
-            "id": "2",
-            "cover": "xxx.jpg",
-            "productName": "蛋生世界",
-            "releaseState": "下架",
-            "modifyDate": new Date(),
-            "recommend": "否",
-            "productType": "AR产品",
-            "checked" : false
-        };
-        $scope.productItems[2] = {
-            "id": "3",
-            "cover": "yyy.jpg",
-            "productName": "宝贝英语说aaa",
-            "releaseState": "上架",
-            "modifyDate": new Date(),
-            "recommend": "是",
-            "productType": "视频产品",
-            "checked" : false
-        };
-        $scope.productItems[3] = {
-            "id": "4",
-            "cover": "xxx.jpg",
-            "productName": "宝贝英语说",
-            "releaseState": "上架",
-            "modifyDate": new Date(),
-            "recommend": "否",
-            "productType": "视频产品",
-            "checked" : false
-        };
-        $scope.productItems[4] = {
-            "id": "5",
-            "cover": "xxx.jpg",
-            "productName": "蛋生世界",
-            "releaseState": "上架",
-            "modifyDate": new Date(),
-            "recommend": "否",
-            "productType": "AR产品",
-            "checked" : false
-        };
-        $scope.productItems[5] = {
-            "id": "6",
-            "cover": "yyy.jpg",
-            "productName": "宝贝英语说aaa",
-            "releaseState": "上架",
-            "modifyDate": new Date(),
-            "recommend": "是",
-            "productType": "AR产品",
-            "checked" : false
-        };
+        $scope.searchProductListByFilters = function (){
+            console.log("Starting to search product items by filters...");
+            console.log("Selected product category: " + $("#product_category").val() + " Selected index: " + $("#product_category").prop('selectedIndex'));
+            console.log("Selected product type: " + $("#product_type").val() + " Selected index: " + $("#product_type").prop('selectedIndex'));
+            console.log("Selected release state: " + $("#release_state").val() + " Selected index: " + $("#release_state").prop('selectedIndex'));
+            console.log("Selected recommendation: " + $("#recommendation").val() + " Selected index: " + $("#recommendation").prop('selectedIndex'));
 
-        //Temp product item array for search feature
-        if(typeof productItems_temp == 'undefined')
-            productItems_temp = [];
-        if(productItems_temp.length == 0)
-            productItems_temp = $scope.productItems;
+            $scope.productItems = [];
+
+            var searchProductByFilters = {};
+            searchProductByFilters.type = $("#product_type").prop('selectedIndex');
+            searchProductByFilters.publishState = $("#release_state").prop('selectedIndex');
+            searchProductByFilters.productRecommend = $("#recommendation").prop('selectedIndex');
+            searchProductByFilters.productCategory = $("#product_category").val();
+
+            $http.post(apiPath + "eden/prods/lists", searchProductByFilters)
+                .then(function successCallback(response) {
+                    console.log("Get product list by filter successfully.");
+                    $scope.productItems = response.data;
+                }, function errorCallback(response) {
+                    console.log("Failed to get product list by filter");
+                });
+        };
+        $scope.searchProductListByFilters();
 
         //Initialize selected product item array for actions
         if(typeof $scope.productItems_selected == 'undefined')
@@ -150,7 +100,6 @@ $(function() {
             }
             console.log("Current selected number: "+$scope.productItems_selected.length);
         };
-
         $scope.checkItem = function(userItem){
             console.log("Check item flag: " + userItem.checked);
             if (userItem.checked){
@@ -171,32 +120,13 @@ $(function() {
             }
         };
 
-        $scope.searchProductListByFilters = function (){
-            console.log("Starting to search product items by filters...");
-            console.log("Selected product category: " + $("#product_category").val());
-            console.log("Selected product type: " + $("#product_type").val());
-            console.log("Selected release state: " + $("#release_state").val());
-            console.log("Selected recommendation: " + $("#recommendation").val());
-
-            $scope.productItems = [];
-            for(item in productItems_temp){
-                if(productItems_temp[item].releaseState == $("#release_state").val()
-                    && productItems_temp[item].recommend == $("#recommendation").val()
-                    && productItems_temp[item].productType == $("#product_type").val()){
-                    $scope.productItems.push(productItems_temp[item]);
-                }
-            }
-        };
-
         $scope.resetSearch = function (){
             $scope.productItems = productItems_temp;
         };
-
         $scope.actionClickModal = function (action){
             console.log("Click buttion: "+action);
             $scope.actionSelected = action;
         };
-
         $scope.actionConfirm = function (){
             console.log("Confirm action: "+$scope.actionSelected);
         };
@@ -466,6 +396,18 @@ $(function() {
     app.controller("otherUrlCtrl", function () {
         console.log("Otherwise URL contoller...");
     });
+
+    loading = function(){
+        var loadScreenDiv = $("#loadingScreen");
+        var loadingScreenLen = loadScreenDiv.width();
+        loadScreenDiv.css("margin-left",(loadingScreenLen>441) ? ((loadingScreenLen-441)/2) : 0 + "px");
+
+        $(window).resize(function() {
+            var loadScreenDiv_resize = $("#loadingScreen");
+            var loadingScreenLen_resize = loadScreenDiv_resize.width();
+            loadScreenDiv_resize.css("margin-left",(loadingScreenLen_resize>441) ? ((loadingScreenLen_resize-441)/2) : 0 + "px");
+        });
+    };
 
 }());
 
