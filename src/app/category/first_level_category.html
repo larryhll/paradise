@@ -5,11 +5,11 @@
                 <div class="panel-heading">一级分类</div>
                 <div class="panel-body">
                     <div class="row">
-                        <div class="col-lg-6">
+                        <div class="col-lg-4">
                             <form role="form">
                                 <div class="form-group">
                                     <label>分类名：</label>
-                                    <input class="form-control" placeholder="输入分类名..." ng-model="firstCategorySearch" ng-change="searchByCategory()">
+                                    <input class="form-control" placeholder="输入搜索分类名..." ng-model="firstCategorySearch" ng-change="searchByCategory()">
                                 </div>
                             </form>
                         </div>
@@ -34,11 +34,33 @@
                                             </td>
                                         </tr>
                                         <tr ng-repeat="item in firstLevelCategoryItems" multiple-select-item="firstLevelCategoryItems">
-                                            <td ng-bind="item.firstCategoryName"></td>
-                                            <td ng-bind="item.modifyDate | date:'yyyy-MM-dd HH:mm:ss'"></td>
-                                            <td><button class="btn" data-toggle="modal" data-target="#delete" ng-model="selectedFirstLevelCategoryID" ng-click="deleteItem(item)">删除</button></td>
+                                            <td><a href="" data-toggle="modal" data-target="#updateFirstCategoryModal" data-backdrop="static" ng-bind="item.categoryName" ng-click="updateItem(item)"></a></td>
+                                            <td ng-bind="item.categoryUpdateDate | date:'yyyy-MM-dd'"></td>
+                                            <td>
+                                                <button class="btn" data-toggle="modal" data-target="#deleteFirstCategoryModal" data-backdrop="static" ng-model="selectedFirstLevelCategoryID" ng-click="deleteItem(item)">删除</button>
+                                            </td>
                                         </tr>
-                                        <div class="modal fade" id="delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                        <form role="form" name="updateFormValidation">
+                                            <div class="modal fade" id="updateFirstCategoryModal" tabindex="-1" role="dialog" aria-labelledby="updateModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                                            <h4 class="modal-title" id="updateModalLabel">更新一级分类：</h4>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <label>一级分类名:</label>
+                                                            <input class="form-control" name="levelOneCat" ng-model="levelOneCategoryName" placeholder="输入分类名..." required>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                                                            <button type="button" class="btn btn-primary" data-ng-click="updateFirstCategory()" ng-disabled="updateFormValidation.levelOneCat.$invalid">确定</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+                                        <div class="modal fade" id="deleteFirstCategoryModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                                             <div class="modal-dialog">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
@@ -48,20 +70,20 @@
                                                     <div class="modal-body">
                                                         <p>
                                                             <label>ID:</label>
-                                                            <label ng-bind="selectedFirstLevelCategoryID"></label>
+                                                            <span ng-bind="selectedFirstLevelCategoryID"></span>
                                                         </p>
                                                         <p>
                                                             <label>一级分类名:</label>
-                                                            <label ng-bind="selectedFirstLevelCategoryItem.firstCategoryName"></label>
+                                                            <span ng-bind="selectedFirstLevelCategoryItem.categoryName"></span>
                                                         </p>
                                                         <p>
                                                             <label>修改日期:</label>
-                                                            <label ng-bind="selectedFirstLevelCategoryItem.modifyDate | date:'yyyy-MM-dd HH:mm:ss'"></label>
+                                                            <span ng-bind="selectedFirstLevelCategoryItem.categoryUpdateDate | date:'yyyy-MM-dd'"></span>
                                                         </p>
                                                     </div>
                                                     <div class="modal-footer">
                                                         <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-                                                        <button type="button" class="btn btn-primary">确定</button>
+                                                        <button type="button" class="btn btn-primary" data-ng-click="deleteFirstCategory()">确定</button>
                                                     </div>
                                                 </div>
                                             </div>
@@ -73,31 +95,26 @@
                     </div>
                     <div class="row">
                         <div class="col-lg-12">
-                            <form role="form">
-                                <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">新增一级分类</button>
-
-                                <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="modalLabelNew" aria-hidden="true">
+                            <form role="form" name="newFormValidation">
+                                <button class="btn btn-default" data-toggle="modal" data-backdrop="static" data-target="#newFirstCategoryModal">新增一级分类</button>
+                                <div class="modal fade" id="newFirstCategoryModal" tabindex="-1" role="dialog" aria-labelledby="modalLabelNew" aria-hidden="true">
                                     <div class="modal-dialog">
                                         <div class="modal-content">
                                             <div class="modal-header">
                                                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                                <h4 class="modal-title" id="modalLabelNew">新增/修改一级分类</h4>
+                                                <h4 class="modal-title" id="modalLabelNew">新增一级分类</h4>
                                             </div>
                                             <div class="modal-body">
                                                 <div class="row">
                                                     <div class="col-lg-12">
-                                                        <form role="form">
-                                                            <div class="form-group">
-                                                                <label>一级分类名：</label>
-                                                                <input class="form-control" placeholder="输入分类名...">
-                                                            </div>
-                                                        </form>
+                                                        <label>一级分类名：</label>
+                                                        <input class="form-control" ng-model="newFirstCategoryName" placeholder="输入分类名..." required>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-                                                <button type="button" class="btn btn-primary">修改/新增</button>
+                                                <button type="button" class="btn btn-primary" data-ng-click="createFirstCategory()" ng-disabled="newFormValidation.$invalid">新增</button>
                                             </div>
                                         </div>
                                     </div>

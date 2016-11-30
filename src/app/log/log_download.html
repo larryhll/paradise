@@ -23,9 +23,9 @@
                                         </td>
                                     </tr>
                                     <tr ng-repeat="item in logItems" multiple-select-item="logItems">
-                                        <td ng-bind="item.phoneNumber"></td>
-                                        <td ng-bind="item.downloadDate | date:'yyyy-MM-dd HH:mm:ss'"></td>
-                                        <td ng-bind="item.downloadProductName"></td>
+                                        <td ng-bind="item.logMobile"></td>
+                                        <td ng-bind="item.logDownloadDate | date:'yyyy-MM-dd'"></td>
+                                        <td ng-bind="item.logProductName"></td>
                                     </tr>
                                 </tbody>
                             </table>

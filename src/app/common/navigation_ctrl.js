@@ -1,11 +1,3 @@
-/*! 
-* FUNP - v1.0.0 
-* © Copyright 2016  Liangli Huang
- */
-/**
- * Created by hualiang on 16-10-19.
- */
-
 $(function() {
     var apiPath = "http://118.178.124.197:8080/";
     var loading = function(){
