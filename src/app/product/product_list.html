@@ -41,47 +41,29 @@
                             </form>
                         </div>
                         <div class="col-lg-4">
-                            <form role="form" style="text-align: right;margin-top: 20px">
+                            <form role="form" style="text-align: right;margin-bottom: 0px">
                                 <div class="form-group">
                                     <button type="button" class="btn btn-lg" ng-click="searchProductListByFilters()">&nbsp;&nbsp;搜&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;索&nbsp;&nbsp;</button>
+                                    <button type="button" class="btn btn-lg" ng-click="cleanSearchProductListByFilters()">&nbsp;&nbsp;清空搜索&nbsp;&nbsp;</button>
                                 </div>
                             </form>
                         </div>
                     </div>
                     <div class="row" style="padding-top: 60px">
-                        <div class="col-lg-1">
+                        <div class="col-lg-4">
                             <form role="form">
                                 <a href="#new_ar_product_detail"><button type="button" class="btn btn-default">新增AR产品</button></a>
-                            </form>
-                        </div>
-                        <div class="col-lg-1">
-                            <form role="form">
                                 <a href="#new_video_product_detail"><button type="button" class="btn btn-default">新增视频产品</button></a>
                             </form>
                         </div>
-                        <div class="col-lg-4 col-md-offset-6">
-                            <div class="row">
-                                <div class="col-lg-3">
-                                    <form role="form" style="text-align: right">
-                                        <button type="button" class="btn btn-default" data-toggle="modal" data-backdrop="static" data-target="#confirmDiag" ng-click="actionClickModal('recommend')">推&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;荐</button>
-                                    </form>
-                                </div>
-                                <div class="col-lg-3">
-                                    <form role="form" style="text-align: right">
-                                        <button type="button" class="btn btn-default" data-toggle="modal" data-backdrop="static" data-target="#confirmDiag" ng-click="actionClickModal('unrecommend')">取消推荐</button>
-                                    </form>
-                                </div>
-                                <div class="col-lg-3">
-                                    <form role="form" style="text-align: right">
-                                        <button type="button" class="btn btn-default" data-toggle="modal" data-backdrop="static" data-target="#confirmDiag" ng-click="actionClickModal('publish')">上&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;架</button>
-                                    </form>
-                                </div>
-                                <div class="col-lg-3">
-                                    <form role="form" style="text-align: right">
-                                        <button type="button" class="btn btn-default" data-toggle="modal" data-backdrop="static" data-target="#confirmDiag" ng-click="actionClickModal('unpublish')">下&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;架</button>
-                                    </form>
-                                </div>
-                                <div class="modal fade" id="confirmDiag" tabindex="-1" role="dialog" aria-labelledby="confirmModalLabel" aria-hidden="true">
+                        <div class="col-lg-8">
+                            <form role="form" style="text-align: right">
+                                <button type="button" class="btn btn-default" data-toggle="modal" data-backdrop="static" data-target="#confirmDiag" ng-click="actionClickModal('recommend')">推&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;荐</button>
+                                <button type="button" class="btn btn-default" data-toggle="modal" data-backdrop="static" data-target="#confirmDiag" ng-click="actionClickModal('unrecommend')">取消推荐</button>
+                                <button type="button" class="btn btn-default" data-toggle="modal" data-backdrop="static" data-target="#confirmDiag" ng-click="actionClickModal('publish')">上&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;架</button>
+                                <button type="button" class="btn btn-default" data-toggle="modal" data-backdrop="static" data-target="#confirmDiag" ng-click="actionClickModal('unpublish')">下&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;架</button>
+                            </form>
+                            <div class="modal fade" id="confirmDiag" tabindex="-1" role="dialog" aria-labelledby="confirmModalLabel" aria-hidden="true">
                                     <div class="modal-dialog">
                                         <div class="modal-content" style="text-align: left">
                                             <div class="modal-header">
@@ -132,7 +114,6 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
                         </div>
                     </div>
                     <div class="row" style="padding-top: 20px">

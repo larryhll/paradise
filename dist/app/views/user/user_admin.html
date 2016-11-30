@@ -37,7 +37,7 @@
                                     </tr>
                                     <tr ng-repeat="item in userItems" multiple-select-item="userItems">
                                         <td ng-bind="item.memberMobile"></td>
-                                        <td ng-bind="item.registerDate | date:'yyyy-MM-dd'"></td>
+                                        <td ng-bind="item.memberDate | date:'yyyy-MM-dd'"></td>
                                         <td ng-bind="item.memberName"></td>
                                         <td ng-bind="item.memberBabyGender ? '男' : '女'"></td>
                                         <td ng-bind="item.memberBirthday | date:'yyyy-MM-dd'"></td>
@@ -61,7 +61,7 @@
                                                     </p>
                                                     <p>
                                                         <label>注册日期:</label>
-                                                        <label ng-bind="selectedUserItem.memberName | date:'yyyy-MM-dd'"></label>
+                                                        <label ng-bind="selectedUserItem.memberDate | date:'yyyy-MM-dd'"></label>
                                                     </p>
                                                     <p>
                                                         <label>宝宝姓名:</label>

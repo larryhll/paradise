@@ -200,13 +200,15 @@ $(function() {
         $scope.saveLayout = function(){
             $http.post(apiPath + "eden/layout/updates", $scope.layoutUpdate)
                 .then(function successCallback(response) {
-                    if(response.msg == "successful"){
+                    if(response.status == 200){
                         console.log("Update product layout successfully");
                     }else{
                         console.log("Failed to update product layout");
                     }
+                    $("#updateLayoutModal").modal('hide');
                 }, function errorCallback(response) {
                     console.log("Failed to update product layout");
+                    $("#updateLayoutModal").modal('hide');
                 });
         };
     });
@@ -220,14 +222,14 @@ $(function() {
         loading();
 
         //initialize product item selection
-        $scope.productCategoryList = [];
+        $scope.productCategoryList = ["全部"];
+        $scope.productCategory = $scope.productCategoryList[0];
         $http.get(apiPath + "eden/cates/list/leveltwo")
             .then(function successCallback(response) {
                 console.log("Get all level two category list successfully");
                 for(var item in response.data){
                     $scope.productCategoryList.push(response.data[item].categoryName);
                 }
-                $scope.productCategory = $scope.productCategoryList[0];
             }, function errorCallback(response) {
                 console.log("Failed to get level two category list");
             });
@@ -273,7 +275,19 @@ $(function() {
                     console.log("Failed to get product list by filter");
                 });
         };
+        //initialize product list with product detail page back or not
         $scope.searchProductListByFilters();
+        $scope.cleanSearchProductListByFilters = function(){
+            $http.get(apiPath + "eden/prods/allprods")
+                .then(function successCallback(response) {
+                    console.log("Get all product list successfully.");
+                    $scope.productItems = response.data;
+                    $scope.productItems_copy = response.data;
+                    $scope.productItems_selected = [];
+                }, function errorCallback(response) {
+                    console.log("Failed to get all product list");
+                });
+        };
 
         //click top check item - all yes or no
         $scope.checkALLYesNo = function (){

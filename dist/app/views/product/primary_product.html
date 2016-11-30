@@ -7,8 +7,6 @@
                     <div class="row">
                         <div class="col-lg-5" style="background-color: #dcdcdc;">
                             <form role="form">
-                                <!--<img ng-if="productImage[0].haveImage" class="img-responsive" id="mainProductOneImage" src="img/blank.jpg" style="max-height: 439px; min-height: 439px; width: auto;display: block;margin: 0 auto;">
-                                <img ng-if="!productImage[0].haveImage" class="img-responsive" id="mainProductOneImage" src="img/blank.jpg" style="max-height: 439px;min-height: 439px;display: block;margin: 0 auto;">-->
                                 <div style="max-height: 439px;min-height: 439px;">
                                     <img class="img-responsive" id="mainProductOneImage" src="img/blank.jpg" style="max-height: 439px;min-height: 439px;display: block;margin: auto;">
                                 </div>
@@ -21,8 +19,6 @@
                             <div class="row" style="background-color: #dcdcdc;margin-left: 0px">
                                 <div class="col-lg-12">
                                     <form role="form">
-                                        <!--<img ng-if="productImage[1].haveImage" class="img-responsive" id="mainProductTwoImage" style="max-height: 200px;min-height: 200px;display: block;margin: 0 auto;">
-                                        <img ng-if="!productImage[1].haveImage" class="img-responsive" id="mainProductTwoImage" src="img/blank.jpg" style="max-height: 200px;min-height: 200px;display: block;margin: 0 auto;">-->
                                         <div style="max-height: 200px;min-height: 200px;">
                                             <img class="img-responsive" id="mainProductTwoImage" src="img/blank.jpg" style="max-height: 200px;min-height: 200px;display: block;margin: auto;">
                                         </div>
@@ -35,8 +31,6 @@
                             <div class="row" style="background-color: #dcdcdc;margin-left: 0px;margin-top: 5px">
                                 <div class="col-lg-6">
                                     <form role="form">
-                                        <!--<img ng-if="productImage[2].haveImage" class="img-responsive" id="mainProductThreeImage" style="max-height: 200px;min-height: 200px;display: block;margin: 0 auto;">
-                                        <img ng-if="!productImage[2].haveImage" class="img-responsive" id="mainProductThreeImage" src="img/blank.jpg" style="max-height: 200px;min-height: 200px;display: block;margin: 0 auto;">-->
                                         <div style="max-height: 200px;min-height: 200px;">
                                             <img class="img-responsive" id="mainProductThreeImage" src="img/blank.jpg" style="max-height: 200px;min-height: 200px;display: block;margin: auto;">
                                         </div>
@@ -47,8 +41,6 @@
                                 </div>
                                 <div class="col-lg-6">
                                     <form role="form">
-                                        <!--<img ng-if="productImage[3].haveImage" class="img-responsive" id="mainProductFourImage" style="max-height: 200px;min-height: 200px;display: block;margin: 0 auto;">
-                                        <img ng-if="!productImage[3].haveImage" class="img-responsive" id="mainProductFourImage" src="img/blank.jpg" style="max-height: 200px;min-height: 200px;display: block;margin: 0 auto;">-->
                                         <div style="max-height: 200px;min-height: 200px;">
                                             <img class="img-responsive" id="mainProductFourImage" src="img/blank.jpg" style="max-height: 200px;min-height: 200px;display: block;margin: auto;">
                                         </div>
@@ -61,7 +53,21 @@
                         </div>
                         <div class="col-lg-4" style="margin-top: 10px">
                             <form role="form">
-                                <button class="btn btn-github" ng-click="saveLayout()">保&nbsp;&nbsp;&nbsp;&nbsp;存</button>
+                                <button class="btn btn-github" data-toggle="modal" data-backdrop="static" data-target="#updateLayoutModal">保&nbsp;&nbsp;&nbsp;&nbsp;存</button>
+                                <div class="modal fade" id="updateLayoutModal" tabindex="-1" role="dialog" aria-labelledby="updateLayoutModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                                <h4 class="modal-title" id="updateLayoutModalLabel">更新产品首页</h4>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                                                <button type="button" class="btn btn-primary" data-ng-click="saveLayout()">确认</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </form>
                         </div>
                     </div>
