@@ -182,20 +182,44 @@ $(function() {
             });
 
         $scope.mainProductOneChange = function(){
-            $scope.layoutUpdate.entities[0].layoutValue = $scope.mainProductOne.id;
-            $("#mainProductOneImage").attr("src", $scope.mainProductOne.productCover);
+            var index = 0;
+            angular.forEach($scope.layoutUpdate.entities, function(item){
+                if(item.layoutPosition == 1){
+                    $scope.layoutUpdate.entities[index].layoutValue = $scope.mainProductOne.id;
+                    $("#mainProductOneImage").attr("src", $scope.mainProductOne.productCover);
+                }
+                index ++;
+            });
         };
         $scope.mainProductTwoChange = function(){
-            $scope.layoutUpdate.entities[1].layoutValue = $scope.mainProductTwo.id;
-            $("#mainProductTwoImage").attr("src", $scope.mainProductTwo.productCover);
+            var index = 0;
+            angular.forEach($scope.layoutUpdate.entities, function(item){
+                if(item.layoutPosition == 2){
+                    $scope.layoutUpdate.entities[index].layoutValue = $scope.mainProductTwo.id;
+                    $("#mainProductTwoImage").attr("src", $scope.mainProductTwo.productCover);
+                }
+                index ++;
+            });
         };
         $scope.mainProductThreeChange = function(){
-            $scope.layoutUpdate.entities[2].layoutValue = $scope.mainProductThree.id;
-            $("#mainProductThreeImage").attr("src", $scope.mainProductThree.productCover);
+            var index = 0;
+            angular.forEach($scope.layoutUpdate.entities, function(item){
+                if(item.layoutPosition == 3){
+                    $scope.layoutUpdate.entities[index].layoutValue = $scope.mainProductThree.id;
+                    $("#mainProductThreeImage").attr("src", $scope.mainProductThree.productCover);
+                }
+                index ++;
+            });
         };
         $scope.mainProductFourChange = function(){
-            $scope.layoutUpdate.entities[3].layoutValue = $scope.mainProductFour.id;
-            $("#mainProductFourImage").attr("src", $scope.mainProductFour.productCover);
+            var index = 0;
+            angular.forEach($scope.layoutUpdate.entities, function(item){
+                if(item.layoutPosition == 4){
+                    $scope.layoutUpdate.entities[index].layoutValue = $scope.mainProductFour.id;
+                    $("#mainProductFourImage").attr("src", $scope.mainProductFour.productCover);
+                }
+                index ++;
+            });
         };
         $scope.saveLayout = function(){
             $http.post(apiPath + "eden/layout/updates", $scope.layoutUpdate)
