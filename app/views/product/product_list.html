@@ -9,14 +9,13 @@
                             <form role="form">
                                 <div class="form-group">
                                     <label for="product_category">产品分类:</label>
-                                    <select class="form-control" id="product_category">
-                                        <option>全部</option>
-                                        <option>语言</option>
+                                    <select class="form-control" id="product_category" ng-model="productCategory" ng-options="option for option in productCategoryList">
+                                        <option></option>
                                     </select>
                                 </div>
                                 <div class="form-group">
-                                    <label for="release_state">发布状态:</label>
-                                    <select class="form-control" id="release_state">
+                                    <label for="publish_state">发布状态:</label>
+                                    <select class="form-control" id="publish_state" ng-model="publishState">
                                         <option>上架</option>
                                         <option>下架</option>
                                     </select>
@@ -27,14 +26,14 @@
                             <form role="form">
                                 <div class="form-group">
                                     <label for="product_type">产品类型:</label>
-                                    <select class="form-control" id="product_type">
-                                        <option>AR产品</option>
+                                    <select class="form-control" id="product_type" ng-model="productType">
                                         <option>视频产品</option>
+                                        <option>AR产品</option>
                                     </select>
                                 </div>
                                 <div class="form-group">
                                     <label for="recommendation">是否推荐:</label>
-                                    <select class="form-control" id="recommendation">
+                                    <select class="form-control" id="recommendation" ng-model="recommendation">
                                         <option>是</option>
                                         <option>否</option>
                                     </select>
@@ -45,11 +44,6 @@
                             <form role="form" style="text-align: right;margin-top: 20px">
                                 <div class="form-group">
                                     <button type="button" class="btn btn-lg" ng-click="searchProductListByFilters()">&nbsp;&nbsp;搜&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;索&nbsp;&nbsp;</button>
-                                </div>
-                            </form>
-                            <form role="form" style="text-align: right;margin-top: 30px">
-                                <div class="form-group">
-                                    <button type="button" class="btn btn-lg" ng-click="resetSearch()">&nbsp;&nbsp;搜索重置&nbsp;&nbsp;</button>
                                 </div>
                             </form>
                         </div>
@@ -69,22 +63,22 @@
                             <div class="row">
                                 <div class="col-lg-3">
                                     <form role="form" style="text-align: right">
-                                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#confirmDiag" ng-click="actionClickModal('recommend')">推&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;荐</button>
+                                        <button type="button" class="btn btn-default" data-toggle="modal" data-backdrop="static" data-target="#confirmDiag" ng-click="actionClickModal('recommend')">推&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;荐</button>
                                     </form>
                                 </div>
                                 <div class="col-lg-3">
                                     <form role="form" style="text-align: right">
-                                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#confirmDiag" ng-click="actionClickModal('recommendCanncel')">取消推荐</button>
+                                        <button type="button" class="btn btn-default" data-toggle="modal" data-backdrop="static" data-target="#confirmDiag" ng-click="actionClickModal('unrecommend')">取消推荐</button>
                                     </form>
                                 </div>
                                 <div class="col-lg-3">
                                     <form role="form" style="text-align: right">
-                                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#confirmDiag" ng-click="actionClickModal('online')">上&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;架</button>
+                                        <button type="button" class="btn btn-default" data-toggle="modal" data-backdrop="static" data-target="#confirmDiag" ng-click="actionClickModal('publish')">上&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;架</button>
                                     </form>
                                 </div>
                                 <div class="col-lg-3">
                                     <form role="form" style="text-align: right">
-                                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#confirmDiag" ng-click="actionClickModal('offline')">下&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;架</button>
+                                        <button type="button" class="btn btn-default" data-toggle="modal" data-backdrop="static" data-target="#confirmDiag" ng-click="actionClickModal('unpublish')">下&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;架</button>
                                     </form>
                                 </div>
                                 <div class="modal fade" id="confirmDiag" tabindex="-1" role="dialog" aria-labelledby="confirmModalLabel" aria-hidden="true">
@@ -102,26 +96,28 @@
                                                                 <thead>
                                                                 <tr>
                                                                     <th>产品名</th>
-                                                                    <th>产品发布状态</th>
+                                                                    <th>发布状态</th>
                                                                     <th>修改时间</th>
                                                                     <th>是否推荐</th>
                                                                     <th>产品类型</th>
+                                                                    <th>产品分类</th>
                                                                 </tr>
                                                                 </thead>
                                                                 <tbody>
                                                                 <tr ng-show="productItems_selected.length == 0">
-                                                                    <td colspan="5" style="background-color: #ffffff">
+                                                                    <td colspan="6" style="background-color: #ffffff">
                                                                         <div style="text-align: center">
                                                                             <span>没有选择任何产品！</span>
                                                                         </div>
                                                                     </td>
                                                                 </tr>
                                                                 <tr ng-repeat="item in productItems_selected" multiple-select-item="productItems_selected">
-                                                                    <td ng-bind="item.productName"></td>
-                                                                    <td ng-bind="item.releaseState"></td>
-                                                                    <td ng-bind="item.modifyDate | date:'yyyy-MM-dd HH:mm:ss'"></td>
-                                                                    <td ng-bind="item.recommend"></td>
-                                                                    <td ng-bind="item.productType"></td>
+                                                                    <td ng-bind="item.name"></td>
+                                                                    <td ng-bind="item.publishState ? '下架' : '上架'"></td>
+                                                                    <td ng-bind="item.productModifyDate | date:'yyyy-MM-dd'"></td>
+                                                                    <td ng-bind="item.productRecommend ? '否' : '是'"></td>
+                                                                    <td ng-bind="item.type ? 'AR产品' : '视频产品'"></td>
+                                                                    <td ng-bind="item.productCategory"></td>
                                                                 </tr>
                                                                 </tbody>
                                                             </table>
@@ -146,12 +142,12 @@
                                     <thead>
                                         <tr>
                                             <th><input type="checkbox" ng-model="checkAll" ng-click="checkALLYesNo()" id="allCheckControl"></th>
-                                            <th>产品封面图</th>
                                             <th>产品名</th>
                                             <th>产品发布状态</th>
-                                            <th>修改时间</th>
                                             <th>是否推荐</th>
                                             <th>产品类型</th>
+                                            <th>产品分类</th>
+                                            <th>修改时间</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -164,12 +160,15 @@
                                         </tr>
                                         <tr ng-repeat="item in productItems" multiple-select-item="productItems">
                                             <td><input type="checkbox" ng-model="item.checked" name="mySelectedProduct" ng-click="checkItem(item)"></td>
-                                            <td ng-bind="item.cover"></td>
-                                            <td><a href="#new_ar_product_detail/{{item.id}}" ng-bind="item.productName"></a></td>
-                                            <td ng-bind="item.releaseState"></td>
-                                            <td ng-bind="item.modifyDate | date:'yyyy-MM-dd HH:mm:ss'"></td>
-                                            <td ng-bind="item.recommend"></td>
-                                            <td ng-bind="item.productType"></td>
+                                            <td>
+                                                <a ng-if="item.type==1" href="#new_ar_product_detail/{{item.id}}" ng-bind="item.name"></a>
+                                                <a ng-if="item.type==0" href="#new_video_product_detail/{{item.id}}" ng-bind="item.name"></a>
+                                            </td>
+                                            <td ng-bind="item.publishState ? '下架' : '上架'"></td>
+                                            <td ng-bind="item.productRecommend ? '否' : '是'"></td>
+                                            <td ng-bind="item.type ? 'AR产品' : '视频产品'"></td>
+                                            <td ng-bind="item.productCategory"></td>
+                                            <td ng-bind="item.productUploadDate | date:'yyyy-MM-dd'"></td>
                                         </tr>
                                     </tbody>
                                 </table>
