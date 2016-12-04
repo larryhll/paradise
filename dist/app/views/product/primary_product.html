@@ -5,22 +5,22 @@
                 <div class="panel-heading">首页产品</div>
                 <div class="panel-body">
                     <div class="row">
-                        <div class="col-lg-5" style="background-color: #dcdcdc;">
+                        <div class="col-lg-6" style="background-color: #dcdcdc;">
                             <form role="form">
-                                <div style="max-height: 439px;min-height: 439px;">
-                                    <img class="img-responsive" id="mainProductOneImage" src="img/blank.jpg" style="max-height: 439px;min-height: 439px;display: block;margin: auto;">
+                                <div style="max-height: 375px;min-height: 375px;">
+                                    <img class="img-responsive" id="mainProductOneImage" src="img/blank.jpg" style="max-width:400px; min-width:400px; max-height: 375px;min-height: 375px;display: block;margin: auto;">
                                 </div>
                                 <select class="form-control" id="mainProductOne" ng-model="mainProductOne" ng-change="mainProductOneChange()" ng-options="option as option.name for option in productItems track by option.id">
                                     <option></option>
                                 </select>
                             </form>
                         </div>
-                        <div class="col-lg-7">
+                        <div class="col-lg-6">
                             <div class="row" style="background-color: #dcdcdc;margin-left: 0px">
                                 <div class="col-lg-12">
                                     <form role="form">
-                                        <div style="max-height: 200px;min-height: 200px;">
-                                            <img class="img-responsive" id="mainProductTwoImage" src="img/blank.jpg" style="max-height: 200px;min-height: 200px;display: block;margin: auto;">
+                                        <div style="max-height: 220px;min-height: 220px;">
+                                            <img class="img-responsive" id="mainProductTwoImage" src="img/blank.jpg" style="max-width:340px; min-width:340px; max-height: 220px;min-height: 220px;display: block;margin: auto;">
                                         </div>
                                         <select class="form-control" id="mainProductTwo" ng-model="mainProductTwo" ng-change="mainProductTwoChange()" ng-options="option as option.name for option in productItems track by option.id">
                                             <option></option>
@@ -28,11 +28,11 @@
                                     </form>
                                 </div>
                             </div>
-                            <div class="row" style="background-color: #dcdcdc;margin-left: 0px;margin-top: 5px">
+                            <div class="row" style="background-color: #dcdcdc;margin-left: 0px;margin-top: 12px">
                                 <div class="col-lg-6">
                                     <form role="form">
-                                        <div style="max-height: 200px;min-height: 200px;">
-                                            <img class="img-responsive" id="mainProductThreeImage" src="img/blank.jpg" style="max-height: 200px;min-height: 200px;display: block;margin: auto;">
+                                        <div style="max-height: 110px;min-height: 110px;">
+                                            <img class="img-responsive" id="mainProductThreeImage" src="img/blank.jpg" style="max-width:160px; min-width:160px; max-height: 110px;min-height: 110px;display: block;margin: auto;">
                                         </div>
                                         <select class="form-control" id="mainProductThree" ng-model="mainProductThree" ng-change="mainProductThreeChange()" ng-options="option as option.name for option in productItems track by option.id">
                                             <option></option>
@@ -41,8 +41,8 @@
                                 </div>
                                 <div class="col-lg-6">
                                     <form role="form">
-                                        <div style="max-height: 200px;min-height: 200px;">
-                                            <img class="img-responsive" id="mainProductFourImage" src="img/blank.jpg" style="max-height: 200px;min-height: 200px;display: block;margin: auto;">
+                                        <div style="max-height: 110px;min-height: 110px;">
+                                            <img class="img-responsive" id="mainProductFourImage" src="img/blank.jpg" style="max-width:160px; min-width:160px; max-height: 110px;min-height: 110px;display: block;margin: auto;">
                                         </div>
                                         <select class="form-control" id="mainProductFour" ng-model="mainProductFour" ng-change="mainProductFourChange()" ng-options="option as option.name for option in productItems track by option.id">
                                             <option></option>
@@ -51,7 +51,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-lg-4" style="margin-top: 10px">
+                        <div class="col-lg-12" style="margin-top: 10px">
                             <form role="form">
                                 <button class="btn btn-github" data-toggle="modal" data-backdrop="static" data-target="#updateLayoutModal">保&nbsp;&nbsp;&nbsp;&nbsp;存</button>
                                 <div class="modal fade" id="updateLayoutModal" tabindex="-1" role="dialog" aria-labelledby="updateLayoutModalLabel" aria-hidden="true">

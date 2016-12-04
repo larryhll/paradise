@@ -32,12 +32,11 @@
                                         <tr>
                                             <th>二级分类名</th>
                                             <th>修改时间</th>
-                                            <th>操作</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <tr ng-show="levelTwoCategoryItems==null">
-                                            <td colspan="3" style="background-color: #ffffff">
+                                            <td colspan="2" style="background-color: #ffffff">
                                                 <div id="loadingScreen">
                                                     <img src="img/loading_icon.gif" style="position: relative; margin: auto;">
                                                 </div>
@@ -46,36 +45,7 @@
                                         <tr ng-repeat="item in levelTwoCategoryItems" multiple-select-item="levelTwoCategoryItems">
                                             <td><a href="" data-toggle="modal" data-target="#updateSecondCategoryModal" data-backdrop="static" ng-bind="item.categoryName" ng-click="updateItem(item)"></a></td>
                                             <td ng-bind="item.categoryUpdateDate | date:'yyyy-MM-dd'"></td>
-                                            <td><button class="btn" data-toggle="modal" data-target="#deleteLevelTwoCategoryModal" ng-model="selectedLevelTwoCategoryID" ng-click="deleteItem(item)">删除</button></td>
                                         </tr>
-                                        <div class="modal fade" id="deleteLevelTwoCategoryModal" tabindex="-1" role="dialog" aria-labelledby="delModalLabel" aria-hidden="true">
-                                            <div class="modal-dialog">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                                        <h4 class="modal-title" id="delModalLabel">删除信息如下：</h4>
-                                                    </div>
-                                                    <div class="modal-body">
-                                                        <p>
-                                                            <label>一级分类名：</label>
-                                                            <span ng-bind="levelOneCategorySelected.categoryName"></span>
-                                                        </p>
-                                                        <p>
-                                                            <label>二级分类名：</label>
-                                                            <span ng-bind="selectedLevelTwoCategory.categoryName"></span>
-                                                        </p>
-                                                        <p>
-                                                            <label>修改日期：</label>
-                                                            <span ng-bind="selectedLevelTwoCategory.categoryUpdateDate | date:'yyyy-MM-dd'"></span>
-                                                        </p>
-                                                    </div>
-                                                    <div class="modal-footer">
-                                                        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-                                                        <button type="button" class="btn btn-primary" data-ng-click="deleteLevelTwoCategory()">确定</button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
                                         <form role="form" name="updateFormValidation">
                                             <div class="modal fade" id="updateSecondCategoryModal" tabindex="-1" role="dialog" aria-labelledby="updateModalLabel" aria-hidden="true">
                                                 <div class="modal-dialog">

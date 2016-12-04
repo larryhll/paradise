@@ -4,224 +4,214 @@
             <div class="panel panel-default">
                 <div class="panel-heading">视频产品/产品详情</div>
                     <div class="panel-body">
-                        <div class="row">
-                            <div class="col-lg-4">
-                                <form role="form">
+                        <form role="form" name="VideoFormValidation">
+                            <div class="row">
+                                <div class="col-lg-4">
                                     <div class="form-group">
-                                        <button class="btn btn-default" data-ng-click="submitProductInfo()">新增/修改</button>
+                                        <button class="btn btn-default" data-ng-click="submitProductInfo()" ng-disabled="VideoFormValidation.$invalid">新增/修改</button>
                                     </div>
-                                </form>
+                                </div>
                             </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-lg-4">
-                                <form role="form">
+                            <div class="row">
+                                <div class="col-lg-4">
                                     <div class="form-group">
                                         <label>产品名：</label>
-                                        <input class="form-control" placeholder="输入产品名..." ng-model="productInfo.name" required>
+                                        <input class="form-control" placeholder="输入产品名..." name="productName" ng-model="productInfo.name" required>
                                     </div>
-                                </form>
-                            </div>
-                            <div class="col-lg-4">
-                                <form role="form">
+                                </div>
+                                <div class="col-lg-4">
                                     <div class="form-group">
                                         <label>价格：</label>
-                                        <input class="form-control" placeholder="输入价格..." ng-model="productInfo.price" required>
+                                        <input class="form-control" placeholder="输入价格..." name="productPrice" ng-model="productInfo.price" required>
                                     </div>
-                                </form>
-                            </div>
-                            <div class="col-lg-4">
-                                <form role="form">
+                                </div>
+                                <div class="col-lg-4">
                                     <div class="form-group">
                                         <label>评分：</label>
-                                        <input class="form-control" placeholder="输入评分..." ng-model="productInfo.productScore" required>
+                                        <input class="form-control" placeholder="输入评分..." name="productScore" ng-model="productInfo.productScore" required>
                                     </div>
-                                </form>
+                                </div>
                             </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-lg-8">
-                                <form role="form">
-                                    <div class="form-group">
-                                        <label>产品介质形式：</label>
-                                        <div class="checkbox">
-                                            <label><input type="checkbox" id="mediaTypeElectricBook" ng-model="mediaTypeElectricBook">电子书&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
-                                            <label><input type="checkbox" id="mediaTypeBook" ng-model="mediaTypeBook">书籍&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
-                                            <label><input type="checkbox" id="mediaTypeCard" ng-model="mediaTypeCard">卡牌&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
-                                            <label><input type="checkbox" id="mediaTypeTeachTool" ng-model="mediaTypeTeachTool">教具&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
-                                            <label><input type="checkbox" id="mediaTypeIntelligentToy" ng-model="mediaTypeIntelligentToy">益智玩具&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
-                                            <label><input type="checkbox" id="mediaType" ng-model="mediaTypeOther">其它</label>
+                            <div class="row">
+                                <div class="col-lg-8">
+                                    <form role="form">
+                                        <div class="form-group">
+                                            <label>产品介质形式：</label>
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" id="mediaTypeElectricBook" ng-model="mediaTypeElectricBook">电子书&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                                                <label><input type="checkbox" id="mediaTypeBook" ng-model="mediaTypeBook">书籍&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                                                <label><input type="checkbox" id="mediaTypeCard" ng-model="mediaTypeCard">卡牌&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                                                <label><input type="checkbox" id="mediaTypeTeachTool" ng-model="mediaTypeTeachTool">教具&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                                                <label><input type="checkbox" id="mediaTypeIntelligentToy" ng-model="mediaTypeIntelligentToy">益智玩具&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                                                <label><input type="checkbox" id="mediaType" ng-model="mediaTypeOther">其它</label>
+                                            </div>
                                         </div>
-                                    </div>
-                                </form>
+                                    </form>
+                                </div>
+                                <div class="col-lg-4">
+                                    <form role="form">
+                                        <div class="form-group">
+                                            <label>适合年龄:</label>
+                                            <select class="form-control" id="productMatchAgeScope" required>
+                                                <option selected>3-4岁</option>
+                                                <option>4-5岁</option>
+                                                <option>5-6岁</option>
+                                                <option>6-7岁</option>
+                                            </select>
+                                        </div>
+                                    </form>
+                                </div>
                             </div>
-                            <div class="col-lg-4">
-                                <form role="form">
-                                    <div class="form-group">
-                                        <label>适合年龄:</label>
-                                        <select class="form-control" id="productMatchAgeScope" required>
-                                            <option selected>3-4岁</option>
-                                            <option>4-5岁</option>
-                                            <option>5-6岁</option>
-                                            <option>6-7岁</option>
-                                        </select>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-lg-4">
-                                <form role="form">
+                            <div class="row">
+                                <div class="col-lg-4">
                                     <div class="form-group">
                                         <label for="levelTwoCategory">产品分类:</label>
-                                        <select class="form-control" id="levelTwoCategory" ng-model="levelTwoCategory" ng-options="option as option.categoryName for option in levelTwoCategoryItems track by option.id" required>
+                                        <select class="form-control" id="levelTwoCategory" name="productCategory" ng-model="levelTwoCategory" ng-options="option as option.categoryName for option in levelTwoCategoryItems track by option.id" required>
                                             <option></option>
                                         </select>
                                     </div>
-                                </form>
+                                </div>
                             </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-lg-12">
-                                <form role="form">
+                            <div class="row">
+                                <div class="col-lg-12">
                                     <div class="form-group">
                                         <label>分类标签*</label>
-                                        <input class="form-control" placeholder="输入分类标签..." ng-model="productInfo.productCategoryTag">
+                                        <input class="form-control" name="categoryTag" placeholder="输入分类标签..." ng-model="productInfo.productCategoryTag" required>
                                         <label class="help-block">多个标签使用分号间隔，例如：AR;玩具</label>
                                     </div>
-                                </form>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-lg-12">
-                                <div class="form-group">
-                                    <label>产品描述：</label>
-                                    <div>
-                                        <img id="productDescImage" src="{{productInfo.productDesc}}" style="max-height: 200px; width: auto">
-                                        <input id="productDescFileSelect" type="file" file-input="productDescriptionImageFile" style="display:none">
-                                        <button style="display:none" ng-click="updateProductDescriptionImage()"></button>
-                                        <button class="btn btn-default" ng-click="updateProductDescriptionImageStart()" style="display: block; margin-top: 5px">上传产品描述</button>
-                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-lg-12">
-                                <div class="form-group">
-                                    <label>产品封面图(建议360*360)：</label>
+                            <div class="row">
+                                <div class="col-lg-12">
                                     <div class="form-group">
-                                        <img id="productCoverImage" src="{{productInfo.productCover}}" style="max-height: 200px; width: auto">
-                                        <input id="productCoverFileSelect" type="file" file-input="productCoverImageFile" style="display:none">
-                                        <button style="display:none" ng-click="updateProductCoverImage()"></button>
-                                        <button class="btn btn-default" ng-click="updateProductCoverImageStart()" style="display: block; margin-top: 5px">上传产品封面</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-lg-12">
-                                <div class="panel panel-default">
-                                    <div class="panel-heading">视频列表</div>
-                                    <div class="panel-body">
-                                        <div class="row">
-                                            <div class="col-lg-12">
-                                                <form role="form">
-                                                    <div class="form-group">
-                                                        <button class="btn btn-default" data-toggle="modal" data-backdrop="static" data-target="#newVideoItemModal">新增视频</button>
-                                                    </div>
-                                                </form>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-lg-12">
-                                                <div class="table-responsive">
-                                                    <table class="table table-striped table-bordered table-hover">
-                                                        <thead>
-                                                            <tr>
-                                                                <th>视频名</th>
-                                                                <th>视频地址</th>
-                                                                <th>操作</th>
-                                                            </tr>
-                                                        </thead>
-                                                        <tbody>
-                                                            <tr ng-repeat="item in productInfo.videoDOs" multiple-select-item="productInfo.videoDOs">
-                                                                <td ng-bind="item.videoName"></td>
-                                                                <td ng-bind="item.videoUrl"></td>
-                                                                <td><button class="btn" data-toggle="modal" data-backdrop="static" data-target="#deleteVideoItemModal" ng-click="selectVideoItem(item)">删除</button></td>
-                                                            </tr>
-                                                        </tbody>
-                                                    </table>
-                                                </div>
-                                                <div class="modal fade" id="deleteVideoItemModal" role="dialog" aria-labelledby="delModalLabel" aria-hidden="true">
-                                                    <div class="modal-dialog">
-                                                        <div class="modal-content">
-                                                            <div class="modal-header">
-                                                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                                                <h4 class="modal-title" id="delModalLabel">删除视频信息：</h4>
-                                                            </div>
-                                                            <div class="modal-body">
-                                                                <div class="col-lg-12">
-                                                                    <form role="form">
-                                                                        <div class="form-group">
-                                                                            <label>视频名:</label>
-                                                                            <label class="form-control" ng-bind="videoItemSelected.videoName"></label>
-                                                                        </div>
-                                                                    </form>
-                                                                </div>
-                                                                <div class="col-lg-12">
-                                                                    <form role="form">
-                                                                        <div class="form-group">
-                                                                            <label>视频地址:</label>
-                                                                            <label class="form-control" ng-bind="videoItemSelected.videoUrl"></label>
-                                                                        </div>
-                                                                    </form>
-                                                                </div>
-                                                            </div>
-                                                            <div class="modal-footer">
-                                                                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-                                                                <button type="button" class="btn btn-primary" data-ng-click="delVideoItem()">确定</button>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="modal fade" id="newVideoItemModal" role="dialog" aria-labelledby="newModalLabel" aria-hidden="true">
-                                                    <div class="modal-dialog">
-                                                        <div class="modal-content">
-                                                            <div class="modal-header">
-                                                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                                                <h4 class="modal-title" id="newModalLabel">新增视频信息：</h4>
-                                                            </div>
-                                                            <div class="modal-body">
-                                                                <div class="col-lg-12">
-                                                                    <form role="form">
-                                                                        <div class="form-group">
-                                                                            <label>视频名:</label>
-                                                                            <input class="form-control" ng-model="videoName" placeholder="输入视频名..." required>
-                                                                        </div>
-                                                                    </form>
-                                                                </div>
-                                                                <div class="col-lg-12">
-                                                                    <form role="form">
-                                                                        <div class="form-group">
-                                                                            <label>视频地址:</label>
-                                                                            <input class="form-control" ng-model="videoUrl" placeholder="输入视频地址..." required>
-                                                                        </div>
-                                                                    </form>
-                                                                </div>
-                                                            </div>
-                                                            <div class="modal-footer">
-                                                                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-                                                                <button type="button" class="btn btn-primary" data-ng-click="newVideoItem()">确定</button>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
+                                        <label>产品描述(建议1710*1200)：</label>
+                                        <div>
+                                            <img id="productDescImage" src="{{productInfo.productDesc}}" style="max-height: 400px; min-height:400px; max-width:570px; min-width:570px;">
+                                            <input id="productDescFileSelect" type="file" file-input="productDescriptionImageFile" accept=".png,.jpg" style="display:none">
+                                            <button style="display:none" ng-click="updateProductDescriptionImage()"></button>
+                                            <button class="btn btn-default" ng-click="updateProductDescriptionImageStart()" style="display: block; margin-top: 5px">上传产品描述</button>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="form-group">
+                                        <label>产品封面图(建议486*630或792*519)：</label>
+                                        <div class="form-group">
+                                            <img id="productCoverImage" src="{{productInfo.productCover}}" style="max-height: 210px; min-height:173px; max-width:264px; min-width:162px;">
+                                            <input id="productCoverFileSelect" type="file" file-input="productCoverImageFile" accept=".png,.jpg" style="display:none">
+                                            <button style="display:none" ng-click="updateProductCoverImage()"></button>
+                                            <button class="btn btn-default" ng-click="updateProductCoverImageStart()" style="display: block; margin-top: 5px">上传产品封面</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="panel panel-default">
+                                        <div class="panel-heading">视频列表</div>
+                                        <div class="panel-body">
+                                            <div class="row">
+                                                <div class="col-lg-12">
+                                                    <form role="form">
+                                                        <div class="form-group">
+                                                            <button class="btn btn-default" data-toggle="modal" data-backdrop="static" data-target="#newVideoItemModal">新增视频</button>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-lg-12">
+                                                    <div class="table-responsive">
+                                                        <table class="table table-striped table-bordered table-hover">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th>视频名</th>
+                                                                    <th>视频地址</th>
+                                                                    <th>操作</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                <tr ng-repeat="item in productInfo.videoDOs" multiple-select-item="productInfo.videoDOs">
+                                                                    <td ng-bind="item.videoName"></td>
+                                                                    <td ng-bind="item.videoUrl"></td>
+                                                                    <td><button class="btn" data-toggle="modal" data-backdrop="static" data-target="#deleteVideoItemModal" ng-click="selectVideoItem(item)">删除</button></td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                    <div class="modal fade" id="deleteVideoItemModal" role="dialog" aria-labelledby="delModalLabel" aria-hidden="true">
+                                                        <div class="modal-dialog">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                                                    <h4 class="modal-title" id="delModalLabel">删除视频信息：</h4>
+                                                                </div>
+                                                                <div class="modal-body">
+                                                                    <div class="col-lg-12">
+                                                                        <form role="form">
+                                                                            <div class="form-group">
+                                                                                <label>视频名:</label>
+                                                                                <label class="form-control" ng-bind="videoItemSelected.videoName"></label>
+                                                                            </div>
+                                                                        </form>
+                                                                    </div>
+                                                                    <div class="col-lg-12">
+                                                                        <form role="form">
+                                                                            <div class="form-group">
+                                                                                <label>视频地址:</label>
+                                                                                <label class="form-control" ng-bind="videoItemSelected.videoUrl"></label>
+                                                                            </div>
+                                                                        </form>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="modal-footer">
+                                                                    <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                                                                    <button type="button" class="btn btn-primary" data-ng-click="delVideoItem()">确定</button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="modal fade" id="newVideoItemModal" role="dialog" aria-labelledby="newModalLabel" aria-hidden="true">
+                                                        <div class="modal-dialog">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                                                    <h4 class="modal-title" id="newModalLabel">新增视频信息：</h4>
+                                                                </div>
+                                                                <div class="modal-body">
+                                                                    <div class="col-lg-12">
+                                                                        <form role="form">
+                                                                            <div class="form-group">
+                                                                                <label>视频名:</label>
+                                                                                <input class="form-control" ng-model="videoName" placeholder="输入视频名..." required>
+                                                                            </div>
+                                                                        </form>
+                                                                    </div>
+                                                                    <div class="col-lg-12">
+                                                                        <form role="form">
+                                                                            <div class="form-group">
+                                                                                <label>视频地址:</label>
+                                                                                <input class="form-control" ng-model="videoUrl" placeholder="输入视频地址..." required>
+                                                                            </div>
+                                                                        </form>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="modal-footer">
+                                                                    <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                                                                    <button type="button" class="btn btn-primary" data-ng-click="newVideoItem()">确定</button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>

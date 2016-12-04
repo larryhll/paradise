@@ -377,9 +377,9 @@ $(function() {
                     $scope.productInfo = response.data;
                     //parse images list
                     var imageArr = response.data.productImages.split(',');
-                    $scope.firstScreenShot = (typeof imageArr[0] === "undefined" ? "" : imageArr[0]);
-                    $scope.secondScreenShot = (typeof imageArr[1] === "undefined" ? "" : imageArr[1]);
-                    $scope.thirdScreenShot = (typeof imageArr[2] === "undefined" ? "" : imageArr[2]);
+                    $scope.firstScreenShot = (typeof imageArr[0] == "undefined" ? "" : imageArr[0]);
+                    $scope.secondScreenShot = (typeof imageArr[1] == "undefined" ? "" : imageArr[1]);
+                    $scope.thirdScreenShot = (typeof imageArr[2] == "undefined" ? "" : imageArr[2]);
 
                     var mediaTypeArr = response.data.media.split(',');
                     (mediaTypeArr.indexOf("电子书")>=0) ? $scope.mediaTypeElectricBook = true : $scope.mediaTypeElectricBook = false;
@@ -412,9 +412,9 @@ $(function() {
                     $scope.levelTwoCategoryItems = response.data;
                     if (response.data.length > 0){
                         $scope.levelTwoCategory = response.data[0];
+                        console.log("Success to get all the second level category");
                     }
                     getProductItem();
-                    console.log("Success to get all the second level category");
                 }, function errorCallback(response) {
                     console.log("Failed to get all the second level category");
                 });
@@ -548,6 +548,7 @@ $(function() {
         $scope.submitProductInfo = function(){
             //get product item info from input
             $scope.productInfo.productCategory = $scope.levelTwoCategory.categoryName;
+            $scope.productInfo.productCategoryId = $scope.levelTwoCategory.id;
             $scope.productInfo.productLevelTwo = $scope.levelTwoCategory.categoryName;
             var mediaItems = [];
             mediaItems.push($scope.mediaTypeElectricBook ? "电子书" : "");
@@ -595,10 +596,9 @@ $(function() {
         };
     });
     app.controller("newARDetailCtrl", function ($scope, $http, productBackAction) {
-        console.log("Arrived at new AR product detail page already!!");
         //new product info
         $scope.productInfo = {};
-        $scope.firstScreenShot = "";
+        $scope.firstScreenShot = ""
         $scope.secondScreenShot = "";
         $scope.thirdScreenShot = "";
 
@@ -609,8 +609,8 @@ $(function() {
                 $scope.levelTwoCategoryItems = response.data;
                 if (response.data.length > 0){
                     $scope.levelTwoCategory = response.data[0];
+                    console.log("Success to get all the second level category");
                 }
-                console.log("Success to get all the second level category");
             }, function errorCallback(response) {
                 console.log("Failed to get all the second level category");
             });
@@ -744,6 +744,7 @@ $(function() {
             $scope.productInfo.publishState = 1;
             $scope.productInfo.productRecommend = 1;
             $scope.productInfo.productCategory = $scope.levelTwoCategory.categoryName;
+            $scope.productInfo.productCategoryId = $scope.levelTwoCategory.id;
             $scope.productInfo.productLevelTwo = $scope.levelTwoCategory.categoryName;
             var mediaItems = [];
             mediaItems.push($scope.mediaTypeElectricBook ? "电子书" : "");
@@ -791,12 +792,10 @@ $(function() {
         };
     });
     app.controller("updateVideoDetailCtrl", function($scope, $http, $routeParams, productBackAction){
-        console.log("Product ID: "+ $routeParams.productID);
         //get product item with id
         var getProductItem = function(){
             $http.get(apiPath + "eden/prods/" + $routeParams.productID)
                 .then(function successCallback(response) {
-                    console.log("Success to get Video product item: " + $routeParams.productID);
                     $scope.productInfo = response.data;
 
                     var mediaTypeArr = response.data.media.split(',');
@@ -817,23 +816,24 @@ $(function() {
                     console.log("Failed to get AR product item");
                 });
         };
-        //change level two category list with level one changed
+
+        //initialize product info fields
         var initialize = function(){
-            //get level two category
+            //get all level two category list
             $http.get(apiPath + "eden/cates/list/leveltwo")
                 .then(function successCallback(response) {
                     $scope.levelTwoCategory = {};
                     $scope.levelTwoCategoryItems = response.data;
                     if (response.data.length > 0){
                         $scope.levelTwoCategory = response.data[0];
+                        console.log("Success to get all the second level category");
                     }
                     getProductItem();
-                    console.log("Success to get all the second level category");
                 }, function errorCallback(response) {
                     console.log("Failed to get all the second level category");
                 });
         };
-        //initialize product page
+        //call function to initialize product page
         initialize();
 
         //update image file
@@ -907,6 +907,7 @@ $(function() {
         $scope.submitProductInfo = function(){
             $scope.productInfo.productModifyDate = new Date();
             $scope.productInfo.productCategory = $scope.levelTwoCategory.categoryName;
+            $scope.productInfo.productCategoryId = $scope.levelTwoCategory.id;
             $scope.productInfo.productLevelTwo = $scope.levelTwoCategory.categoryName;
             var mediaItems = [];
             mediaItems.push($scope.mediaTypeElectricBook ? "电子书" : "");
@@ -921,7 +922,7 @@ $(function() {
             $http.post(apiPath + "eden/prods/update", $scope.productInfo)
                 .then(function successCallback(response) {
                     if(response.status === 200){
-                        console.log("Update video product item successfully.");
+                        console.log("Update video product item successfully, go back to product list page...");
                         productBackAction.setProductBack(true);
                         productBackAction.setType($scope.productInfo.type);
                         productBackAction.setPublishState($scope.productInfo.publishState);
@@ -948,8 +949,8 @@ $(function() {
                 $scope.levelTwoCategoryItems = response.data;
                 if (response.data.length > 0){
                     $scope.levelTwoCategory = response.data[0];
+                    console.log("Success to get all the second level category");
                 }
-                console.log("Success to get all the second level category");
             }, function errorCallback(response) {
                 console.log("Failed to get all the second level category");
             });
@@ -1027,6 +1028,7 @@ $(function() {
             $scope.productInfo.publishState = 1;
             $scope.productInfo.productRecommend = 1;
             $scope.productInfo.productCategory = $scope.levelTwoCategory.categoryName;
+            $scope.productInfo.productCategoryId = $scope.levelTwoCategory.id;
             $scope.productInfo.productLevelTwo = $scope.levelTwoCategory.categoryName;
             var mediaItems = [];
             mediaItems.push($scope.mediaTypeElectricBook ? "电子书" : "");
@@ -1062,10 +1064,14 @@ $(function() {
         $scope.firstLevelCategoryItems = null;
         loading();
 
+        //temp level one category items array for search feature
+        firstLevelCategoryItems_temp = [];
+
         //Get first level category list data
         $http.get(apiPath + "eden/cates/list/levelone")
             .then(function successCallback(response) {
                 $scope.firstLevelCategoryItems = response.data;
+                firstLevelCategoryItems_temp = $scope.firstLevelCategoryItems;
             }, function errorCallback(response) {
                 console.log("Failed to get the first level category");
             });
@@ -1077,7 +1083,6 @@ $(function() {
                 return;
             }
 
-            firstLevelCategoryItems_temp = $scope.firstLevelCategoryItems;
             $scope.firstLevelCategoryItems = [];
             var pattern = new RegExp($scope.firstCategorySearch, "i");
             for(var item in firstLevelCategoryItems_temp){
@@ -1085,28 +1090,6 @@ $(function() {
                     $scope.firstLevelCategoryItems.push(firstLevelCategoryItems_temp[item]);
                 }
             }
-        };
-
-        //get selected category item for deleting
-        $scope.deleteItem = function(selectedItem) {
-            $scope.selectedFirstLevelCategoryID = selectedItem.id;
-            $scope.selectedFirstLevelCategoryItem = selectedItem;
-        };
-        //delete level one category item
-        $scope.deleteFirstCategory = function(){
-            $http.get(apiPath + "eden/cates/delete/" + $scope.selectedFirstLevelCategoryID)
-                .then(function successCallback(response) {
-                    console.log("Success to delete the first level category ID: " + $scope.selectedFirstLevelCategoryID);
-                    $http.get(apiPath + "eden/cates/list/levelone")
-                        .then(function successCallback(response) {
-                            $(deleteFirstCategoryModal).modal('hide');
-                            $scope.firstLevelCategoryItems = response.data;
-                        }, function errorCallback(response) {
-                            console.log("Failed to get the first level category");
-                        });
-                }, function errorCallback(response) {
-                    console.log("Failed to get the first level category");
-                });
         };
 
         //get selected category item for updating
@@ -1220,34 +1203,6 @@ $(function() {
             }
         };
 
-        //delete level two category
-        $scope.deleteItem = function(selectedItem) {
-            $scope.selectedLevelTwoCategoryID = selectedItem.id;
-            $scope.selectedLevelTwoCategory = selectedItem;
-
-            console.log("Selected id: " + selectedItem.id + " selected category name: " + selectedItem.categoryName);
-        };
-        $scope.deleteLevelTwoCategory = function(){
-            $http.get(apiPath + "eden/cates/delete/" + $scope.selectedLevelTwoCategoryID)
-                .then(function successCallback(response) {
-                    console.log("Success to delete the second level category ID: " + $scope.selectedLevelTwoCategoryID);
-                    $(deleteLevelTwoCategoryModal).modal('hide');
-
-                    //get level two category
-                    $http.get(apiPath + "eden/cates/list/leveltwo/" + $scope.levelOneCategorySelected.id)
-                        .then(function successCallback(response) {
-                            $scope.levelTwoCategoryItems = response.data;
-                            levelTwoCategoryItems_temp = $scope.levelTwoCategoryItems;
-
-                            console.log("Success to get the second level category");
-                        }, function errorCallback(response) {
-                            console.log("Failed to get the second level category");
-                        });
-                }, function errorCallback(response) {
-                    console.log("Failed to get the second level category");
-                });
-        };
-
         //update level two category
         $scope.updateItem = function(selectedItem){
             $scope.updatedLevelTwoItem = selectedItem;
@@ -1352,16 +1307,66 @@ $(function() {
     });
     app.controller("logDownloadCtrl", function ($scope, $http){
         $scope.logItems = null;
+        $scope.allItemsLength = 0;
+        $scope.currentPage = 0;
+        $scope.pageInTotal = 0;
+        $scope.previousInvalid = true;
+        $scope.nextInvalid = true;
+
+        $scope.pageNumType = ["5","10","20","50"];
         loading();
+        $scope.itemNumOfPage = "10";
 
         //Get download log list data
         console.log("Invoke log list controller, get download log list");
         $http.get(apiPath + "eden/logs/lists")
             .then(function successCallback(response) {
-                $scope.logItems = response.data;
+                $scope.logAllItems = response.data;
+                $scope.allItemsLength = $scope.logAllItems.length;
+
+                if($scope.allItemsLength > 0){
+                    $scope.changeNumOfPage();
+                }else{
+                    $scope.logItems = [];
+                }
             }, function errorCallback(response) {
                 console.log("Failed to get log list");
             });
+
+        //update previous and next page button status, get current page log items
+        var pageControlUpdate = function(){
+            $scope.pageInTotal = ($scope.allItemsLength/$scope.itemNumOfPage).toFixed();
+            if($scope.allItemsLength > ($scope.itemNumOfPage * $scope.pageInTotal)){
+                $scope.pageInTotal++;
+            }
+            $scope.previousInvalid = true;
+            ($scope.pageInTotal > $scope.currentPage) ? ($scope.nextInvalid = false) : ($scope.nextInvalid = true);
+            ($scope.currentPage > 1) ? ($scope.previousInvalid = false) : ($scope.previousInvalid = true);
+            var startIndex = ($scope.currentPage-1) * $scope.itemNumOfPage;
+            $scope.logItems = $scope.logAllItems.slice(startIndex, startIndex + $scope.itemNumOfPage);
+        };
+
+        //change page number selection
+        $scope.changeNumOfPage = function(){
+            console.log("Change number of page to " + $scope.itemNumOfPage);
+            if($scope.allItemsLength > 0){
+                $scope.currentPage = 1;
+                pageControlUpdate();
+            }
+        };
+
+        //click previous page button
+        $scope.previousPage = function(){
+            console.log("Click previous button");
+            $scope.currentPage--;
+            pageControlUpdate();
+        };
+        //click next page button
+        $scope.nextPage = function(){
+            console.log("Click next button");
+            $scope.currentPage++;
+            pageControlUpdate();
+        }
     });
     app.controller("otherUrlCtrl", function () {
         console.log("Otherwise URL contoller...");
