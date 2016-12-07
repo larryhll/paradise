@@ -247,14 +247,17 @@ $(function() {
 
         //initialize product item selection
         $scope.productCategoryItems = [];
-        $scope.productCategoryList = ["全部"];
+        $scope.productCategoryList = [{"id":0,"name":"全部"}];
         $scope.productCategory = $scope.productCategoryList[0];
         $http.get(apiPath + "eden/cates/list/levelone")
             .then(function successCallback(response) {
                 console.log("Get all product category list successfully");
                 $scope.productCategoryItems = response.data;
                 for(var item in response.data){
-                    $scope.productCategoryList.push(response.data[item].categoryName);
+                    var cateItem = {};
+                    cateItem.id = response.data[item].id;
+                    cateItem.name = response.data[item].categoryName;
+                    $scope.productCategoryList.push(cateItem);
                 }
 
                 //initialize product list with product detail page back or not
@@ -295,9 +298,9 @@ $(function() {
                 searchProductByFilters.type = productBackAction.getType();
                 searchProductByFilters.publishState = productBackAction.getPublishState();
                 searchProductByFilters.productRecommend = productBackAction.getProductRecommend();
-                searchProductByFilters.productCategory = productBackAction.getProductCategory();
+                searchProductByFilters.productCategory = $scope.productCategoryList[0].id;
 
-                $scope.productCategory = productBackAction.getProductCategory();
+                $scope.productCategory = $scope.productCategoryList[0];
                 $scope.publishState = productBackAction.getPublishState()==0 ? "上架":"下架";
                 $scope.productType = productBackAction.getType()==0 ? "视频产品":"AR产品";
                 $scope.recommendation = productBackAction.getProductRecommend()==0 ? "是":"否";
@@ -305,7 +308,7 @@ $(function() {
                 searchProductByFilters.type = $("#product_type").prop('selectedIndex');
                 searchProductByFilters.publishState = $("#publish_state").prop('selectedIndex');
                 searchProductByFilters.productRecommend = $("#recommendation").prop('selectedIndex');
-                searchProductByFilters.productCategory = $scope.productCategory;
+                searchProductByFilters.productCategory = $scope.productCategory.id;
             }
             productBackAction.setProductBack(false);
 

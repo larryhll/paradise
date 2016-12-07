@@ -9,7 +9,7 @@
                             <form role="form">
                                 <div class="form-group">
                                     <label for="product_category">产品分类:</label>
-                                    <select class="form-control" id="product_category" ng-model="productCategory" ng-options="option for option in productCategoryList">
+                                    <select class="form-control" id="product_category" ng-model="productCategory" ng-options="option as option.name for option in productCategoryList track by option.id">
                                         <option></option>
                                     </select>
                                 </div>
