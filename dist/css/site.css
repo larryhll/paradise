@@ -2,3 +2,24 @@
 * FUNP - v1.0.0 
 * © Copyright 2016  Liangli Huang
  */
+form .form-group-validate input.ng-invalid.ng-dirty,
+form .form-group-validate input.ng-invalid.ng-touched {
+  border: 1px solid #ff454f;
+}
+form .form-group-validate .form-control-feedback {
+  color: #ff454f;
+}
+form .form-group-validate-on-submit {
+  margin-bottom: 30px;
+}
+form .form-group-validate-on-submit input.ng-invalid.on-submit {
+  border: 1px solid #ff454f;
+}
+form .form-group-validate-on-submit .form-control-feedback {
+  color: #ff454f;
+}
+form .validation-error-text {
+  color: #ff454f;
+  float: left;
+  opcatiy: 0.9;
+}

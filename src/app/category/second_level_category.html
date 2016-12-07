@@ -46,6 +46,7 @@
                                             <td><a href="" data-toggle="modal" data-target="#updateSecondCategoryModal" data-backdrop="static" ng-bind="item.categoryName" ng-click="updateItem(item)"></a></td>
                                             <td ng-bind="item.categoryUpdateDate | date:'yyyy-MM-dd'"></td>
                                         </tr>
+
                                         <form role="form" name="updateFormValidation">
                                             <div class="modal fade" id="updateSecondCategoryModal" tabindex="-1" role="dialog" aria-labelledby="updateModalLabel" aria-hidden="true">
                                                 <div class="modal-dialog">
@@ -59,14 +60,15 @@
                                                                 <label>一级分类名：</label>
                                                                 <span ng-bind="levelOneCategorySelected.categoryName"></span>
                                                             </div>
-                                                            <div class="form-group">
+                                                            <div class="form-group-validate has-feedback">
                                                                 <label>二级分类名：</label>
                                                                 <input class="form-control" name="levelTwoCategoryInput" ng-model="levelTwoCategoryUpdated" placeholder="输入二级分类名..." required>
+                                                                <span class="validation-error-text" ng-show="updateFormValidation.levelTwoCategoryInput.$invalid && (updateFormValidation.levelTwoCategoryInput.$touched || updateFormValidation.levelTwoCategoryInput.$dirty)">请输入二级分类名</span>
                                                             </div>
                                                         </div>
                                                         <div class="modal-footer">
                                                             <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-                                                            <button type="button" class="btn btn-primary" data-ng-click="updateLevelTwoCategory()" ng-disabled="updateFormValidation.levelTwoCategoryInput.$invalid">确定</button>
+                                                            <button type="button" class="btn btn-primary" data-ng-click="updateLevelTwoCategory()" ng-disabled="updateFormValidation.$invalid">确定</button>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -79,11 +81,11 @@
                     </div>
                     <div class="row">
                         <div class="col-lg-12">
-                            <form role="form" name="newFormValidation">
-                                <button class="btn btn-default" data-toggle="modal" data-backdrop="static" data-target="#newLevelTwoCategoryModal">新增二级分类</button>
-                                <div class="modal fade" id="newLevelTwoCategoryModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                                    <div class="modal-dialog">
-                                        <div class="modal-content">
+                            <button class="btn btn-default" data-toggle="modal" data-backdrop="static" data-target="#newLevelTwoCategoryModal">新增二级分类</button>
+                            <div class="modal fade" id="newLevelTwoCategoryModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <form role="form" name="newFormValidation">
                                             <div class="modal-header">
                                                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                                                 <h4 class="modal-title" id="myModalLabel">新增二级分类</h4>
@@ -91,24 +93,22 @@
                                             <div class="modal-body">
                                                 <div class="row">
                                                     <div class="col-lg-12">
-                                                        <form role="form">
-                                                            <div class="form-group">
-                                                                <label for="levelOneCategoryModal">一级分类名：</label>
-                                                                <select class="form-control" id="levelOneCategoryModal" ng-model="levelOneCategoryForLevelTwoCreation" ng-options="option as option.categoryName for option in levelOneCategoryItems track by option.id" ng-change="createFormValidate()" required>
-                                                                    <option></option>
-                                                                </select>
-                                                            </div>
-                                                        </form>
+                                                        <div class="form-group-validate has-feedback">
+                                                            <label for="levelOneCategoryModal">一级分类名：</label>
+                                                            <select class="form-control" name="levelOneCateName" id="levelOneCategoryModal" ng-model="levelOneCategoryForLevelTwoCreation" ng-options="option as option.categoryName for option in levelOneCategoryItems track by option.id" ng-change="createFormValidate()" required>
+                                                                <option></option>
+                                                            </select>
+                                                            <span class="validation-error-text" ng-show="newFormValidation.levelOneCateName.$invalid && (newFormValidation.levelOneCateName.$touched || newFormValidation.levelOneCateName.$dirty)">请选择一级分类名</span>
+                                                        </div>
                                                     </div>
                                                 </div>
                                                 <div class="row">
                                                     <div class="col-lg-12">
-                                                        <form role="form">
-                                                            <div class="form-group">
-                                                                <label for="levelTwoCategoryModal">二级分类名：</label>
-                                                                <input class="form-control" id="levelTwoCategoryModal" ng-model="levelTwoCategoryForLevelTwoCreation" placeholder="输入二级分类名..." required>
-                                                            </div>
-                                                        </form>
+                                                        <div class="form-group-validate has-feedback">
+                                                            <label for="levelTwoCategoryModal">二级分类名：</label>
+                                                            <input class="form-control" name="levelTwoCateName" id="levelTwoCategoryModal" ng-model="levelTwoCategoryForLevelTwoCreation" placeholder="输入二级分类名..." required>
+                                                            <span class="validation-error-text" ng-show="newFormValidation.levelTwoCateName.$invalid && (newFormValidation.levelTwoCateName.$touched || newFormValidation.levelTwoCateName.$dirty)">请输入二级分类名</span>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -116,10 +116,10 @@
                                                 <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
                                                 <button type="button" class="btn btn-primary" data-ng-click="createLevelTwoCategory()" ng-disabled="newFormValidation.$invalid">新增</button>
                                             </div>
-                                        </div>
+                                        </form>
                                     </div>
                                 </div>
-                            </form>
+                            </div>
                         </div>
                     </div>
                 </div>

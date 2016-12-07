@@ -6,78 +6,88 @@
                     <div class="panel-body">
                         <form role="form" name="VideoFormValidation">
                             <div class="row">
-                                <div class="col-lg-4">
+                                <div class="col-lg-6">
                                     <div class="form-group">
-                                        <button class="btn btn-default" data-ng-click="submitProductInfo()" ng-disabled="VideoFormValidation.$invalid">新增/修改</button>
+                                        <button class="btn btn-info" data-ng-click="submitProductInfo()" ng-disabled="VideoFormValidation.$invalid" style="display: block">新增/修改</button>
+                                        <span class="validation-error-text" ng-show="VideoFormValidation.$invalid">输入视频产品数据不全，请检查！</span>
+                                        <br>
                                     </div>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-lg-4">
-                                    <div class="form-group">
+                                    <div class="form-group-validate has-feedback">
                                         <label>产品名：</label>
                                         <input class="form-control" placeholder="输入产品名..." name="productName" ng-model="productInfo.name" required>
+                                        <span class="validation-error-text" ng-show="VideoFormValidation.productName.$invalid && (VideoFormValidation.productName.$touched || VideoFormValidation.productName.$dirty)">请输入产品名</span>
+                                        <br>
                                     </div>
                                 </div>
                                 <div class="col-lg-4">
-                                    <div class="form-group">
+                                    <div class="form-group-validate has-feedback">
                                         <label>价格：</label>
                                         <input class="form-control" placeholder="输入价格..." name="productPrice" ng-model="productInfo.price" required>
+                                        <span class="validation-error-text" ng-show="VideoFormValidation.productPrice.$invalid && (VideoFormValidation.productPrice.$touched || VideoFormValidation.productPrice.$dirty)">请输入价格</span>
+                                        <br>
                                     </div>
                                 </div>
                                 <div class="col-lg-4">
-                                    <div class="form-group">
+                                    <div class="form-group-validate has-feedback">
                                         <label>评分：</label>
                                         <input class="form-control" placeholder="输入评分..." name="productScore" ng-model="productInfo.productScore" required>
+                                        <span class="validation-error-text" ng-show="VideoFormValidation.productScore.$invalid && (VideoFormValidation.productScore.$touched || VideoFormValidation.productScore.$dirty)">请输入评分</span>
+                                        <br>
                                     </div>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-lg-8">
-                                    <form role="form">
-                                        <div class="form-group">
-                                            <label>产品介质形式：</label>
-                                            <div class="checkbox">
-                                                <label><input type="checkbox" id="mediaTypeElectricBook" ng-model="mediaTypeElectricBook">电子书&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
-                                                <label><input type="checkbox" id="mediaTypeBook" ng-model="mediaTypeBook">书籍&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
-                                                <label><input type="checkbox" id="mediaTypeCard" ng-model="mediaTypeCard">卡牌&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
-                                                <label><input type="checkbox" id="mediaTypeTeachTool" ng-model="mediaTypeTeachTool">教具&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
-                                                <label><input type="checkbox" id="mediaTypeIntelligentToy" ng-model="mediaTypeIntelligentToy">益智玩具&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
-                                                <label><input type="checkbox" id="mediaType" ng-model="mediaTypeOther">其它</label>
-                                            </div>
+                                    <div class="form-group">
+                                        <label>产品介质形式：</label>
+                                        <div class="checkbox">
+                                            <label><input type="checkbox" id="mediaTypeElectricBook" ng-model="mediaTypeElectricBook">电子书&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                                            <label><input type="checkbox" id="mediaTypeBook" ng-model="mediaTypeBook">书籍&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                                            <label><input type="checkbox" id="mediaTypeCard" ng-model="mediaTypeCard">卡牌&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                                            <label><input type="checkbox" id="mediaTypeTeachTool" ng-model="mediaTypeTeachTool">教具&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                                            <label><input type="checkbox" id="mediaTypeIntelligentToy" ng-model="mediaTypeIntelligentToy">益智玩具&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                                            <label><input type="checkbox" id="mediaType" ng-model="mediaTypeOther">其它</label>
                                         </div>
-                                    </form>
+                                    </div>
                                 </div>
                                 <div class="col-lg-4">
-                                    <form role="form">
-                                        <div class="form-group">
-                                            <label>适合年龄:</label>
-                                            <select class="form-control" id="productMatchAgeScope" required>
-                                                <option selected>3-4岁</option>
-                                                <option>4-5岁</option>
-                                                <option>5-6岁</option>
-                                                <option>6-7岁</option>
-                                            </select>
+                                    <div class="form-group">
+                                        <label>适合年龄:</label>
+                                        <div class="checkbox">
+                                            <label><input type="checkbox" id="threeYearsOld" ng-model="mediaTypeElectricBook">3岁&nbsp;&nbsp;</label>
+                                            <label><input type="checkbox" id="fourYearsOld" ng-model="mediaTypeBook">4岁&nbsp;&nbsp;</label>
+                                            <label><input type="checkbox" id="fiveYearsOld" ng-model="mediaTypeCard">5岁&nbsp;&nbsp;</label>
+                                            <label><input type="checkbox" id="sixYearsOld" ng-model="mediaTypeTeachTool">6岁&nbsp;&nbsp;</label>
+                                            <label><input type="checkbox" id="sevenYearsOld" ng-model="mediaTypeIntelligentToy">7岁&nbsp;&nbsp;</label>
                                         </div>
-                                    </form>
+                                    </div>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-lg-4">
-                                    <div class="form-group">
-                                        <label for="levelTwoCategory">产品分类:</label>
-                                        <select class="form-control" id="levelTwoCategory" name="productCategory" ng-model="levelTwoCategory" ng-options="option as option.categoryName for option in levelTwoCategoryItems track by option.id" required>
+                                    <div class="form-group-validate has-feedback">
+                                        <label for="productCategory">产品分类（多选）:</label>
+                                        <select class="form-control" id="productCategory" name="productCategory" ng-model="productCategory" ng-options="option as option.categoryName for option in productCategoryItems track by option.id" multiple required>
                                             <option></option>
                                         </select>
+                                        <span class="validation-error-text" ng-show="VideoFormValidation.productCategory.$invalid && (VideoFormValidation.productCategory.$touched || VideoFormValidation.productCategory.$dirty)">请选择产品分类</span>
+                                        <!--<p>选择的产品分类：<span ng-bind="productCategory.map(function(item){return item.categoryName}).join(',')"></span></p>-->
+                                        <br>
                                     </div>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-lg-12">
-                                    <div class="form-group">
+                                    <div class="form-group-validate has-feedback">
                                         <label>分类标签*</label>
                                         <input class="form-control" name="categoryTag" placeholder="输入分类标签..." ng-model="productInfo.productCategoryTag" required>
                                         <label class="help-block">多个标签使用分号间隔，例如：AR;玩具</label>
+                                        <span class="validation-error-text" ng-show="VideoFormValidation.categoryTag.$invalid && (VideoFormValidation.categoryTag.$touched || VideoFormValidation.categoryTag.$dirty)">请输入分类标签</span>
+                                        <br>
                                     </div>
                                 </div>
                             </div>
@@ -141,70 +151,6 @@
                                                             </tbody>
                                                         </table>
                                                     </div>
-                                                    <div class="modal fade" id="deleteVideoItemModal" role="dialog" aria-labelledby="delModalLabel" aria-hidden="true">
-                                                        <div class="modal-dialog">
-                                                            <div class="modal-content">
-                                                                <div class="modal-header">
-                                                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                                                    <h4 class="modal-title" id="delModalLabel">删除视频信息：</h4>
-                                                                </div>
-                                                                <div class="modal-body">
-                                                                    <div class="col-lg-12">
-                                                                        <form role="form">
-                                                                            <div class="form-group">
-                                                                                <label>视频名:</label>
-                                                                                <label class="form-control" ng-bind="videoItemSelected.videoName"></label>
-                                                                            </div>
-                                                                        </form>
-                                                                    </div>
-                                                                    <div class="col-lg-12">
-                                                                        <form role="form">
-                                                                            <div class="form-group">
-                                                                                <label>视频地址:</label>
-                                                                                <label class="form-control" ng-bind="videoItemSelected.videoUrl"></label>
-                                                                            </div>
-                                                                        </form>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="modal-footer">
-                                                                    <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-                                                                    <button type="button" class="btn btn-primary" data-ng-click="delVideoItem()">确定</button>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="modal fade" id="newVideoItemModal" role="dialog" aria-labelledby="newModalLabel" aria-hidden="true">
-                                                        <div class="modal-dialog">
-                                                            <div class="modal-content">
-                                                                <div class="modal-header">
-                                                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                                                    <h4 class="modal-title" id="newModalLabel">新增视频信息：</h4>
-                                                                </div>
-                                                                <div class="modal-body">
-                                                                    <div class="col-lg-12">
-                                                                        <form role="form">
-                                                                            <div class="form-group">
-                                                                                <label>视频名:</label>
-                                                                                <input class="form-control" ng-model="videoName" placeholder="输入视频名..." required>
-                                                                            </div>
-                                                                        </form>
-                                                                    </div>
-                                                                    <div class="col-lg-12">
-                                                                        <form role="form">
-                                                                            <div class="form-group">
-                                                                                <label>视频地址:</label>
-                                                                                <input class="form-control" ng-model="videoUrl" placeholder="输入视频地址..." required>
-                                                                            </div>
-                                                                        </form>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="modal-footer">
-                                                                    <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-                                                                    <button type="button" class="btn btn-primary" data-ng-click="newVideoItem()">确定</button>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -212,6 +158,74 @@
                                 </div>
                             </div>
                         </form>
+                        <div class="modal fade" id="deleteVideoItemModal" role="dialog" aria-labelledby="delModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                        <h4 class="modal-title" id="delModalLabel">删除视频信息：</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="col-lg-12">
+                                            <form role="form">
+                                                <div class="form-group">
+                                                    <label>视频名:</label>
+                                                    <label class="form-control" ng-bind="videoItemSelected.videoName"></label>
+                                                </div>
+                                            </form>
+                                        </div>
+                                        <div class="col-lg-12">
+                                            <form role="form">
+                                                <div class="form-group">
+                                                    <label>视频地址:</label>
+                                                    <label class="form-control" ng-bind="videoItemSelected.videoUrl"></label>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                                        <button type="button" class="btn btn-primary" data-ng-click="delVideoItem()">确定</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal fade" id="newVideoItemModal" role="dialog" aria-labelledby="newModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <form role="form" name="newVideoFormValidation">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                            <h4 class="modal-title" id="newModalLabel">新增视频信息：</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="row">
+                                                <div class="col-lg-12">
+                                                    <div class="form-group-validate has-feedback">
+                                                        <label>视频名:</label>
+                                                        <input class="form-control" name="newVideoName" ng-model="videoName" placeholder="输入视频名..." required>
+                                                        <span class="validation-error-text" ng-show="newVideoFormValidation.newVideoName.$invalid && (newVideoFormValidation.newVideoName.$touched || newVideoFormValidation.newVideoName.$dirty)">请输入视频名</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-lg-12">
+                                                    <div class="form-group-validate has-feedback">
+                                                        <label>视频地址:</label>
+                                                        <input class="form-control" name="newVideoUrl" ng-model="videoUrl" placeholder="输入视频地址..." required>
+                                                        <span class="validation-error-text" ng-show="newVideoFormValidation.newVideoUrl.$invalid && (newVideoFormValidation.newVideoUrl.$touched || newVideoFormValidation.newVideoUrl.$dirty)">请输入视频地址</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                                            <button type="button" class="btn btn-primary" data-ng-click="newVideoItem()" ng-disabled="newVideoFormValidation.$invalid">确定</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

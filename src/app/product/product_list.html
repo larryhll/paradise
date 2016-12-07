@@ -44,7 +44,7 @@
                             <form role="form" style="text-align: right;margin-bottom: 0px">
                                 <div class="form-group">
                                     <button type="button" class="btn btn-lg" ng-click="searchProductListByFilters()">&nbsp;&nbsp;搜&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;索&nbsp;&nbsp;</button>
-                                    <button type="button" class="btn btn-lg" ng-click="cleanSearchProductListByFilters()">&nbsp;&nbsp;清空搜索&nbsp;&nbsp;</button>
+                                    <button type="button" class="btn btn-lg" ng-click="cleanSearchProductListByFilters()">&nbsp;&nbsp;重&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;置&nbsp;&nbsp;</button>
                                 </div>
                             </form>
                         </div>
@@ -99,7 +99,7 @@
                                                                     <td ng-bind="item.productModifyDate | date:'yyyy-MM-dd'"></td>
                                                                     <td ng-bind="item.productRecommend ? '否' : '是'"></td>
                                                                     <td ng-bind="item.type ? 'AR产品' : '视频产品'"></td>
-                                                                    <td ng-bind="item.productCategory"></td>
+                                                                    <td ng-bind="item.productCategoryName"></td>
                                                                 </tr>
                                                                 </tbody>
                                                             </table>
@@ -148,7 +148,7 @@
                                             <td ng-bind="item.publishState ? '下架' : '上架'"></td>
                                             <td ng-bind="item.productRecommend ? '否' : '是'"></td>
                                             <td ng-bind="item.type ? 'AR产品' : '视频产品'"></td>
-                                            <td ng-bind="item.productCategory"></td>
+                                            <td ng-bind="item.productCategoryName"></td>
                                             <td ng-bind="item.productUploadDate | date:'yyyy-MM-dd'"></td>
                                         </tr>
                                     </tbody>

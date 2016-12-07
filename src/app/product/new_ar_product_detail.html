@@ -8,27 +8,35 @@
                         <div class="row">
                             <div class="col-lg-4">
                                 <div class="form-group">
-                                    <button class="btn btn-github" data-ng-click="submitProductInfo()" ng-disabled="ARFormValidation.$invalid">新增/修改</button>
+                                    <button class="btn btn-info" data-ng-click="submitProductInfo()" ng-disabled="ARFormValidation.$invalid" style="display: block">新增/修改</button>
+                                    <span class="validation-error-text" ng-show="ARFormValidation.$invalid">输入AR产品数据不全，请检查！</span>
+                                    <br>
                                 </div>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-lg-4">
-                                <div class="form-group">
+                                <div class="form-group-validate has-feedback">
                                     <label>产品名：</label>
                                     <input class="form-control" name="productName" placeholder="输入产品名..." ng-model="productInfo.name" required>
+                                    <span class="validation-error-text" ng-show="ARFormValidation.productName.$invalid && (ARFormValidation.productName.$touched || ARFormValidation.productName.$dirty)">请输入产品名</span>
+                                    <br>
                                 </div>
                             </div>
                             <div class="col-lg-4">
-                                <div class="form-group">
+                                <div class="form-group-validate has-feedback">
                                     <label>价格：</label>
                                     <input class="form-control" name="productPrice" placeholder="输入价格..." ng-model="productInfo.price" required>
+                                    <span class="validation-error-text" ng-show="ARFormValidation.productPrice.$invalid && (ARFormValidation.productPrice.$touched || ARFormValidation.productPrice.$dirty)">请输入价格</span>
+                                    <br>
                                 </div>
                             </div>
                             <div class="col-lg-4">
-                                <div class="form-group">
+                                <div class="form-group-validate has-feedback">
                                     <label>评分：</label>
                                     <input class="form-control" name="productScore" placeholder="输入评分..." ng-model="productInfo.productScore" required>
+                                    <span class="validation-error-text" ng-show="ARFormValidation.productScore.$invalid && (ARFormValidation.productScore.$touched || ARFormValidation.productScore.$dirty)">请输入评分</span>
+                                    <br>
                                 </div>
                             </div>
                         </div>
@@ -49,31 +57,37 @@
                             <div class="col-lg-4">
                                 <div class="form-group">
                                     <label>适合年龄:</label>
-                                    <select class="form-control" id="productMatchAgeScope" name="matchAge" ng-model="matchAge" required>
-                                        <option selected>3-4岁</option>
-                                        <option>4-5岁</option>
-                                        <option>5-6岁</option>
-                                        <option>6-7岁</option>
-                                    </select>
+                                    <div class="checkbox">
+                                        <label><input type="checkbox" id="threeYearsOld" ng-model="threeYearsOld">3岁&nbsp;&nbsp;</label>
+                                        <label><input type="checkbox" id="fourYearsOld" ng-model="fourYearsOld">4岁&nbsp;&nbsp;</label>
+                                        <label><input type="checkbox" id="fiveYearsOld" ng-model="fiveYearsOld">5岁&nbsp;&nbsp;</label>
+                                        <label><input type="checkbox" id="sixYearsOld" ng-model="sixYearsOld">6岁&nbsp;&nbsp;</label>
+                                        <label><input type="checkbox" id="sevenYearsOld" ng-model="sevenYearsOld">7岁&nbsp;&nbsp;</label>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-lg-4">
-                                <div class="form-group">
-                                    <label for="levelTwoCategory">产品分类:</label>
-                                    <select class="form-control" name="productCategory" id="levelTwoCategory" ng-model="levelTwoCategory" ng-options="option as option.categoryName for option in levelTwoCategoryItems track by option.id" required>
+                                <div class="form-group-validate has-feedback">
+                                    <label for="productCategory">产品分类（多选）:</label>
+                                    <select class="form-control" name="productCategory" id="productCategory" ng-model="productCategory" ng-options="option as option.categoryName for option in productCategoryItems track by option.id" multiple required>
                                         <option></option>
                                     </select>
+                                    <span class="validation-error-text" ng-show="ARFormValidation.productCategory.$invalid && (ARFormValidation.productCategory.$touched || ARFormValidation.productCategory.$dirty)">请选择产品分类</span>
+                                    <!--<p>选择的产品分类：<span ng-bind="productCategory.map(function(item){return item.categoryName}).join(',')"></span></p>-->
+                                    <br>
                                 </div>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-lg-12">
-                                <div class="form-group">
+                                <div class="form-group-validate has-feedback">
                                     <label>分类标签*</label>
-                                    <input class="form-control" name="productCategoryTag" ng-model="categoryTag" placeholder="输入分类标签..." ng-model="productInfo.productCategoryTag" required>
+                                    <input class="form-control" name="productCategoryTag" placeholder="输入分类标签..." ng-model="productInfo.productCategoryTag" required>
                                     <label class="help-block">多个标签使用分号间隔，例如：AR;玩具</label>
+                                    <span class="validation-error-text" ng-show="ARFormValidation.productCategoryTag.$invalid && (ARFormValidation.productCategoryTag.$touched || ARFormValidation.productCategoryTag.$dirty)">请输入分类标签</span>
+                                    <br>
                                 </div>
                             </div>
                         </div>
@@ -135,11 +149,13 @@
                         </div>
                         <div class="row">
                             <div class="col-lg-4">
-                                <div class="form-group">
+                                <div class="form-group-validate has-feedback">
                                     <div class="checkbox">
                                         <label><input type="checkbox" ng-model="productInfo.productPlayEnabled">启用演示视频：</label>
                                     </div>
                                     <input type="text" class="form-control" name="playAddr" ng-model="productInfo.productPlayAddr" required>
+                                    <span class="validation-error-text" ng-show="ARFormValidation.playAddr.$invalid && (ARFormValidation.playAddr.$touched || ARFormValidation.playAddr.$dirty)">请输入演示视频地址</span>
+                                    <br>
                                 </div>
                             </div>
                         </div>
@@ -168,37 +184,42 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-lg-12">
+                            <div class="col-lg-8">
                                 <div class="panel panel-default">
                                     <div class="panel-body">
-                                        <div class="row">
-                                            <div class="col-lg-8">
-                                                <div class="form-group">
-                                                    <label>版本号：</label>
-                                                    <input class="form-control" name="productVersion" ng-model="productInfo.productVersion" placeholder="输入版本号..." required>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label>APK版本：</label>
-                                                    <input class="form-control" name="productAPKVersion" ng-model="productInfo.productApkVersion" placeholder="输入apk版本号..." required="">
-                                                </div>
-                                                <div class="form-group">
-                                                    <label>APK包名：</label>
-                                                    <input class="form-control" name="productPackageName" ng-model="productInfo.productPackName" placeholder="输入apk包名..." required>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label>APK URL：</label>
-                                                    <span ng-bind="productInfo.productApkDownUrl"></span>
-                                                    <input id="apkFileSelect" type="file" file-input="apkFile" accept=".apk" style="display:none">
-                                                    <button style="display:none" ng-click="updateAPKFile()"></button>
-                                                    <button class="btn btn-default" ng-click="updateAPKFileStart()" style="display: block; margin-top: 5px">上传/更新APK文件</button>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label>手机端/视端产品微店二维码（建议240*240）：</label>
-                                                    <img id="productQRImage" src="{{productInfo.productMicroStoreByecodeAddr}}" style="display:block; max-height: 80px; min-height:80px; max-width:80px; min-width:80px;">
-                                                    <input id="productQRFileSelect" type="file" file-input="productQRFile" accept=".png,.jpg" style="display:none">
-                                                    <button style="display:none" ng-click="updateProductQRImage()"></button>
-                                                    <button class="btn btn-default" ng-click="updateProductQRImageStart()" style="display: block; margin-top: 5px">上传二维码图</button>
-                                                </div>
+                                        <div class="col-lg-12">
+                                            <div class="row form-group-validate has-feedback">
+                                                <label>版本号：</label>
+                                                <input class="form-control" name="productVersion" ng-model="productInfo.productVersion" placeholder="输入版本号..." required>
+                                                <span class="validation-error-text" ng-show="ARFormValidation.productVersion.$invalid && (ARFormValidation.productVersion.$touched || ARFormValidation.productVersion.$dirty)">请输入版本号</span>
+                                                <br>
+                                            </div>
+                                            <div class="row form-group-validate has-feedback">
+                                                <label>APK版本：</label>
+                                                <input class="form-control" name="productAPKVersion" ng-model="productInfo.productApkVersion" placeholder="输入apk版本号..." required="">
+                                                <span class="validation-error-text" ng-show="ARFormValidation.productAPKVersion.$invalid && (ARFormValidation.productAPKVersion.$touched || ARFormValidation.productAPKVersion.$dirty)">请输入APK版本号</span>
+                                                <br>
+                                            </div>
+                                            <div class="row form-group-validate has-feedback">
+                                                <label>APK包名：</label>
+                                                <input class="form-control" name="productPackageName" ng-model="productInfo.productPackName" placeholder="输入apk包名..." required>
+                                                <span class="validation-error-text" ng-show="ARFormValidation.productPackageName.$invalid && (ARFormValidation.productPackageName.$touched || ARFormValidation.productPackageName.$dirty)">请输入APK包名</span>
+                                                <br>
+                                            </div>
+                                            <div class="row">
+                                                <label>APK URL：</label>
+                                                <span ng-bind="productInfo.productApkDownUrl"></span>
+                                                <input id="apkFileSelect" type="file" file-input="apkFile" accept=".apk" style="display:none">
+                                                <button style="display:none" ng-click="updateAPKFile()"></button>
+                                                <button class="btn btn-default" ng-click="updateAPKFileStart()" style="display: block; margin-top: 5px">上传/更新APK文件</button>
+                                                <br>
+                                            </div>
+                                            <div class="row">
+                                                <label>手机端/视端产品微店二维码（建议240*240）：</label>
+                                                <img id="productQRImage" src="{{productInfo.productMicroStoreByecodeAddr}}" style="display:block; max-height: 80px; min-height:80px; max-width:80px; min-width:80px;">
+                                                <input id="productQRFileSelect" type="file" file-input="productQRFile" accept=".png,.jpg" style="display:none">
+                                                <button style="display:none" ng-click="updateProductQRImage()"></button>
+                                                <button class="btn btn-default" ng-click="updateProductQRImageStart()" style="display: block; margin-top: 5px">上传二维码图</button>
                                             </div>
                                         </div>
                                     </div>
