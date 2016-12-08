@@ -1,0 +1,38 @@
+<div id="page-wrapper">
+    <div class="row">
+        <div class="col-lg-12" style="padding-top: 30px">
+            <div class="panel panel-default">
+                <div class="panel-heading">系统信息</div>
+                <div class="panel-body">
+                    <form role="form" name="systemFormValidation">
+                        <div class="row eden-style">
+                            <div class="col-lg-4">
+                                <div class="form-group-validate has-feedback">
+                                    <label>APK版本：</label>
+                                    <input class="form-control" placeholder="输入APK版本..." id="systemAPKVersion" name="systemAPKVersion" ng-model="systemInfo.systemLatestVersion" required>
+                                    <span class="validation-error-text" ng-show="systemFormValidation.systemAPKVersion.$invalid && (systemFormValidation.systemAPKVersion.$touched || systemFormValidation.systemAPKVersion.$dirty)">请输入APK版本</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row eden-style">
+                            <div class="col-lg-8">
+                                <div class="form-group-validate has-feedback">
+                                    <label>APK URL：</label>
+                                    <input class="form-control" placeholder="输入APK URL..." id="systemAPKURL" name="systemAPKURL" ng-model="systemInfo.systemApkDownUrl" required>
+                                    <span class="validation-error-text" ng-show="systemFormValidation.systemAPKURL.$invalid && (systemFormValidation.systemAPKURL.$touched || systemFormValidation.systemAPKURL.$dirty)">请输入APK URL</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-4">
+                                <div class="form-group">
+                                    <button class="btn btn-info" ng-click="systemInfoSubmit()" ng-disabled="systemFormValidation.$invalid">新增/更新</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -72,7 +72,7 @@
                                     <div class="form-group-validate has-feedback">
                                         <label for="productCategory">产品分类（多选）:</label>
                                         <select class="form-control" id="productCategory" name="productCategory" ng-model="productCategory" ng-options="option as option.categoryName for option in productCategoryItems track by option.id" multiple required>
-                                            <option></option>
+                                            <option style="display:none" value="">选择分类</option>
                                         </select>
                                         <span class="validation-error-text" ng-show="VideoFormValidation.productCategory.$invalid && (VideoFormValidation.productCategory.$touched || VideoFormValidation.productCategory.$dirty)">请选择产品分类</span>
                                         <!--<p>选择的产品分类：<span ng-bind="productCategory.map(function(item){return item.categoryName}).join(',')"></span></p>-->
@@ -134,19 +134,19 @@
                                             <div class="row">
                                                 <div class="col-lg-12">
                                                     <div class="table-responsive">
-                                                        <table class="table table-striped table-bordered table-hover">
+                                                        <table class="table table-striped table-bordered table-hover" style="table-layout: fixed;width: 100%">
                                                             <thead>
                                                                 <tr>
-                                                                    <th>视频名</th>
-                                                                    <th>视频地址</th>
-                                                                    <th>操作</th>
+                                                                    <th style="width:15%;">视频名</th>
+                                                                    <th style="width:70%;">视频地址</th>
+                                                                    <th style="width:15%;">操作</th>
                                                                 </tr>
                                                             </thead>
                                                             <tbody>
                                                                 <tr ng-repeat="item in productInfo.videoDOs" multiple-select-item="productInfo.videoDOs">
-                                                                    <td ng-bind="item.videoName"></td>
-                                                                    <td ng-bind="item.videoUrl"></td>
-                                                                    <td><button class="btn" data-toggle="modal" data-backdrop="static" data-target="#deleteVideoItemModal" ng-click="selectVideoItem(item)">删除</button></td>
+                                                                    <td style="display: table-cell;word-break:break-all;" ng-bind="item.videoName"></td>
+                                                                    <td style="display: table-cell;word-break:break-all;" ng-bind="item.videoUrl"></td>
+                                                                    <td style="display: table-cell;word-break:break-all;"><button class="btn" data-toggle="modal" data-backdrop="static" data-target="#deleteVideoItemModal" ng-click="selectVideoItem(item)">删除</button></td>
                                                                 </tr>
                                                             </tbody>
                                                         </table>
@@ -178,7 +178,7 @@
                                             <form role="form">
                                                 <div class="form-group">
                                                     <label>视频地址:</label>
-                                                    <label class="form-control" ng-bind="videoItemSelected.videoUrl"></label>
+                                                    <textarea class="form-control" ng-bind="videoItemSelected.videoUrl" contenteditable="false"></textarea>
                                                 </div>
                                             </form>
                                         </div>

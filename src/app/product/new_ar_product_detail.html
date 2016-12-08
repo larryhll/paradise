@@ -72,7 +72,7 @@
                                 <div class="form-group-validate has-feedback">
                                     <label for="productCategory">产品分类（多选）:</label>
                                     <select class="form-control" name="productCategory" id="productCategory" ng-model="productCategory" ng-options="option as option.categoryName for option in productCategoryItems track by option.id" multiple required>
-                                        <option></option>
+                                        <option style="display:none" value="">选择分类</option>
                                     </select>
                                     <span class="validation-error-text" ng-show="ARFormValidation.productCategory.$invalid && (ARFormValidation.productCategory.$touched || ARFormValidation.productCategory.$dirty)">请选择产品分类</span>
                                     <!--<p>选择的产品分类：<span ng-bind="productCategory.map(function(item){return item.categoryName}).join(',')"></span></p>-->
@@ -148,7 +148,7 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-lg-4">
+                            <div class="col-lg-12">
                                 <div class="form-group-validate has-feedback">
                                     <div class="checkbox">
                                         <label><input type="checkbox" ng-model="productInfo.productPlayEnabled">启用演示视频：</label>
@@ -188,12 +188,6 @@
                                 <div class="panel panel-default">
                                     <div class="panel-body">
                                         <div class="col-lg-12">
-                                            <div class="row form-group-validate has-feedback">
-                                                <label>版本号：</label>
-                                                <input class="form-control" name="productVersion" ng-model="productInfo.productVersion" placeholder="输入版本号..." required>
-                                                <span class="validation-error-text" ng-show="ARFormValidation.productVersion.$invalid && (ARFormValidation.productVersion.$touched || ARFormValidation.productVersion.$dirty)">请输入版本号</span>
-                                                <br>
-                                            </div>
                                             <div class="row form-group-validate has-feedback">
                                                 <label>APK版本：</label>
                                                 <input class="form-control" name="productAPKVersion" ng-model="productInfo.productApkVersion" placeholder="输入apk版本号..." required="">

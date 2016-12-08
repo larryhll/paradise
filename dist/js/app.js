@@ -113,6 +113,10 @@ $(function() {
                 templateUrl : "app/views/log/log_download.html",
                 controller : "logDownloadCtrl"
             })
+            .when("/system_info", {
+                templateUrl : "app/views/log/system_info.html",
+                controller : "systemInfoCtrl"
+            })
             .otherwise("/primary_product",{
                 templateUrl : "app/views/product/primary_product.html",
                 controller : "otherUrlCtrl"
@@ -237,38 +241,6 @@ $(function() {
         };
     });
     app.controller("productListCtrl", function ($scope, $http, productBackAction){
-        $scope.productItems = null;
-        $scope.productItems_selected = [];
-        $scope.actionSelected = "";
-        $scope.productItems_copy = [];
-
-        //wait for loading product list
-        loading();
-
-        //initialize product item selection
-        $scope.productCategoryItems = [];
-        $scope.productCategoryList = [{"id":0,"name":"全部"}];
-        $scope.productCategory = $scope.productCategoryList[0];
-        $http.get(apiPath + "eden/cates/list/levelone")
-            .then(function successCallback(response) {
-                console.log("Get all product category list successfully");
-                $scope.productCategoryItems = response.data;
-                for(var item in response.data){
-                    var cateItem = {};
-                    cateItem.id = response.data[item].id;
-                    cateItem.name = response.data[item].categoryName;
-                    $scope.productCategoryList.push(cateItem);
-                }
-
-                //initialize product list with product detail page back or not
-                $scope.searchProductListByFilters();
-            }, function errorCallback(response) {
-                console.log("Failed to get product category list");
-            });
-        $scope.publishState = "上架";
-        $scope.productType = "视频产品";
-        $scope.recommendation = "是";
-
         //parse product category id to name
         var parseProductCategoryItem = function(){
             angular.forEach($scope.productItems, function(product){
@@ -285,6 +257,7 @@ $(function() {
                 product.productCategoryName = productCategoryNameItem.join(',');
             });
         };
+
         //Get product list data by filters
         $scope.searchProductListByFilters = function (){
             console.log("Starting to search product items by filters...");
@@ -294,23 +267,10 @@ $(function() {
             console.log("Selected recommendation: " + $scope.recommendation + " Selected index: " + $("#recommendation").prop('selectedIndex'));
 
             var searchProductByFilters = {};
-            if(productBackAction.getProductBack()){
-                searchProductByFilters.type = productBackAction.getType();
-                searchProductByFilters.publishState = productBackAction.getPublishState();
-                searchProductByFilters.productRecommend = productBackAction.getProductRecommend();
-                searchProductByFilters.productCategory = $scope.productCategoryList[0].id;
-
-                $scope.productCategory = $scope.productCategoryList[0];
-                $scope.publishState = productBackAction.getPublishState()==0 ? "上架":"下架";
-                $scope.productType = productBackAction.getType()==0 ? "视频产品":"AR产品";
-                $scope.recommendation = productBackAction.getProductRecommend()==0 ? "是":"否";
-            }else{
-                searchProductByFilters.type = $("#product_type").prop('selectedIndex');
-                searchProductByFilters.publishState = $("#publish_state").prop('selectedIndex');
-                searchProductByFilters.productRecommend = $("#recommendation").prop('selectedIndex');
-                searchProductByFilters.productCategory = $scope.productCategory.id;
-            }
-            productBackAction.setProductBack(false);
+            searchProductByFilters.type = $("#product_type").prop('selectedIndex');
+            searchProductByFilters.publishState = $("#publish_state").prop('selectedIndex');
+            searchProductByFilters.productRecommend = $("#recommendation").prop('selectedIndex');
+            searchProductByFilters.productCategory = $scope.productCategory.id;
 
             $http.post(apiPath + "eden/prods/lists", searchProductByFilters)
                 .then(function successCallback(response) {
@@ -323,6 +283,7 @@ $(function() {
                     console.log("Failed to get product list by filter");
                 });
         };
+
         //reset search to get all products
         $scope.cleanSearchProductListByFilters = function(){
             $http.get(apiPath + "eden/prods/allprods")
@@ -335,6 +296,37 @@ $(function() {
                 }, function errorCallback(response) {
                     console.log("Failed to get all product list");
                 });
+        };
+
+        var initialize = function(){
+            var searchProductByFilters = {};
+            if(productBackAction.getProductBack()){
+                searchProductByFilters.type = productBackAction.getType();
+                searchProductByFilters.publishState = productBackAction.getPublishState();
+                searchProductByFilters.productRecommend = productBackAction.getProductRecommend();
+                searchProductByFilters.productCategory = $scope.productCategoryList[0].id;
+
+                $scope.productCategory = $scope.productCategoryList[0];
+                $scope.publishState = productBackAction.getPublishState()==0 ? "上架":"下架";
+                $scope.productType = productBackAction.getType()==0 ? "视频产品":"AR产品";
+                $scope.recommendation = productBackAction.getProductRecommend()==0 ? "是":"否";
+
+                productBackAction.setProductBack(false);
+
+                $http.post(apiPath + "eden/prods/lists", searchProductByFilters)
+                    .then(function successCallback(response) {
+                        console.log("Get product list by filter successfully.");
+                        $scope.productItems = response.data;
+                        parseProductCategoryItem();
+                        $scope.productItems_copy = $scope.productItems;
+                        $scope.productItems_selected = [];
+                    }, function errorCallback(response) {
+                        console.log("Failed to get product list by filter");
+                    });
+            }else{
+                //default initialization product list page by all show
+                $scope.cleanSearchProductListByFilters();
+            }
         };
 
         //click top check item - all yes or no
@@ -394,6 +386,35 @@ $(function() {
                     });
             });
         };
+
+        $scope.productItems = null;
+        $scope.productItems_selected = [];
+        $scope.actionSelected = "";
+        $scope.productItems_copy = [];
+        //wait for loading product list
+        loading();
+        //initialize product item selection
+        $scope.productCategoryItems = [];
+        $scope.productCategoryList = [{"id":0,"name":"全部"}];
+        $scope.productCategory = $scope.productCategoryList[0];
+        $scope.publishState = "上架";
+        $scope.productType = "视频产品";
+        $scope.recommendation = "是";
+        $http.get(apiPath + "eden/cates/list/levelone")
+            .then(function successCallback(response) {
+                console.log("Get all product category list successfully");
+                $scope.productCategoryItems = response.data;
+                for(var item in response.data){
+                    var cateItem = {};
+                    cateItem.id = response.data[item].id;
+                    cateItem.name = response.data[item].categoryName;
+                    $scope.productCategoryList.push(cateItem);
+                }
+                //initialize product list with product detail page back or not
+                initialize();
+            }, function errorCallback(response) {
+                console.log("Failed to get product category list");
+            });
     });
     app.controller("updateARProductDetail", function ($scope, $http, $routeParams, productBackAction) {
         console.log("Product ID: "+ $routeParams.productID);
@@ -1377,6 +1398,23 @@ $(function() {
             $scope.currentPage++;
             pageControlUpdate();
         }
+    });
+    app.controller("systemInfoCtrl", function ($scope, $http){
+        $scope.systemInfo = {};
+        $scope.systemInfo.systemLatestVersion = "";
+        $scope.systemInfo.systemApkDownUrl = "";
+
+        $scope.systemInfoSubmit = function(){
+            $http.post(apiPath + "eden/sys/save", $scope.systemInfo)
+                .then(function successCallback(response) {
+                    if(response.status == 200){
+                        alert("更新系统信息成功！");
+                        console.log("Update/create system info successfully.");
+                    }
+                }, function errorCallback(response) {
+                    console.log("Failed to update/create system info ");
+                });
+        };
     });
     app.controller("otherUrlCtrl", function () {
         console.log("Otherwise URL contoller...");
