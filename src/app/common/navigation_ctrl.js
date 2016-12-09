@@ -1,5 +1,27 @@
 $(function() {
     var apiPath = "http://118.178.124.197:8080/";
+    var  usrInvalid = function(){
+
+        //check if both key userName and timeStamp exist
+        if(null === sessionStorage.getItem("userName") || null === sessionStorage.getItem("timeStamp")){
+            return true;
+        }
+
+        //check login expired or not
+        var checkResult = false;
+        var now = new Date();
+        var expiration = new Date(sessionStorage.getItem("timeStamp"));
+        expiration.setMinutes(expiration.getMinutes() + 30);
+
+        // ditch the content if too old
+        if (now.getTime() > expiration.getTime()) {
+            sessionStorage.removeItem("userName");
+            sessionStorage.removeItem("timeStamp");
+            checkResult = true;
+        }
+
+        return checkResult;
+    };
     var loading = function(){
         var loadScreenDiv = $("#loadingScreen");
         var loadingScreenLen = loadScreenDiv.width();
@@ -65,6 +87,14 @@ $(function() {
     }]);
     app.config(function($routeProvider) {
         $routeProvider
+            .when("/login", {
+                templateUrl : "app/views/common/login.html",
+                controller : "loginCtrl"
+            })
+            .when("/logout", {
+                templateUrl : "app/views/common/login.html",
+                controller : "logoutCtrl"
+            })
             .when("/primary_product", {
                 templateUrl : "app/views/product/primary_product.html",
                 controller : "primaryProductCtrl"
@@ -115,6 +145,11 @@ $(function() {
             });
     });
     app.controller("primaryProductCtrl", function ($scope, $http) {
+        if(usrInvalid()){
+            window.location.href = "#login/";
+            return;
+        }
+
         //get product list data
         $scope.productItems = [];
         $scope.layoutUpdate = {"entities": []};
@@ -233,6 +268,11 @@ $(function() {
         };
     });
     app.controller("productListCtrl", function ($scope, $http, productBackAction){
+        if(usrInvalid()){
+            window.location.href = "#login/";
+            return;
+        }
+
         //parse product category id to name
         var parseProductCategoryItem = function(){
             angular.forEach($scope.productItems, function(product){
@@ -409,6 +449,11 @@ $(function() {
             });
     });
     app.controller("updateARProductDetail", function ($scope, $http, $routeParams, productBackAction) {
+        if(usrInvalid()){
+            window.location.href = "#login/";
+            return;
+        }
+
         console.log("Product ID: "+ $routeParams.productID);
         $scope.firstScreenShot = "";
         $scope.secondScreenShot = "";
@@ -659,6 +704,11 @@ $(function() {
         };
     });
     app.controller("newARDetailCtrl", function ($scope, $http, productBackAction) {
+        if(usrInvalid()){
+            window.location.href = "#login/";
+            return;
+        }
+
         //new product info
         $scope.productInfo = {};
         $scope.firstScreenShot = ""
@@ -867,6 +917,10 @@ $(function() {
         };
     });
     app.controller("updateVideoDetailCtrl", function($scope, $http, $routeParams, productBackAction){
+        if(usrInvalid()){
+            window.location.href = "#login/";
+            return;
+        }
 
         $scope.productCategory = [];
 
@@ -1034,6 +1088,11 @@ $(function() {
         };
     });
     app.controller("newVideoDetailCtrl", function ($scope, $http, productBackAction) {
+        if(usrInvalid()){
+            window.location.href = "#login/";
+            return;
+        }
+
         //new product info
         $scope.productInfo = {};
         $scope.productInfo.videoDOs = [];
@@ -1168,6 +1227,10 @@ $(function() {
         };
     });
     app.controller("firstLevelCategoryCtrl", function ($scope,$http){
+        if(usrInvalid()){
+            window.location.href = "#login/";
+            return;
+        }
 
         $scope.firstLevelCategoryItems = null;
         loading();
@@ -1283,6 +1346,11 @@ $(function() {
         };
     });
     app.controller("userAdminCtrl", function ($scope, $http){
+        if(usrInvalid()){
+            window.location.href = "#login/";
+            return;
+        }
+
         $scope.userItems = null;
         loading();
 
@@ -1329,6 +1397,11 @@ $(function() {
         };
     });
     app.controller("logDownloadCtrl", function ($scope, $http){
+        if(usrInvalid()){
+            window.location.href = "#login/";
+            return;
+        }
+
         $scope.logItems = null;
         $scope.allItemsLength = 0;
         $scope.currentPage = 0;
@@ -1392,11 +1465,65 @@ $(function() {
         }
     });
     app.controller("systemInfoCtrl", function ($scope, $http){
+
+        if(usrInvalid()){
+            window.location.href = "#login/";
+            return;
+        }
+
         $scope.systemInfo = {};
         $scope.systemInfo.systemLatestVersion = "";
         $scope.systemInfo.systemApkDownUrl = "";
+        $scope.apkURLInvalid = false;
+
+        //get system info
+        $http.get(apiPath + "eden/sys/version")
+            .then(function successCallback(response) {
+                console.log("Success to get system info");
+                $scope.systemInfo.systemLatestVersion = response.data.systemLatestVersion;
+                $scope.systemInfo.systemApkDownUrl = response.data.systemApkDownUrl;
+            }, function errorCallback(response) {
+                console.log("Failed to get system info");
+            });
+
+        //update APK file
+        var updateAPKFile = function(files){
+            console.log("Selected file number: " + files.length);
+            var fd = new FormData();
+            fd.append("root", files[0]);
+            $http.post(apiPath + "eden/prods/upload",fd,
+                {
+                    transformRequest: angular.identity,
+                    headers: {'Content-Type': 'multipart/form-data'}
+                }).then(
+                function successCallback(response) {
+                    if(response.status === 200){
+                        console.log("Upload APK file successfully");
+                        $scope.systemInfo.systemApkDownUrl = response.data.urls;
+                    }else{
+                        console.log("Failed to upload APK file");
+                    }
+                },
+                function errorCallback(response) {
+                    console.log("Failed to upload APK file");
+                });
+        };
+        $scope.updateAPKFile = function(){
+            updateAPKFile($scope.apkFile);
+        };
+        $scope.updateAPKFileStart = function(){
+            $("#apkFileSelect").click();
+            console.log("Click APK file selection dialog");
+        };
 
         $scope.systemInfoSubmit = function(){
+            if($scope.systemInfo.systemApkDownUrl.length == 0){
+                $scope.apkURLInvalid = true;
+                return;
+            }else{
+                $scope.apkURLInvalid = false;
+            }
+
             $http.post(apiPath + "eden/sys/save", $scope.systemInfo)
                 .then(function successCallback(response) {
                     if(response.status == 200){
@@ -1408,8 +1535,27 @@ $(function() {
                 });
         };
     });
+    app.controller("loginCtrl", function ($scope, $http) {
+        $scope.userLogin = function(){
+            console.log("$scope.userName");
+            console.log("$scope.userPassword");
+
+            //credential verification and set both userName and timeStamp
+            sessionStorage.setItem("userName","admin");
+            sessionStorage.setItem("timeStamp",new Date());
+        };
+    });
+    app.controller("logoutCtrl", function ($scope, $http) {
+        sessionStorage.removeItem("userName");
+        sessionStorage.removeItem("timeStamp");
+        window.location.href = "#login/";
+    });
     app.controller("otherUrlCtrl", function () {
         console.log("Otherwise URL contoller...");
+        if(usrInvalid()){
+            window.location.href = "#login/";
+            return;
+        }
     });
 }());
 

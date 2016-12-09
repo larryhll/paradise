@@ -1,0 +1,32 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-4 col-md-offset-4">
+            <div class="login-panel panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">用户登录</h3>
+                </div>
+                <div class="panel-body">
+                    <form role="form" name="formValidation">
+                            <div class="form-group-validate has-feedback eden-style-25">
+                                <input class="form-control" id="userName" name="userName" ng-model="userName" placeholder="请输入用户名" autofocus required>
+                                <span class="validation-error-text" ng-show="formValidation.userName.$invalid && (formValidation.userName.$touched || formValidation.userName.$dirty)">请输入用户名</span>
+                            </div>
+                            <div class="form-group-validate has-feedback eden-style-25">
+                                <input class="form-control" id="userPassword" name="password" ng-model="userPassword" type="password" placeholder="请输入密码" required>
+                                <span class="validation-error-text" ng-show="formValidation.password.$invalid && (formValidation.password.$touched || formValidation.password.$dirty)">请输入密码</span>
+                            </div>
+                            <!--<div class="checkbox">
+                                <label>
+                                    <input name="remember" type="checkbox" value="Remember Me">Remember Me
+                                </label>
+                            </div>-->
+                            <!-- Change this to a button or input when using this as a form -->
+                            <div style="margin-top: 25px">
+                                <a href="#primary_product" class="btn btn-lg btn-info btn-block" data-ng-click="userLogin()" ng-disabled="formValidation.$invalid">Login</a>
+                            </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
