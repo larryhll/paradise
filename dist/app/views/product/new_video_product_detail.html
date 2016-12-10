@@ -6,10 +6,10 @@
                     <div class="panel-body">
                         <form role="form" name="VideoFormValidation">
                             <div class="row">
-                                <div class="col-lg-6">
+                                <div class="col-lg-12">
                                     <div class="form-group">
                                         <button class="btn btn-info" data-ng-click="submitProductInfo()" ng-disabled="VideoFormValidation.$invalid" style="display: block">新增/修改</button>
-                                        <span class="validation-error-text" ng-show="VideoFormValidation.$invalid">输入视频产品数据不全，请检查！</span>
+                                        <span class="validation-error-text" ng-show="VideoFormValidation.$invalid || imageInvalid">输入视频产品数据不全，请检查包括图片在内的所有字段！</span>
                                         <br>
                                     </div>
                                 </div>
@@ -107,13 +107,28 @@
                             <div class="row">
                                 <div class="col-lg-12">
                                     <div class="form-group">
-                                        <label>产品封面图(建议486*630或792*519)：</label>
-                                        <div class="form-group">
-                                            <img id="productCoverImage" src="{{productInfo.productCover}}" style="max-height: 210px; min-height:173px; max-width:264px; min-width:162px;">
-                                            <input id="productCoverFileSelect" type="file" file-input="productCoverImageFile" accept=".png,.jpg" style="display:none">
-                                            <button style="display:none" ng-click="updateProductCoverImage()"></button>
-                                            <button class="btn btn-default" ng-click="updateProductCoverImageStart()" style="display: block; margin-top: 5px">上传产品封面</button>
+                                        <label>产品封面图</label>
+                                        <div class="row">
+                                            <div class="col-lg-4">
+                                                <span style="display: block">竖向图（建议分辨率：486*630）</span>
+                                                <!--style="max-height: 210px; min-height:210px; max-width:162px; min-width:162px;"-->
+                                                <img ng-if="productInfo.productCoverVerti.length==0" id="productCoverImageVerti" src="img/blank.jpg" style="max-height: 165px; min-height:165px; max-width:240px; min-width:240px;">
+                                                <img ng-if="productInfo.productCoverVerti.length>0" id="productCoverImageVerti" src="{{productInfo.productCoverVerti}}" style="max-height: 165px; min-height:165px; max-width:240px; min-width:240px;">
+                                                <input id="productCoverFileSelectVerti" type="file" file-input="productCoverImageVertiFile" accept=".png,.jpg" style="display:none">
+                                                <button style="display:none" ng-click="updateProductCoverImageVerti()"></button>
+                                                <button class="btn btn-default" ng-click="updateProductCoverImageVertiStart()" style="display: block; margin-top: 5px">上传</button>
+                                            </div>
+                                            <div class="col-lg-4">
+                                                <span style="display: block">首页图（建议分辨率：根据首页位置而定）</span>
+                                                <!--style="max-height: 165px; min-height:165px; max-width:240px; min-width:240px;"-->
+                                                <img ng-if="productInfo.productCover.length==0" id="productCoverImage" src="img/blank.jpg" style="max-height: 165px; min-height:165px; max-width:240px; min-width:240px;">
+                                                <img ng-if="productInfo.productCover.length>0" id="productCoverImage" src="{{productInfo.productCover}}" style="max-height: 165px; min-height:165px; max-width:240px; min-width:240px;">
+                                                <input id="productCoverFileSelect" type="file" file-input="productCoverImageFile" accept=".png,.jpg" style="display:none">
+                                                <button style="display:none" ng-click="updateProductCoverImage()"></button>
+                                                <button class="btn btn-default" ng-click="updateProductCoverImageStart()" style="display: block; margin-top: 5px">上传</button>
+                                            </div>
                                         </div>
+                                        <!--<label>产品封面图(建议486*630或792*519)：</label>-->
                                     </div>
                                 </div>
                             </div>

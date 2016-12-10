@@ -22,7 +22,8 @@
                             </div>-->
                             <!-- Change this to a button or input when using this as a form -->
                             <div style="margin-top: 25px">
-                                <a href="#primary_product" class="btn btn-lg btn-info btn-block" data-ng-click="userLogin()" ng-disabled="formValidation.$invalid">Login</a>
+                                <button class="btn btn-lg btn-info btn-block" data-ng-click="userLogin()" ng-disabled="formValidation.$invalid">Login</button>
+                                <span ng-show="loginInvalid" style="color: #ff0000; display: block">登陆用户名或密码错误，请重新登陆！</span>
                             </div>
                     </form>
                 </div>

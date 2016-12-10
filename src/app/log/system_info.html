@@ -18,17 +18,19 @@
                             <div class="col-lg-8">
                                 <div class="form-group">
                                     <label>APK URL：</label>
-                                    <span ng-bind="systemInfo.systemApkDownUrl" style="display: block"></span>
+                                    <!--<span ng-bind="systemInfo.systemApkDownUrl" style="display: block"></span>-->
+                                    <input class="form-control" id="apkDownloadURL" name="apkDownloadURL" style="display: block" readonly ng-model="systemInfo.systemApkDownUrl" required>
                                     <input id="apkFileSelect" type="file" file-input="apkFile" accept=".apk" style="display:none">
                                     <button style="display:none" ng-click="updateAPKFile()"></button>
                                     <button class="btn btn-default" ng-click="updateAPKFileStart()" style="display: block; margin-top: 5px">上传/更新APK文件</button>
+                                    <span style="color: #ff0000" ng-show="systemFormValidation.apkDownloadURL.$invalid && (systemFormValidation.apkDownloadURL.$touched || systemFormValidation.apkDownloadURL.$dirty)">请上传APK文件</span>
                                 </div>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-lg-4">
                                 <div class="form-group">
-                                    <button class="btn btn-info" ng-click="systemInfoSubmit()" ng-disabled="systemFormValidation.$invalid || apkURLInvalid">新增/更新</button>
+                                    <button class="btn btn-info" ng-click="systemInfoSubmit()" ng-disabled="systemFormValidation.$invalid">新增/更新</button>
                                 </div>
                             </div>
                         </div>
