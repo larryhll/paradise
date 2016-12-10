@@ -760,6 +760,9 @@ $(function() {
         $scope.productInfo.productCover = "";
         $scope.productInfo.productCoverHori = "";
         $scope.productInfo.productCoverVerti = "";
+        $scope.productInfo.productTrialAddr = "";
+        $scope.productInfo.productApkDownUrl = "";
+        $scope.productInfo.productMicroStoreByecodeAddr = "";
         $scope.firstScreenShot = ""
         $scope.secondScreenShot = "";
         $scope.thirdScreenShot = "";
@@ -929,9 +932,6 @@ $(function() {
         $scope.submitProductInfo = function(){
             //check if all image selected
             if(null == $scope.productInfo.productDesc
-                || null == $scope.productInfo.productTrialAddr
-                || null == $scope.productInfo.productApkDownUrl
-                || null == $scope.productInfo.productMicroStoreByecodeAddr
                 || $scope.productInfo.productCover.length == 0
                 || $scope.productInfo.productCoverHori.length == 0
                 || $scope.productInfo.productCoverVerti.length == 0
