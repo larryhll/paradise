@@ -567,12 +567,18 @@ $(function() {
                             $scope.productInfo.productDesc = response.data.urls;
                         }else if(imageType == "cover"){
                             $scope.productInfo.productCover = response.data.urls;
+                        }else if(imageType == "coverHori"){
+                            $scope.productInfo.productCoverHori = response.data.urls;
+                        }else if(imageType == "coverVerti"){
+                            $scope.productInfo.productCoverVerti = response.data.urls;
                         }else if(imageType == "firstScreen"){
                             $scope.firstScreenShot = response.data.urls;
                         }else if(imageType == "secondScreen"){
                             $scope.secondScreenShot = response.data.urls;
                         }else if(imageType == "thirdScreen"){
                             $scope.thirdScreenShot = response.data.urls;
+                        }else if(imageType == "appQRCode"){
+                            $scope.productInfo.productAppQRCode = response.data.urls;
                         }else if(imageType == "trial"){
                             $scope.productInfo.productTrialAddr = response.data.urls;
                         }else if(imageType == "QRCode"){
@@ -642,6 +648,16 @@ $(function() {
             $("#productScreenShotThirdFileSelect").click();
             console.log("Click the third product screen shot file selection dialog");
         };
+
+        //update app QR code image
+        $scope.updateProductAppQRCodeImage = function(){
+            updateImage($scope.productAppQRCodeImageFile, "productAppQRCodeImage","appQRCode");
+        };
+        $scope.updateProductAppQRCodeImageStart = function(){
+            $(productAppQRCodeFileSelect).click();
+            console.log("Click product app QR code file selection dialog");
+        };
+
         //update trial image
         $scope.updateProductTrialImage = function(){
             updateImage($scope.productTrialFile, "productTrialImage","trial");
@@ -760,6 +776,7 @@ $(function() {
         $scope.productInfo.productCover = "";
         $scope.productInfo.productCoverHori = "";
         $scope.productInfo.productCoverVerti = "";
+        $scope.productInfo.productAppQRCode = "";
         $scope.productInfo.productTrialAddr = "";
         $scope.productInfo.productApkDownUrl = "";
         $scope.productInfo.productMicroStoreByecodeAddr = "";
@@ -812,6 +829,8 @@ $(function() {
                             $scope.secondScreenShot = response.data.urls;
                         }else if(imageType == "thirdScreen"){
                             $scope.thirdScreenShot = response.data.urls;
+                        }else if(imageType == "appQRCode"){
+                            $scope.productInfo.productAppQRCode = response.data.urls;
                         }else if(imageType == "trial"){
                             $scope.productInfo.productTrialAddr = response.data.urls;
                         }else if(imageType == "QRCode"){
@@ -881,6 +900,16 @@ $(function() {
             $("#productScreenShotThirdFileSelect").click();
             console.log("Click the third product screen shot file selection dialog");
         };
+
+        //update app QR code image
+        $scope.updateProductAppQRCodeImage = function(){
+            updateImage($scope.productAppQRCodeImageFile, "productAppQRCodeImage","appQRCode");
+        };
+        $scope.updateProductAppQRCodeImageStart = function(){
+            $(productAppQRCodeFileSelect).click();
+            console.log("Click product app QR code file selection dialog");
+        };
+
         //update trial image
         $scope.updateProductTrialImage = function(){
             updateImage($scope.productTrialFile, "productTrialImage","trial");
@@ -935,7 +964,8 @@ $(function() {
                 || $scope.productInfo.productCover.length == 0
                 || $scope.productInfo.productCoverHori.length == 0
                 || $scope.productInfo.productCoverVerti.length == 0
-                || $scope.firstScreenShot.length == 0){
+                || $scope.firstScreenShot.length == 0
+                || $scope.productInfo.productAppQRCode.length == 0){
                 $scope.imageInvalid = true;
                 return;
             }else{
@@ -1085,6 +1115,8 @@ $(function() {
                             $scope.productInfo.productDesc = response.data.urls;
                         }else if(imageType == "cover"){
                             $scope.productInfo.productCover = response.data.urls;
+                        }else if(imageType == "coverVerti"){
+                            $scope.productInfo.productCoverVerti = response.data.urls;
                         }
                     }else{
                         console.log("Failed to upload image file");
@@ -1102,6 +1134,7 @@ $(function() {
             $(productDescFileSelect).click();
             console.log("Click product description file selection dialog");
         };
+
         //update product cover image
         $scope.updateProductCoverImage = function(){
             updateImage($scope.productCoverImageFile, "productCoverImage","cover");
@@ -1109,6 +1142,14 @@ $(function() {
         $scope.updateProductCoverImageStart = function(){
             $(productCoverFileSelect).click();
             console.log("Click product cover file selection dialog");
+        };
+        //update vertical product cover image
+        $scope.updateProductCoverImageVerti = function(){
+            updateImage($scope.productCoverImageVertiFile, "productCoverImageVerti","coverVerti");
+        };
+        $scope.updateProductCoverImageVertiStart = function(){
+            $(productCoverFileSelectVerti).click();
+            console.log("Click product vertical cover file selection dialog");
         };
 
         //create and delete video item

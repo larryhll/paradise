@@ -174,8 +174,21 @@
                         <div class="row">
                             <div class="col-lg-12">
                                 <div class="form-group">
+                                    <label>手机端产品微店二维码(建议360*360)：</label>
+                                    <div>
+                                        <img id="productAppQRCodeImage" src="{{productInfo.productAppQRCode}}" style="max-height: 120px; min-height: 120px; max-width: 120px; min-width: 120px">
+                                        <input id="productAppQRCodeFileSelect" type="file" file-input="productAppQRCodeImageFile" accept=".png,.jpg" style="display:none">
+                                        <button style="display:none" ng-click="updateProductAppQRCodeImage()"></button>
+                                        <button class="btn btn-default" ng-click="updateProductAppQRCodeImageStart()" style="display: block; margin-top: 5px">上传手机端二维码</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="form-group">
                                     <div class="checkbox">
-                                        <label><input type="checkbox" ng-model="productInfo.productPlayEnabled">启用演示视频：</label>
+                                        <label style="font-weight: bold"><input type="checkbox" ng-model="productInfo.productPlayEnabled">启用演示视频：</label>
                                     </div>
                                     <input type="text" class="form-control" name="playAddr" ng-model="productInfo.productPlayAddr">
                                     <!--<span class="validation-error-text" ng-show="ARFormValidation.playAddr.$invalid && (ARFormValidation.playAddr.$touched || ARFormValidation.playAddr.$dirty)">请输入演示视频地址</span>
@@ -187,7 +200,7 @@
                             <div class="col-lg-4">
                                 <div class="form-group">
                                     <div class="checkbox">
-                                        <label><input type="checkbox" ng-model="productInfo.productTrialEnabled">启用试用体验(建议1710*405)：</label>
+                                        <label style="font-weight: bold"><input type="checkbox" ng-model="productInfo.productTrialEnabled">启用试用体验(建议1710*405)：</label>
                                     </div>
                                     <div>
                                         <img id="productTrialImage" src="{{productInfo.productTrialAddr}}" style="max-height: 135px; min-height:135px; max-width:570px; min-width:570px;">
@@ -202,7 +215,7 @@
                             <div class="col-lg-12">
                                 <div class="form-group">
                                     <div class="checkbox">
-                                        <label><input type="checkbox" ng-model="productInfo.productAppEnabled">启用视端APP：</label>
+                                        <label style="font-weight: bold"><input type="checkbox" ng-model="productInfo.productAppEnabled">启用视端APP：</label>
                                     </div>
                                 </div>
                             </div>
@@ -213,19 +226,19 @@
                                     <div class="panel-body">
                                         <div class="col-lg-12">
                                             <div class="row form-group">
-                                                <label>APK版本：</label>
+                                                <span>APK版本：</span>
                                                 <input class="form-control" name="productAPKVersion" ng-model="productInfo.productApkVersion" placeholder="输入apk版本号...">
                                                 <!--<span class="validation-error-text" ng-show="ARFormValidation.productAPKVersion.$invalid && (ARFormValidation.productAPKVersion.$touched || ARFormValidation.productAPKVersion.$dirty)">请输入APK版本号</span>
                                                 <br>-->
                                             </div>
                                             <div class="row form-group">
-                                                <label>APK包名：</label>
+                                                <span>APK包名：</span>
                                                 <input class="form-control" name="productPackageName" ng-model="productInfo.productPackName" placeholder="输入apk包名...">
                                                 <!--<span class="validation-error-text" ng-show="ARFormValidation.productPackageName.$invalid && (ARFormValidation.productPackageName.$touched || ARFormValidation.productPackageName.$dirty)">请输入APK包名</span>
                                                 <br>-->
                                             </div>
                                             <div class="row">
-                                                <label>APK URL：</label>
+                                                <span>APK URL：</span>
                                                 <span ng-bind="productInfo.productApkDownUrl"></span>
                                                 <input id="apkFileSelect" type="file" file-input="apkFile" accept=".apk" style="display:none">
                                                 <button style="display:none" ng-click="updateAPKFile()"></button>
@@ -233,7 +246,7 @@
                                                 <br>
                                             </div>
                                             <div class="row">
-                                                <label>手机端/视端产品微店二维码（建议240*240）：</label>
+                                                <span>手机端/视端产品微店二维码（建议240*240）：</span>
                                                 <img id="productQRImage" src="{{productInfo.productMicroStoreByecodeAddr}}" style="display:block; max-height: 80px; min-height:80px; max-width:80px; min-width:80px;">
                                                 <input id="productQRFileSelect" type="file" file-input="productQRFile" accept=".png,.jpg" style="display:none">
                                                 <button style="display:none" ng-click="updateProductQRImage()"></button>
