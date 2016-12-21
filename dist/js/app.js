@@ -1633,6 +1633,11 @@ $(function() {
         }
         loginForwardURL.setForwardURL(null);
 
+        $scope.progress = 0;
+        $scope.percentageStyle = {
+            width : $scope.progress + '%'
+        };
+
         $scope.systemInfo = {};
         $scope.systemInfo.systemLatestVersion = "";
         $scope.systemInfo.systemApkDownUrl = "";
@@ -1649,25 +1654,38 @@ $(function() {
 
         //update APK file
         var updateAPKFile = function(files){
-            console.log("Selected file number: " + files.length);
+            $scope.progress = 0;
+
             var fd = new FormData();
             fd.append("root", files[0]);
-            $http.post(apiPath + "eden/prods/upload",fd,
-                {
-                    transformRequest: angular.identity,
-                    headers: {'Content-Type': 'multipart/form-data'}
-                }).then(
-                function successCallback(response) {
-                    if(response.status === 200){
-                        console.log("Upload APK file successfully");
-                        $scope.systemInfo.systemApkDownUrl = response.data.urls;
-                    }else{
-                        console.log("Failed to upload APK file");
-                    }
-                },
-                function errorCallback(response) {
-                    console.log("Failed to upload APK file");
-                });
+            var fData = new FormData();
+            fData.append("root", files[0]);
+
+            var xhr = new XMLHttpRequest();
+            xhr.upload.addEventListener("progress", uploadProgress, false);
+            xhr.open("POST", apiPath + "eden/prods/upload");
+            xhr.setRequestHeader("Content-Type","multipart/form-data");
+            xhr.send(fData);
+
+            function uploadProgress(event){
+                if(event.lengthComputable){
+                    $scope.progress = Math.round(event.loaded * 100 / event.total);
+                } else {
+                    $scope.progress = 0;
+                }
+                $scope.percentageStyle = {
+                    width : $scope.progress + '%'
+                };
+                $scope.$apply();
+            }
+
+            xhr.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    console.log("Upload apk file successfully");
+                    $scope.systemInfo.systemApkDownUrl = JSON.parse(this.response).urls;
+                    $scope.$apply();
+                }
+            };
         };
         $scope.updateAPKFile = function(){
             updateAPKFile($scope.apkFile);

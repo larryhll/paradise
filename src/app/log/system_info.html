@@ -22,6 +22,9 @@
                                     <input class="form-control" id="apkDownloadURL" name="apkDownloadURL" style="display: block" readonly ng-model="systemInfo.systemApkDownUrl" required>
                                     <input id="apkFileSelect" type="file" file-input="apkFile" accept=".apk" style="display:none">
                                     <button style="display:none" ng-click="updateAPKFile()"></button>
+                                    <div class="progress" style="margin-top: 5px; margin-bottom: 5px">
+                                        <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="{{progress}}" aria-valuemin="0" aria-valuemax="100" ng-style="percentageStyle">{{progress}}%</div>
+                                    </div>
                                     <button class="btn btn-default" ng-click="updateAPKFileStart()" style="display: block; margin-top: 5px">上传/更新APK文件</button>
                                     <span style="color: #ff0000" ng-show="systemFormValidation.apkDownloadURL.$invalid && (systemFormValidation.apkDownloadURL.$touched || systemFormValidation.apkDownloadURL.$dirty)">请上传APK文件</span>
                                 </div>
