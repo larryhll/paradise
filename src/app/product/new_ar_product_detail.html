@@ -242,11 +242,14 @@
                                                 <span ng-bind="productInfo.productApkDownUrl"></span>
                                                 <input id="apkFileSelect" type="file" file-input="apkFile" accept=".apk" style="display:none">
                                                 <button style="display:none" ng-click="updateAPKFile()"></button>
+                                                <div class="progress" style="margin-top: 5px; margin-bottom: 5px">
+                                                    <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="{{progress}}" aria-valuemin="0" aria-valuemax="100" ng-style="percentageStyle">{{progress}}%</div>
+                                                </div>
                                                 <button class="btn btn-default" ng-click="updateAPKFileStart()" style="display: block; margin-top: 5px">上传/更新APK文件</button>
                                                 <br>
                                             </div>
                                             <div class="row">
-                                                <span>手机端/视端产品微店二维码（建议240*240）：</span>
+                                                <span>视端产品微店二维码（建议240*240）：</span>
                                                 <img id="productQRImage" src="{{productInfo.productMicroStoreByecodeAddr}}" style="display:block; max-height: 80px; min-height:80px; max-width:80px; min-width:80px;">
                                                 <input id="productQRFileSelect" type="file" file-input="productQRFile" accept=".png,.jpg" style="display:none">
                                                 <button style="display:none" ng-click="updateProductQRImage()"></button>
