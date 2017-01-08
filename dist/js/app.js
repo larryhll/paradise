@@ -1,13 +1,13 @@
 /*! 
 * FUNP - v1.0.0 
-* © Copyright 2016  Liangli Huang
+* © Copyright 2017  Liangli Huang
  */
 /**
  * Created by hualiang on 16-10-19.
  */
 
 $(function() {
-    var apiPath = "http://118.178.124.197:8080/";
+    var apiPath = "http://auv.shzhimo.com:8080/";
     var  usrInvalid = function(){
 
         //check if both key userName and timeStamp exist
