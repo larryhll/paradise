@@ -7,7 +7,7 @@
  */
 
 $(function() {
-    var apiPath = "http://auv.shzhimo.com:8080/";
+    var apiPath = "http://auv.shzhimo.com/";
     var  usrInvalid = function(){
 
         //check if both key userName and timeStamp exist
@@ -710,6 +710,9 @@ $(function() {
                 if (this.readyState == 4 && this.status == 200) {
                     console.log("Upload apk file successfully");
                     $scope.productInfo.productApkDownUrl = JSON.parse(this.response).urls;
+                    $scope.productInfo.productSize = JSON.parse(this.response).productSize;
+                    $scope.productInfo.productPackName = JSON.parse(this.response).productPackName;
+                    $scope.productInfo.productApkVersion = JSON.parse(this.response).productApkVersion;
                     $scope.$apply();
                 }
             };
@@ -979,6 +982,9 @@ $(function() {
                 if (this.readyState == 4 && this.status == 200) {
                     console.log("Upload apk file successfully");
                     $scope.productInfo.productApkDownUrl = JSON.parse(this.response).urls;
+                    $scope.productInfo.productSize = JSON.parse(this.response).productSize;
+                    $scope.productInfo.productPackName = JSON.parse(this.response).productPackName;
+                    $scope.productInfo.productApkVersion = JSON.parse(this.response).productApkVersion;
                     $scope.$apply();
                 }
             };

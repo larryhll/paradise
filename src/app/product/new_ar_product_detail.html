@@ -227,13 +227,15 @@
                                         <div class="col-lg-12">
                                             <div class="row form-group">
                                                 <span>APK版本：</span>
-                                                <input class="form-control" name="productAPKVersion" ng-model="productInfo.productApkVersion" placeholder="输入apk版本号...">
+                                                <span ng-bind="productInfo.productApkVersion"></span>
+                                                <!--<input class="form-control" name="productAPKVersion" ng-model="productInfo.productApkVersion" placeholder="输入apk版本号...">-->
                                                 <!--<span class="validation-error-text" ng-show="ARFormValidation.productAPKVersion.$invalid && (ARFormValidation.productAPKVersion.$touched || ARFormValidation.productAPKVersion.$dirty)">请输入APK版本号</span>
                                                 <br>-->
                                             </div>
                                             <div class="row form-group">
                                                 <span>APK包名：</span>
-                                                <input class="form-control" name="productPackageName" ng-model="productInfo.productPackName" placeholder="输入apk包名...">
+                                                <span ng-bind="productInfo.productPackName"></span>
+                                                <!--<input class="form-control" name="productPackageName" ng-model="productInfo.productPackName" placeholder="输入apk包名...">-->
                                                 <!--<span class="validation-error-text" ng-show="ARFormValidation.productPackageName.$invalid && (ARFormValidation.productPackageName.$touched || ARFormValidation.productPackageName.$dirty)">请输入APK包名</span>
                                                 <br>-->
                                             </div>
