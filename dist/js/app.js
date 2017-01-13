@@ -1614,10 +1614,33 @@ $(function() {
         loading();
         $scope.itemNumOfPage = "10";
 
+        //Sort JSON data by logDownloadDate field
+        var jsonDataSort = function (jsonData, direction) {
+            if(null == jsonData || jsonData.length < 2){
+                return false;
+            }
+
+            if(direction == "ascending"){
+                jsonData.sort(function (a, b) {
+                    return (new Date(a.logDownloadDate).getTime()) - (new Date(b.logDownloadDate).getTime());
+                });
+                return true;
+            }else if(direction == "descending"){
+                jsonData.sort(function (a, b) {
+                    return (new Date(b.logDownloadDate).getTime()) - (new Date(a.logDownloadDate).getTime());
+                });
+                return true;
+            }else{
+                return false;
+            }
+        };
+
         //Get download log list data
         console.log("Invoke log list controller, get download log list");
         $http.get(apiPath + "eden/logs/lists")
             .then(function successCallback(response) {
+                jsonDataSort(response.data, "descending");
+
                 $scope.logAllItems = response.data;
                 $scope.allItemsLength = $scope.logAllItems.length;
 
