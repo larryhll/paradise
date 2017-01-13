@@ -1663,7 +1663,7 @@ $(function() {
             ($scope.pageInTotal > $scope.currentPage) ? ($scope.nextInvalid = false) : ($scope.nextInvalid = true);
             ($scope.currentPage > 1) ? ($scope.previousInvalid = false) : ($scope.previousInvalid = true);
             var startIndex = ($scope.currentPage-1) * $scope.itemNumOfPage;
-            $scope.logItems = $scope.logAllItems.slice(startIndex, startIndex + $scope.itemNumOfPage);
+            $scope.logItems = $scope.logAllItems.slice(startIndex, parseInt(startIndex + $scope.itemNumOfPage));
         };
 
         //change page number selection
